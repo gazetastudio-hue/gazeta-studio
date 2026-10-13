@@ -19,5 +19,12 @@ window.GAZETA = {
     {name:"Colección II — Ceniza y Vino", date:"28 noviembre — 19 diciembre 2026", note:"Edición especial de invierno. 7 obras · 2 gran formato."},
     {name:"Colección III — Arquitectura Interior", date:"Febrero 2027", note:"Diálogo con hormigón, travertino y luz mediterránea. 8 obras."}
   ],
-  closed: ["Preludio — Estudio 01","Negro sobre Negro","La Primera Pared","Materia — Serie Corta","Granate Profundo","Archivo 001"]
+  closed: [
+    {name:"Preludio — Estudio 01", image:"assets/archivo-01.jpg", note:"Negro mineral y granate · Edición cerrada"},
+    {name:"La Primera Pared", image:"assets/archivo-02.jpg", note:"Blanco roto y humo · Edición cerrada"},
+    {name:"Granate Profundo", image:"assets/archivo-03.jpg", note:"Serie corta · Edición cerrada"},
+    {name:"Negro sobre Negro", image:"", note:"Edición cerrada"},
+    {name:"Materia — Serie Corta", image:"", note:"Edición cerrada"},
+    {name:"Archivo 001", image:"", note:"Edición cerrada"}
+  ]
 };
