@@ -71,15 +71,37 @@ function showToast(msg){
   clearTimeout(t._h); t._h = setTimeout(()=>t.classList.remove('show'), 3400);
 }
 
-function openCart(){ document.getElementById('cartDrawer')?.classList.add('open'); document.getElementById('overlay')?.classList.add('show'); }
-function closeCart(){ document.getElementById('cartDrawer')?.classList.remove('open'); document.getElementById('overlay')?.classList.remove('show'); document.getElementById('mainNav')?.classList.remove('open'); }
+function setOverlay(v){ document.getElementById('overlay')?.classList.toggle('show', v); }
+function openMenu(){
+  document.getElementById('mainNav')?.classList.add('open');
+  document.getElementById('menuBtn')?.setAttribute('aria-expanded','true');
+  document.body.classList.add('menu-open'); setOverlay(true);
+}
+function closeMenu(){
+  document.getElementById('mainNav')?.classList.remove('open');
+  document.getElementById('menuBtn')?.setAttribute('aria-expanded','false');
+  document.body.classList.remove('menu-open');
+  if(!document.getElementById('cartDrawer')?.classList.contains('open')) setOverlay(false);
+}
+function toggleMenu(){
+  document.getElementById('mainNav')?.classList.contains('open') ? closeMenu() : openMenu();
+}
+function openCart(){ closeMenu(); document.getElementById('cartDrawer')?.classList.add('open'); document.body.classList.add('cart-open'); setOverlay(true); }
+function closeCart(){
+  document.getElementById('cartDrawer')?.classList.remove('open');
+  document.body.classList.remove('cart-open'); closeMenu(); setOverlay(false);
+}
 
 function initShop(){
   renderCart();
   document.getElementById('cartBtn')?.addEventListener('click', openCart);
   document.getElementById('closeCart')?.addEventListener('click', closeCart);
   document.getElementById('overlay')?.addEventListener('click', closeCart);
-  document.getElementById('menuBtn')?.addEventListener('click', ()=>{ document.getElementById('mainNav').classList.add('open'); document.getElementById('overlay').classList.add('show'); });
+  document.getElementById('menuBtn')?.addEventListener('click', toggleMenu);
+  document.getElementById('navClose')?.addEventListener('click', closeMenu);
+  document.querySelectorAll('#mainNav a').forEach(a=>a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeMenu(); closeCart(); } });
+  window.addEventListener('resize', ()=>{ if(window.innerWidth>980) closeMenu(); });
   document.getElementById('checkoutBtn')?.addEventListener('click', ()=>{
     if(cart.length===0){ showToast('Tu cesta está vacía. Elige tu obra antes de que se agote su edición.'); return; }
     showToast('Pedido simulado registrado ✔ Cada obra se numerará a tu nombre y viajará con su certificado firmado por Juan Casper.');

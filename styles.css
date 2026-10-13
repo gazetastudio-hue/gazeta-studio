@@ -18,7 +18,7 @@ button,input,textarea,select{font:inherit}
 .topbar strong{font-weight:600}
 
 /* Header tipo Desenio */
-header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--linea)}
+header.site{position:sticky;top:0;z-index:60;background:#ffffff;border-bottom:1px solid var(--linea)}
 .header-in{max-width:var(--max);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.05rem 1.5rem}
 .logo{font-size:1.45rem;font-weight:800;letter-spacing:.32em;line-height:1;text-align:center}
 .logo span{color:var(--vino)}
@@ -29,7 +29,9 @@ nav.main a:hover,nav.main a.activo{border-color:var(--vino);color:var(--vino)}
 .header-actions{display:flex;gap:1rem;align-items:center}
 .icon-btn{background:none;border:0;cursor:pointer;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;display:flex;gap:.4rem;align-items:center}
 .cart-count{background:var(--vino);color:#fff;border-radius:50%;width:20px;height:20px;display:inline-grid;place-items:center;font-size:.65rem}
-.menu-btn{display:none;background:none;border:1px solid var(--negro);padding:.5rem .8rem;cursor:pointer;letter-spacing:.15em;font-size:.7rem;text-transform:uppercase}
+.menu-btn{display:none;background:none;border:1px solid var(--negro);padding:.5rem .8rem;cursor:pointer;letter-spacing:.15em;font-size:.7rem;text-transform:uppercase;min-width:44px;min-height:44px}
+.nav-close{display:none}
+body.menu-open,body.cart-open{overflow:hidden}
 
 /* Layout */
 .wrap{max-width:var(--max);margin:auto;padding:0 1.5rem}
@@ -196,7 +198,7 @@ footer a:hover{color:#fff}
 .remove{background:none;border:0;color:var(--vino);cursor:pointer;font-size:.75rem;padding:0}
 .drawer-foot{padding:1.3rem;border-top:1px solid var(--linea)}
 .drawer-foot .total{display:flex;justify-content:space-between;font-weight:700;margin-bottom:1rem}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:90;opacity:0;pointer-events:none;transition:.3s}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:40;opacity:0;pointer-events:none;transition:.3s}
 .overlay.show{opacity:1;pointer-events:auto}
 .toast{position:fixed;left:50%;bottom:1.4rem;transform:translate(-50%,120px);background:var(--negro);color:#fff;padding:1rem 1.4rem;z-index:120;transition:.35s;font-size:.9rem;max-width:92vw;text-align:center}
 .toast.show{transform:translate(-50%,0)}
@@ -204,8 +206,11 @@ footer a:hover{color:#fff}
 .reveal.visible{opacity:1;transform:none}
 
 @media(max-width:980px){
-  nav.main{position:fixed;top:0;left:-320px;width:290px;height:100dvh;background:#fff;z-index:110;flex-direction:column;padding:5rem 2rem;transition:left .3s;box-shadow:20px 0 50px rgba(0,0,0,.12)}
-  nav.main.open{left:0}.menu-btn{display:block}
+  nav.main{position:fixed;top:0;left:0;width:min(320px,86vw);height:100vh;height:100dvh;background:#fff;z-index:110;flex-direction:column;gap:0;align-items:stretch;padding:5.5rem 2rem 2rem;overflow-y:auto;box-shadow:20px 0 50px rgba(0,0,0,.18);transform:translateX(-110%);visibility:hidden;transition:transform .32s ease,visibility 0s linear .32s}
+  nav.main.open{transform:translateX(0);visibility:visible;transition:transform .32s ease}
+  nav.main a{padding:1.05rem 0;border-bottom:1px solid var(--linea);font-size:.88rem}
+  .nav-close{display:grid;place-items:center;position:absolute;top:1rem;right:1rem;width:44px;height:44px;background:#fff;border:1px solid var(--negro);font-size:1rem;cursor:pointer;color:var(--negro)}
+  .menu-btn{display:inline-flex;align-items:center;justify-content:center}
   .hero-grid,.split,.certificado,.contact-grid{grid-template-columns:1fr}
   .hero-copy{padding:3.5rem 1.5rem}.hero-img{min-height:420px}
   .grid-productos{grid-template-columns:repeat(2,1fr)}

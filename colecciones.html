@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Colecciones — Las segundas partes nunca funcionan | GAZETA STUDIO</title>
 <meta name="description" content="Colección actual Origen de Gazeta Studio. Cada obra en un único tamaño, edición limitada, numerada y con certificado. Las colecciones cerradas no vuelven nunca.">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=3">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%236d1220'/><text x='50' y='68' font-size='62' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>G</text></svg>">
 </head>
 <body>
@@ -13,8 +13,9 @@
 
 <header class="site">
   <div class="header-in">
-    <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰ Menú</button>
-    <nav class="main" id="mainNav">
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav">☰ Menú</button>
+    <nav class="main" id="mainNav" aria-label="Navegación principal">
+      <button class="nav-close" id="navClose" aria-label="Cerrar menú">✕</button>
       <a href="index.html">Inicio</a>
       <a href="colecciones.html" class="activo">Colecciones</a>
       <a href="manifiesto.html">Manifiesto</a>
@@ -107,7 +108,7 @@
 </aside>
 <div class="toast" id="toast" role="status"></div>
 
-<script src="script.js"></script>
+<script src="script.js?v=3"></script>
 <script>
 document.getElementById('gridActual').innerHTML = productos.filter(p=>!p.cerrada).map(cardHTML).join('');
 document.getElementById('gridCerradas').innerHTML = productos.filter(p=>p.cerrada).map(cardHTML).join('');
