@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GAZETA STUDIO — Arte exclusivo con estilo propio | Cuadros en serie limitada de Juan Casper</title>
 <meta name="description" content="Cuadros de Juan Casper en series cortas y numeradas. Cada obra, en un solo tamaño. Especialistas en gran formato. Cuando una serie se cierra, no se repone.">
-<link rel="stylesheet" href="styles.css?v=7">
+<link rel="stylesheet" href="styles.css?v=8">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2354101e'/><text x='50' y='68' font-size='62' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>G</text></svg>">
 </head>
 <body>
@@ -122,6 +122,10 @@
           <li><span>El asiento de tu número en el <b>registro del estudio</b>, a tu nombre.</span></li>
           <li><span>Al cerrarse la serie, la obra <b>se retira y no se reedita</b> en ninguna medida.</span></li>
         </ul>
+        <figure class="inline-visual">
+          <img src="assets/firma-certificado.jpg" alt="Manos firmando un certificado junto al reverso de un lienzo" loading="lazy">
+          <figcaption><span>Firma del certificado</span><span>Gazeta Studio</span></figcaption>
+        </figure>
         <a class="btn" style="margin-top:2.2rem" href="colecciones.html">Consultar disponibilidad</a>
       </div>
     </div>
@@ -162,7 +166,7 @@
 </aside>
 <div class="toast" id="toast" role="status"></div>
 
-<script src="script.js?v=7"></script>
+<script src="script.js?v=8"></script>
 <script>
 const destacadasIds = ['vino-primero','horizonte-vino','linea-y-vino'];
 document.getElementById('destacadas').innerHTML = destacadasIds.map(id => cardHTML(productos.find(p=>p.id===id))).join('');

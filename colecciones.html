@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Colecciones — Las segundas partes nunca funcionan | GAZETA STUDIO</title>
 <meta name="description" content="Serie actual Origen, de Juan Casper: seis cuadros, cada uno en un único tamaño, numerados y con certificado. Las series cerradas no se reponen ni se vuelven a vender.">
-<link rel="stylesheet" href="styles.css?v=7">
+<link rel="stylesheet" href="styles.css?v=8">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2354101e'/><text x='50' y='68' font-size='62' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>G</text></svg>">
 </head>
 <body>
@@ -36,6 +36,10 @@
       <h1>Las segundas partes<br><span>nunca funcionan</span></h1>
       <p class="lead" style="margin-top:1.6rem">Cada serie se abre una vez y se cierra al agotarse la edición. No hay reediciones. La Serie I, agotada, se conserva en esta página solo como archivo.</p>
     </div>
+    <figure class="page-hero-visual context-visual reveal">
+      <img src="assets/galeria-colecciones.jpg" alt="Sala de galería con cuadros abstractos de gran formato en blanco, negro y borgoña" fetchpriority="high">
+      <figcaption><span>Serie II — Origen</span><span>Obra en sala</span></figcaption>
+    </figure>
   </section>
 
   <section style="padding-top:3.5rem">
@@ -70,6 +74,10 @@
         <article class="pilar"><span class="num">02</span><h3 style="font-size:1.4rem">Reserva del ejemplar</h3><p>Tras el pago, asignamos el primer número disponible y lo registramos a nombre del comprador.</p></article>
         <article class="pilar"><span class="num">03</span><h3 style="font-size:1.4rem">Envío y certificado</h3><p>La obra se envía firmada y numerada, acompañada del certificado correspondiente.</p></article>
       </div>
+      <figure class="context-visual process-visual reveal">
+        <img src="assets/detalle-numeracion.jpg" alt="Detalle del reverso de un lienzo mientras se escribe su numeración a lápiz" loading="lazy">
+        <figcaption><span>Reverso del lienzo</span><span>Numeración a mano</span></figcaption>
+      </figure>
     </div>
   </section>
 
@@ -108,7 +116,7 @@
 </aside>
 <div class="toast" id="toast" role="status"></div>
 
-<script src="script.js?v=7"></script>
+<script src="script.js?v=8"></script>
 <script>
 document.getElementById('gridActual').innerHTML = productos.filter(p=>!p.cerrada).map(cardHTML).join('');
 document.getElementById('gridCerradas').innerHTML = productos.filter(p=>p.cerrada).map(cardHTML).join('');
