@@ -1,13 +1,13 @@
 /* GAZETA STUDIO — datos y tienda */
 const productos = [
-  { id:'vino-primero', nombre:'Corriente', coleccion:'Serie II — Origen', img:'assets/obra-vino.jpg', tamano:'150 × 200 cm', tipo:'gran', tipoLabel:'Gran formato', edicion:30, restantes:11, precio:890, horizontal:false },
-  { id:'trazo-unico', nombre:'Pulso', coleccion:'Serie II — Origen', img:'assets/obra-trazo.jpg', tamano:'100 × 140 cm', tipo:'normal', tipoLabel:'Tamaño normal', edicion:50, restantes:23, precio:420, horizontal:false },
-  { id:'linea-y-vino', nombre:'Perfil en reposo', coleccion:'Serie II — Origen', img:'assets/obra-linea.jpg', tamano:'70 × 100 cm', tipo:'normal', tipoLabel:'Tamaño normal', edicion:75, restantes:41, precio:240, horizontal:false },
-  { id:'arena-calma', nombre:'Mediodía', coleccion:'Serie II — Origen', img:'assets/obra-arena.jpg', tamano:'120 × 160 cm', tipo:'gran', tipoLabel:'Gran formato', edicion:40, restantes:6, precio:560, horizontal:false },
-  { id:'horizonte-vino', nombre:'Última luz', coleccion:'Serie II — Origen', img:'assets/obra-horizonte.jpg', tamano:'200 × 120 cm', tipo:'gran', tipoLabel:'Gran formato', edicion:20, restantes:4, precio:1150, horizontal:true },
-  { id:'geometria-callada', nombre:'Equilibrio', coleccion:'Serie II — Origen', img:'assets/obra-geometria.jpg', tamano:'50 × 70 cm', tipo:'normal', tipoLabel:'Tamaño normal', edicion:100, restantes:58, precio:145, horizontal:false },
-  { id:'umbral-i', nombre:'Umbral I', coleccion:'Serie I — Umbral (cerrada)', img:'assets/obra-trazo.jpg', tamano:'130 × 180 cm', tipo:'gran', tipoLabel:'Gran formato', edicion:25, restantes:0, precio:740, cerrada:true, horizontal:false },
-  { id:'primera-vendimia', nombre:'Primera sala', coleccion:'Serie I — Umbral (cerrada)', img:'assets/obra-vino.jpg', tamano:'90 × 120 cm', tipo:'normal', tipoLabel:'Tamaño normal', edicion:40, restantes:0, precio:380, cerrada:true, horizontal:false },
+  { id:'vino-primero', nombre:'Corriente', coleccion:'Serie II — Origen', img:'assets/obra-vino.jpg', tamano:'150 × 200 cm', tipo:'gran', tipoLabel:'Gran formato', edicion:30, restantes:11, precio:890, horizontal:false, anio:2026, tecnica:'Acrílico y pigmento sobre lienzo', nota:'Composición vertical en gran formato, con capas de pigmento y un trazo final en negro.' },
+  { id:'trazo-unico', nombre:'Pulso', coleccion:'Serie II — Origen', img:'assets/obra-trazo.jpg', tamano:'100 × 140 cm', tipo:'normal', tipoLabel:'Tamaño normal', edicion:50, restantes:23, precio:420, horizontal:false, anio:2026, tecnica:'Tinta y acrílico sobre lienzo', nota:'Un único trazo central sobre fondo claro, sin elementos secundarios.' },
+  { id:'linea-y-vino', nombre:'Perfil en reposo', coleccion:'Serie II — Origen', img:'assets/obra-linea.jpg', tamano:'70 × 100 cm', tipo:'normal', tipoLabel:'Tamaño normal', edicion:75, restantes:41, precio:240, horizontal:false, anio:2025, tecnica:'Grafito y acrílico sobre lienzo', nota:'Dibujo de línea continua con una única intervención de color.' },
+  { id:'arena-calma', nombre:'Mediodía', coleccion:'Serie II — Origen', img:'assets/obra-arena.jpg', tamano:'120 × 160 cm', tipo:'gran', tipoLabel:'Gran formato', edicion:40, restantes:6, precio:560, horizontal:false, anio:2026, tecnica:'Acrílico sobre lienzo', nota:'Campo claro y forma central en arco; se aprecia la textura del lienzo.' },
+  { id:'horizonte-vino', nombre:'Última luz', coleccion:'Serie II — Origen', img:'assets/obra-horizonte.jpg', tamano:'200 × 120 cm', tipo:'gran', tipoLabel:'Gran formato', edicion:20, restantes:4, precio:1150, horizontal:true, anio:2026, tecnica:'Acrílico y pigmento sobre lienzo', nota:'Tres franjas horizontales en formato panorámico.' },
+  { id:'geometria-callada', nombre:'Equilibrio', coleccion:'Serie II — Origen', img:'assets/obra-geometria.jpg', tamano:'50 × 70 cm', tipo:'normal', tipoLabel:'Tamaño normal', edicion:100, restantes:58, precio:145, horizontal:false, anio:2025, tecnica:'Acrílico sobre lienzo', nota:'Dos formas geométricas sobre fondo blanco. Es el formato menor de la serie.' },
+  { id:'umbral-i', nombre:'Umbral I', coleccion:'Serie I — Umbral (cerrada)', img:'assets/obra-trazo.jpg', tamano:'130 × 180 cm', tipo:'gran', tipoLabel:'Gran formato', edicion:25, restantes:0, precio:740, cerrada:true, horizontal:false, anio:2025, tecnica:'Tinta y acrílico sobre lienzo', nota:'Serie I. Edición agotada.' },
+  { id:'primera-vendimia', nombre:'Primera sala', coleccion:'Serie I — Umbral (cerrada)', img:'assets/obra-vino.jpg', tamano:'90 × 120 cm', tipo:'normal', tipoLabel:'Tamaño normal', edicion:40, restantes:0, precio:380, cerrada:true, horizontal:false, anio:2025, tecnica:'Acrílico y pigmento sobre lienzo', nota:'Serie I. Edición agotada.' },
 ];
 
 function euros(n){ return n.toLocaleString('es-ES') + ' €'; }
@@ -19,9 +19,10 @@ function cardHTML(p){
     return `<article class="card cerrada reveal" data-id="${p.id}">
       <div class="card-media ${p.horizontal?'horizontal':''}"><span class="badge cerrada">Colección cerrada</span><img src="${p.img}" alt="Obra ${p.nombre} de Gazeta Studio, colección cerrada" loading="lazy"></div>
       <div class="card-info">
-        <div class="card-top"><h3>${p.nombre}</h3><span class="edicion" style="color:#8a8782">Se acabó</span></div>
+        <div class="card-top"><h3>${p.nombre}</h3><span class="edicion" style="color:#8a8782">Agotada</span></div>
+        <p class="ficha">Juan Casper · ${p.anio} · ${p.tecnica}</p>
         <div class="meta-obra"><span>Solo se hizo en <b>${p.tamano}</b></span><span>Serie de ${p.edicion}</span></div>
-        <div class="unico" style="background:var(--gris);border-color:#8a8782">Se vendió entera. <b>Ya no se puede comprar</b>, ni en esta medida ni en otra.</div>
+        <div class="unico" style="background:var(--gris);border-color:#8a8782">Edición agotada. <b>No disponible para la venta.</b></div>
         <div class="card-foot"><span class="precio" style="color:#8a8782">${euros(p.precio)}<small>El precio que tuvo</small></span><button class="add" disabled>Ya no se vende</button></div>
       </div></article>`;
   }
@@ -33,11 +34,13 @@ function cardHTML(p){
     </div>
     <div class="card-info">
       <div class="card-top"><h3>${p.nombre}</h3><span class="edicion">Serie de ${p.edicion}</span></div>
-      <div class="meta-obra"><span><b>${p.tamano}</b></span><span>${p.tipoLabel}</span></div>
-      <div class="unico">Solo en este tamaño. Ni más grande ni más pequeño.</div>
+      <p class="ficha">Juan Casper · ${p.anio} · ${p.tecnica}</p>
+      <p class="nota">${p.nota}</p>
+      <div class="meta-obra"><span><b>${p.tamano}</b></span><span>${p.tipoLabel}</span><span>Firmada y numerada</span></div>
+      <div class="unico">Medida única. No se produce en otros tamaños.</div>
       <div class="barra-edicion" aria-hidden="true"><i style="width:${pct}%"></i></div>
       <span class="quedan">Quedan ${p.restantes} de ${p.edicion}, con su número y su certificado</span>
-      <div class="card-foot"><span class="precio">${euros(p.precio)}<small>IVA incluido</small></span><button class="add" data-add="${p.id}">Lo quiero</button></div>
+      <div class="card-foot"><span class="precio">${euros(p.precio)}<small>IVA incluido</small></span><button class="add" data-add="${p.id}">Añadir a la cesta</button></div>
     </div></article>`;
 }
 
@@ -53,13 +56,13 @@ function renderCart(){
   if(!body) return;
   count.textContent = cart.length;
   if(cart.length === 0){
-    body.innerHTML = '<p class="muted" style="text-align:center;padding:2rem 0">Todavía no has elegido ningún cuadro.<br><br>Si dudas con las medidas, escríbenos<br>antes de comprar. Sin compromiso.</p>';
+    body.innerHTML = '<p class="muted" style="text-align:center;padding:2rem 0">La cesta está vacía.<br><br>Si tienes dudas sobre una medida,<br>contacta con el estudio antes de comprar.</p>';
     totalEl.textContent = '0 €'; return;
   }
   let total = 0;
   body.innerHTML = cart.map((id, i)=>{
     const p = productos.find(x=>x.id===id); total += p.precio;
-    return `<div class="cart-item"><img src="${p.img}" alt="${p.nombre}"><div><b>${p.nombre}</b><small>Solo en ${p.tamano}</small><small>Serie de ${p.edicion} · Con número y certificado</small><button class="remove" data-remove="${i}">Quitar</button></div><b>${euros(p.precio)}</b></div>`;
+    return `<div class="cart-item"><img src="${p.img}" alt="${p.nombre}"><div><b>${p.nombre}</b><small>Medida: ${p.tamano}</small><small>Serie de ${p.edicion} · Con número y certificado</small><button class="remove" data-remove="${i}">Quitar</button></div><b>${euros(p.precio)}</b></div>`;
   }).join('');
   totalEl.textContent = euros(total);
   body.querySelectorAll('[data-remove]').forEach(b=>b.addEventListener('click',()=>{ cart.splice(Number(b.dataset.remove),1); saveCart(); }));
@@ -110,9 +113,9 @@ function initShop(){
   document.querySelectorAll('[data-add]').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       const p = productos.find(x=>x.id===btn.dataset.add);
-      if(cart.includes(p.id)){ showToast('Ya lo tienes en la cesta. Con uno basta: tu número será solo tuyo.'); openCart(); return; }
+      if(cart.includes(p.id)){ showToast('Esta obra ya está en tu cesta. Solo puede añadirse un ejemplar por compra.'); openCart(); return; }
       cart.push(p.id); saveCart();
-      showToast('«' + p.nombre + '» (' + p.tamano + ') a tu cesta. El número te lo asignamos al pagar.');
+      showToast('«' + p.nombre + '» se ha añadido a la cesta. Al completar la compra asignaremos el siguiente número disponible.');
       openCart();
     });
   });
