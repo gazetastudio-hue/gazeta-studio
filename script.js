@@ -39,7 +39,8 @@ function cardHTML(p){
       <div class="meta-obra"><span><b>${p.tamano}</b></span><span>${p.tipoLabel}</span><span>Firmada y numerada</span></div>
       <div class="unico">Medida única. No se produce en otros tamaños.</div>
       <div class="barra-edicion" aria-hidden="true"><i style="width:${pct}%"></i></div>
-      <span class="quedan">Quedan ${p.restantes} de ${p.edicion}, con su número y su certificado</span>
+      <span class="quedan">Quedan ${p.restantes} de ${p.edicion}</span>
+      <p class="incluye">Firmada, numerada y con certificado incluido</p>
       <div class="card-foot"><span class="precio">${euros(p.precio)}<small>IVA incluido</small></span><button class="add" data-add="${p.id}">Añadir a la cesta</button></div>
     </div></article>`;
 }

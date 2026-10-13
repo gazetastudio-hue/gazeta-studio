@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contacto — Escríbenos sin compromiso | GAZETA STUDIO · Juan Casper</title>
 <meta name="description" content="Dudas sobre una medida, un número concreto o una pared grande: escribe a Gazeta Studio. Si nos mandas una foto de tu pared, te asesoramos sin compromiso.">
-<link rel="stylesheet" href="styles.css?v=8">
+<link rel="stylesheet" href="styles.css?v=9">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2354101e'/><text x='50' y='68' font-size='62' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>G</text></svg>">
 </head>
 <body>
@@ -24,61 +24,67 @@
 </header>
 
 <main>
-  <section class="page-hero">
+  <section class="page-hero center">
     <div class="wrap">
       <p class="eyebrow">Contacto</p>
-      <h1>Habla con<br><span style="color:var(--vino);font-style:italic">el estudio</span></h1>
-      <p class="lead" style="margin-top:1.5rem">Para consultar disponibilidad, medidas o un proyecto concreto. Si la duda es la pared, adjunta después una fotografía por correo, con ancho y alto aproximados: con eso podemos responderte en propiedad.</p>
+      <h1>Habla con<br><span>el estudio</span></h1>
+      <p class="lead" style="margin-top:1.6rem">¿Dudas con la medida o una pared grande? Escríbenos y te respondemos en 24 h laborables.</p>
     </div>
-    <figure class="page-hero-visual context-visual reveal">
-      <img src="assets/asesoramiento-pared.jpg" alt="Persona midiendo una pared junto a un cuadro abstracto de gran formato apoyado en el suelo" fetchpriority="high">
-      <figcaption><span>Antes de elegir</span><span>Medir la pared</span></figcaption>
-    </figure>
   </section>
 
-  <section style="padding-top:3.5rem">
-    <div class="wrap contact-grid">
-      <aside class="reveal">
-        <div class="info-box" style="border-top:0;padding-top:0">
-          <h3>Quién está detrás</h3>
-          <p><b>Juan Casper</b><br><span class="muted">Autor de las obras y director del estudio. Revisa personalmente las consultas de gran formato.</span></p>
-        </div>
-        <div class="info-box"><h3>Correo</h3><p>hola@example.com<br><span class="muted">Para pedidos, números concretos y prensa.</span></p></div>
-        <div class="info-box"><h3>Paredes grandes y proyectos</h3><p>Hoteles, restaurantes, oficinas y vivienda privada.<br><span class="muted">Indícanos dimensiones, uso del espacio y luz. Te diremos qué título encaja, o que ninguno lo hace.</span></p></div>
-        <div class="info-box"><h3>Horario</h3><p>Lunes a viernes, de 10:00 a 18:00.<br><span class="muted">Al estudio se viene con cita. Escríbenos y lo cuadramos.</span></p></div>
-        <div class="info-box"><h3>Lo que más nos preguntan</h3><p class="muted">Las consultas sobre medidas y series cerradas se responden en el apartado de preguntas frecuentes.</p></div>
-      </aside>
-
+  <section style="padding-top:3rem">
+    <div class="wrap" style="max-width:1000px">
+      <div class="contact-grid">
       <div class="reveal">
-        <form id="contactForm" novalidate>
-          <div class="fila">
-            <div class="campo"><label for="nombre">Tu nombre *</label><input id="nombre" required placeholder="¿Cómo te llamas?"></div>
-            <div class="campo"><label for="email">Tu correo *</label><input id="email" type="email" required placeholder="Para poder contestarte"></div>
-          </div>
-          <div class="campo">
-            <label for="asunto">¿Qué necesitas?</label>
-            <select id="asunto">
-              <option>No sé qué medida me cabe en mi pared</option>
-              <option>Quiero consultar los ejemplares disponibles de una obra</option>
-              <option>Es para un hotel, restaurante u oficina</option>
-              <option>Ya he comprado y tengo una duda con mi pedido</option>
-              <option>Prensa o una colaboración</option>
-              <option>Otra cosa</option>
-            </select>
-          </div>
-          <div class="fila">
-            <div class="campo"><label for="obra">Cuadro (si es por uno concreto)</label>
-              <select id="obra"><option>Ninguno en concreto</option><option>Corriente — 150 × 200 cm</option><option>Última luz — 200 × 120 cm</option><option>Pulso — 100 × 140 cm</option><option>Mediodía — 120 × 160 cm</option><option>Perfil en reposo — 70 × 100 cm</option><option>Equilibrio — 50 × 70 cm</option></select>
-            </div>
-            <div class="campo"><label for="pared">Medidas aproximadas de la pared</label><input id="pared" placeholder="Ej.: 320 × 260 cm"></div>
-          </div>
-          <div class="campo"><label for="mensaje">Cuéntanos *</label><textarea id="mensaje" rows="6" required placeholder="Indica la obra que te interesa, las medidas del espacio y cualquier duda que tengas."></textarea></div>
-          <label style="display:flex;gap:.6rem;font-size:.85rem;color:var(--texto-gris);margin-bottom:1.4rem"><input type="checkbox" required style="margin-top:.25rem"> Acepto recibir la respuesta por correo electrónico. *</label>
-          <button class="btn vino" type="submit" style="width:100%">Enviar al estudio</button>
-          <div class="form-ok" id="formOk"><b>Recibido. Gracias por escribirnos.</b><br>Lo leemos en el estudio y te contestamos en 24–48 h laborables. Si tu duda es de gran formato, lo verá Juan Casper directamente.</div>
-        </form>
+        <figure class="context-visual side-visual" style="margin:0 0 2rem">
+          <img src="assets/asesoramiento-pared.jpg" alt="Juan Casper midiendo una pared blanca con una cinta métrica junto a un lienzo grande" fetchpriority="high">
+          <figcaption><span>Antes de elegir</span><span>Medir la pared</span></figcaption>
+        </figure>
+        <p class="eyebrow">Antes de comprar</p>
+        <h2>Envíanos foto y medidas</h2>
+        <p class="lead" style="margin-top:1.2rem">Con dos datos —ancho y alto útil de la pared— te confirmamos qué obra encaja. Asesoramiento gratuito.</p>
+        <div style="margin-top:1.8rem">
+          <div class="info-box"><h3>Email</h3><a href="mailto:hola@example.com">hola@example.com</a></div>
+          <div class="info-box"><h3>Respuesta</h3><p class="muted">24 h laborables</p></div>
+          <div class="info-box"><h3>Autor</h3><p class="muted">Juan Casper · Gazeta Studio</p></div>
+        </div>
+        <div class="info-box"><h3>¿Prefieres comprar ya?</h3><p class="muted">La serie actual está a la venta con precios y disponibilidad actualizados.</p><p style="margin-top:1rem"><a class="btn vino" href="colecciones.html">Ir a la tienda</a></p></div>
+      </div>
 
-        <div class="faq" style="margin-top:3.5rem">
+      <form id="formContacto" class="reveal" novalidate>
+        <div class="campo">
+          <label for="nombre">Nombre *</label>
+          <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" required>
+        </div>
+        <div class="campo">
+          <label for="email">Email *</label>
+          <input id="email" name="email" type="email" placeholder="tu@email.com" required>
+        </div>
+        <div class="campo">
+          <label for="obra">¿Por qué obra preguntas?</label>
+          <select id="obra" name="obra">
+            <option value="">No lo sé todavía</option>
+            <option>Serie II — Origen (obra abierta)</option>
+            <option>Obra de gran formato</option>
+            <option>Encargo para un espacio concreto</option>
+            <option>Proyecto de interiorismo o empresa</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="mensaje">Mensaje *</label>
+          <textarea id="mensaje" name="mensaje" rows="6" placeholder="Cuéntanos qué pared tienes (medidas, luz y uso del espacio) o qué obra te interesa." required></textarea>
+        </div>
+        <label class="check">
+          <input type="checkbox" id="privacidad" required>
+          <span>He leído las <a href="../legal/privacidad.html">condiciones de privacidad</a> y acepto ser contactado por el estudio. *</span>
+        </label>
+        <button class="btn vino" type="submit" style="width:100%">Enviar mensaje</button>
+        <p class="ok-msg" id="formOk" style="display:none" role="status">Mensaje enviado. Gracias — te respondemos en un plazo de 24 horas laborables.</p>
+        <p style="margin-top:1rem;font-size:.78rem;color:#777">Formulario de demostración: en producción se conectará al correo del estudio.</p>
+      </form>
+      </div>
+
+<div class="faq" style="margin-top:3.5rem">
           <h2 style="font-size:2rem;margin-bottom:.5rem">Preguntas frecuentes</h2>
           <details><summary>¿Puedo pedir un cuadro en otro tamaño?</summary><p>No. Cada título se produce únicamente en la medida de su ficha. Si no encaja en tu pared, te recomendamos otro título antes que forzar una medida.</p></details>
           <details><summary>¿Qué significa el número de ejemplar?</summary><p>Tu ejemplar es, por ejemplo, el 7 de 30. El número va escrito a mano en el reverso y consta en el certificado y en el registro del estudio.</p></details>
@@ -87,6 +93,7 @@
           <details><summary>¿Cómo se envía una obra de gran formato?</summary><p>Se envía reforzada y asegurada, con un transportista especializado. La preparación habitual es de 48 horas laborables.</p></details>
         </div>
       </div>
+    </div>
     </div>
   </section>
 </main>
@@ -111,10 +118,10 @@
 </aside>
 <div class="toast" id="toast" role="status"></div>
 
-<script src="script.js?v=8"></script>
+<script src="script.js?v=9"></script>
 <script>
 initShop();
-document.getElementById('contactForm').addEventListener('submit', e=>{
+document.getElementById('formContacto').addEventListener('submit', e=>{
   e.preventDefault();
   const nombre = document.getElementById('nombre').value.trim();
   const email = document.getElementById('email').value.trim();

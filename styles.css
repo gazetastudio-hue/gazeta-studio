@@ -56,7 +56,7 @@ h2{font-size:clamp(2.2rem,4.3vw,3.8rem)}
 h3{font-weight:700}
 .lead{font-size:clamp(1.03rem,1.5vw,1.22rem);font-weight:450;color:var(--negro-suave);max-width:680px}
 .muted{color:var(--texto-gris)}
-section{padding:8rem 0}
+section{padding:6.5rem 0}
 .section-head{display:flex;justify-content:space-between;align-items:end;gap:2.5rem;margin-bottom:3.6rem;flex-wrap:wrap}
 .section-head .lead{font-family:var(--serif);font-style:italic;font-size:1.28rem;color:var(--texto-gris)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.7rem;background:var(--negro);color:#fff;border:1px solid var(--negro);padding:1.15rem 2.6rem;font-size:.68rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;text-align:center;white-space:normal;max-width:100%;cursor:pointer;transition:background .3s,border-color .3s}
@@ -135,6 +135,21 @@ section{padding:8rem 0}
 .add:hover:not(:disabled){background:var(--vino);border-color:var(--vino);color:#fff}
 .add:disabled{border-color:var(--linea);color:#a49d90;cursor:not-allowed}
 
+/* ---------- Franjas comerciales ---------- */
+.trust-strip{border-bottom:1px solid var(--linea);background:#fff}
+.trust-strip .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.5rem;padding-top:1.35rem;padding-bottom:1.35rem}
+.trust-strip span{font-size:.66rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-align:center;color:var(--negro-suave)}
+.trust-strip span::before{content:"✓";color:var(--vino);margin-right:.55rem}
+.incluye{font-size:.78rem;font-weight:600;color:var(--vino);margin-top:.55rem}
+.compra-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:4rem;align-items:center}
+.compra-grid img{width:100%;height:430px;object-fit:cover}
+.pasos{list-style:none;margin-top:1.8rem}
+.pasos li{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--linea);align-items:baseline}
+.pasos b{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--vino);font-size:1.35rem;flex:none}
+.visual-section{padding:0 0 5rem}
+@media(max-width:980px){.trust-strip .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}.compra-grid{grid-template-columns:minmax(0,1fr);text-align:center}.pasos li{justify-content:center;text-align:center}.compra-grid img{height:280px}}
+@media(max-width:620px){.trust-strip .wrap{grid-template-columns:minmax(0,1fr);gap:.8rem}}
+
 /* ---------- Gran formato ---------- */
 .gran-formato{background:var(--negro);color:#fff}
 .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:5rem;align-items:center}
@@ -209,6 +224,9 @@ form .fila{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.6rem
 .campo label{display:block;font-size:.64rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;margin-bottom:.4rem}
 .campo input,.campo textarea,.campo select{width:100%;max-width:100%;border:0;border-bottom:1px solid var(--linea-oscura);background:transparent;padding:.85rem 0;border-radius:0;outline:none}
 .campo input:focus,.campo textarea:focus,.campo select:focus{border-color:var(--vino)}
+.check{display:flex;gap:.7rem;align-items:flex-start;font-size:.82rem;margin:0 0 1.4rem;cursor:pointer}
+.check input{margin-top:.2rem;accent-color:var(--vino)}
+.ok-msg{display:none;background:var(--vino-claro);border-left:2px solid var(--vino);padding:1rem 1.2rem;margin-top:1.2rem}
 .form-ok{display:none;background:var(--vino-claro);border-left:2px solid var(--vino);padding:1.4rem;margin-top:1.4rem}
 .faq details{border-bottom:1px solid var(--linea);padding:1.5rem 0}
 .faq summary{cursor:pointer;font-family:var(--serif);font-size:1.22rem;font-weight:500}
