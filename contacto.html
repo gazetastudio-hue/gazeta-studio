@@ -5,22 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contacto — Escríbenos sin compromiso | GAZETA STUDIO · Juan Casper</title>
 <meta name="description" content="Dudas sobre una medida, un número concreto o una pared grande: escribe a Gazeta Studio. Si nos mandas una foto de tu pared, te asesoramos sin compromiso.">
-<link rel="stylesheet" href="styles.css?v=10">
+<link rel="stylesheet" href="styles.css?v=11">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2354101e'/><text x='50' y='68' font-size='62' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>G</text></svg>">
 </head>
 <body>
-<div class="topbar">Respondemos en <strong>24–48 h laborables</strong> · Para consultas de espacio, puedes enviarnos una fotografía de la pared</div>
+<div class="topbar">COLECCIÓN LIMITADA XXX ABIERTA</div>
 
 <header class="site">
-  <div class="header-in">
-    <button class="menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav">☰ Menú</button>
-    <nav class="main" id="mainNav" aria-label="Navegación principal">
+  <div class="header-in"><button class="menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav">☰ Menú</button><a class="logo-img" href="index.html" aria-label="Gazeta Studio — Inicio"><img src="assets/logo-negro-recorte.png" alt="Gazeta Studio"></a><nav class="main" id="mainNav" aria-label="Navegación principal">
       <button class="nav-close" id="navClose" aria-label="Cerrar menú">✕</button>
       <a href="index.html">Inicio</a><a href="colecciones.html">Colecciones</a><a href="manifiesto.html">Manifiesto</a><a href="contacto.html" class="activo">Contacto</a>
-    </nav>
-    <a class="logo" href="index.html">GAZETA<span>.</span><small>STUDIO</small></a>
-    <div class="header-actions"><a class="icon-btn ocultar-m" href="colecciones.html">♡ Favoritos</a><button class="icon-btn" id="cartBtn">Cesta <span class="cart-count" id="cartCount">0</span></button></div>
-  </div>
+    </nav><div class="header-actions"><button class="icon-btn" id="cartBtn">Cesta <span class="cart-count" id="cartCount">0</span></button></div></div>
 </header>
 
 <main>
@@ -101,8 +96,8 @@
 <footer>
   <div class="wrap">
     <div class="footer-grid">
-      <div><a class="logo" href="index.html" style="color:#fff;text-align:left">GAZETA<span>.</span><small>STUDIO</small></a><p style="margin-top:1.2rem">Obra de Juan Casper en series limitadas. Cada edición está numerada, firmada y se entrega con certificado.</p></div>
-      <div><h4>Tienda</h4><ul><li><a href="colecciones.html">Serie actual: Origen</a></li><li><a href="colecciones.html#cerradas">Series ya cerradas</a></li><li><a href="contacto.html">Cuadros grandes para tu espacio</a></li></ul></div>
+      <div><a class="logo-img-footer" href="index.html" aria-label="Gazeta Studio — Inicio"><img src="assets/logo-blanco-recorte.png" alt="Gazeta Studio"></a><p style="margin-top:1.2rem">Obra de Juan Casper en series limitadas. Cada edición está numerada y se entrega con certificado.</p></div>
+      <div><h4>Tienda</h4><ul><li><a href="colecciones.html">Colección actual</a></li><li><a href="colecciones.html#cerradas">Series ya cerradas</a></li><li><a href="contacto.html">Cuadros grandes para tu espacio</a></li></ul></div>
       <div><h4>El estudio</h4><ul><li><a href="manifiesto.html">Por qué vendemos así</a></li><li><a href="contacto.html">Escríbenos</a></li><li><a href="index.html">Inicio</a></li></ul></div>
       <div><h4>Avisos de serie nueva</h4><p>Solo te escribimos cuando abra una serie nueva o esté a punto de cerrarse una. Nada más.</p><form class="newsletter" data-newsletter><input type="email" required placeholder="Tu correo" aria-label="Tu correo electrónico"><button type="submit">Apuntarme</button></form></div>
     </div>
@@ -118,7 +113,7 @@
 </aside>
 <div class="toast" id="toast" role="status"></div>
 
-<script src="script.js?v=9"></script>
+<script src="script.js?v=10"></script>
 <script>
 initShop();
 document.getElementById('formContacto').addEventListener('submit', e=>{
