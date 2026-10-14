@@ -46,7 +46,9 @@ nav.main a.activo{color:var(--vino);border-color:var(--vino)}
 .icon-btn{background:none;border:0;cursor:pointer;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;display:flex;gap:.45rem;align-items:center;color:var(--negro-suave)}
 .icon-btn:hover{color:var(--vino)}
 .cart-count{background:var(--vino);color:#fff;border-radius:50%;width:21px;height:21px;display:inline-grid;place-items:center;font-size:.66rem;font-weight:700;letter-spacing:0;flex:none}
-.menu-btn{display:none;background:none;border:1px solid var(--negro);border-radius:50%;padding:0;cursor:pointer;letter-spacing:.12em;font-size:.72rem;font-weight:700;text-transform:uppercase;min-width:44px;min-height:44px}
+.menu-btn{display:none;background:none;border:1px solid var(--negro);border-radius:50%;padding:0;cursor:pointer;color:#000;min-width:44px;min-height:44px}
+.menu-btn .burger{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;width:100%;height:100%}
+.menu-btn .burger i{display:block;width:18px;height:2px;background:#000}
 .nav-close{display:none}
 body.menu-open,body.cart-open{overflow:hidden}
 
@@ -300,7 +302,7 @@ footer a:hover{color:#fff}
   nav.main a{font-family:var(--serif);font-size:clamp(2rem,9vw,3.1rem);font-weight:500;letter-spacing:.01em;text-transform:none;padding:.65rem 1rem;border-bottom:0}
   nav.main a.activo{border-bottom:0}
   .nav-close{display:grid;place-items:center;position:absolute;top:1.1rem;right:1.1rem;width:48px;height:48px;background:#fff;border:1px solid var(--negro);font-size:1.15rem;cursor:pointer;color:var(--negro);z-index:2}
-  .menu-btn{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;padding:0;font-size:1.15rem}
+  .menu-btn{display:inline-flex;width:46px;height:46px;padding:0}
   /* Centrado general en móvil */
   main,footer{text-align:center}
   .eyebrow{justify-content:center}
@@ -355,7 +357,7 @@ footer a:hover{color:#fff}
   .wrap{padding:0 1.1rem}
   .logo{font-size:.92rem;letter-spacing:.24em}
   .logo small{letter-spacing:.38em;font-size:.48rem}
-  .menu-btn{width:42px;height:42px;font-size:1.05rem}
+  .menu-btn{width:42px;height:42px}
   .header-actions{gap:.55rem}
   .icon-btn{font-size:.62rem;letter-spacing:.06em}
   .grid-productos{grid-template-columns:minmax(0,1fr)}
