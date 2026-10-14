@@ -79,7 +79,13 @@ section{padding:6.5rem 0}
 .hero-copy{position:relative;z-index:1;min-height:calc(100svh - 130px);max-width:960px;margin:auto;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:6rem 2rem;color:#fff}
 .hero-copy h1{color:#fff}
 .hero-copy h1 span{color:#fff;font-style:italic;white-space:nowrap;background:var(--vino);padding:.02em .18em .08em;box-decoration-break:clone;-webkit-box-decoration-break:clone;text-shadow:none}
-.hero-copy>p:not(.eyebrow){margin:2rem 0 2.8rem;font-size:1.02rem;font-weight:500;letter-spacing:.05em;line-height:1.75;text-transform:none;color:#f2ede4;max-width:640px}
+.hero-copy>p:not(.eyebrow){margin:2rem 0 2.8rem;font-family:var(--serif);font-style:italic;font-size:1.25rem;font-weight:500;letter-spacing:.02em;line-height:1.7;text-transform:none;color:#f2ede4;max-width:640px}
+.hero-brand{align-self:center;display:inline-block;font-family:var(--serif);font-weight:400;font-size:clamp(.78rem,1.6vw,.98rem);letter-spacing:.52em;text-transform:uppercase;color:#fff;margin-bottom:2.2rem;text-align:center}
+.hero-brand::after{content:"";display:block;height:1px;background:#fff;margin-top:.85rem;transform:scaleX(0);transform-origin:left;animation:brandLine .9s ease 1.55s forwards}
+.hero-brand span{display:inline-block;opacity:0;animation:brandIn .7s ease forwards;animation-delay:var(--d,0s)}
+.hero-brand .espacio{width:.9em}
+@keyframes brandIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes brandLine{to{transform:scaleX(1)}}
 .btn.contacto-btn{background:#fff;color:var(--negro);border-color:#fff}.btn.contacto-btn:hover{background:var(--negro);border-color:var(--negro);color:#fff}
 .btn.outline.light:hover{background:#fff;color:var(--negro)}
 .hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
@@ -380,3 +386,12 @@ footer a:hover{color:#fff}
   .gran-formato .split>img{height:auto;aspect-ratio:4/3}
 }
 @media(max-width:620px){.logo-img-footer img{height:96px}}
+
+/* ---------- Móvil: hamburguesa junto a la cesta, envíos centrados ---------- */
+@media(max-width:980px){
+  .header-in{display:flex;align-items:center;gap:1rem}
+  .header-in .logo-img{order:1;margin-right:auto}
+  .header-in .header-actions{order:2;margin-left:0}
+  .header-in .menu-btn{order:3;display:inline-flex;align-items:center;justify-content:center;font-size:1.25rem;line-height:1;padding:.55rem .75rem}
+  .envios-ue{text-align:center}
+}
