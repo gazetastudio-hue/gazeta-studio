@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contacto — Escríbenos sin compromiso | GAZETA STUDIO · Juan Casper</title>
 <meta name="description" content="Dudas sobre una medida, un número concreto o una pared grande: escribe a Gazeta Studio. Si nos mandas una foto de tu pared, te asesoramos sin compromiso.">
-<link rel="stylesheet" href="styles.css?v=17">
+<link rel="stylesheet" href="styles.css?v=19">
 <link rel="icon" type="image/png" href="assets/logo-gazeta.png">
 </head>
 <body>
@@ -23,7 +23,7 @@
     <div class="wrap">
       <p class="eyebrow">Contacto</p>
       <h1>Habla con<br><span>el estudio</span></h1>
-      <p class="lead" style="margin-top:1.6rem">¿Dudas con la medida o una pared grande? Escríbenos y te respondemos en 24 h laborables.</p>
+      <p class="lead" style="margin-top:1.6rem">Cuéntanos qué medida necesitas o qué obra te interesa y te asesoramos sin compromiso.</p>
     </div>
   </section>
 
@@ -40,7 +40,6 @@
         <p class="lead" style="margin-top:1.2rem">Con dos datos —ancho y alto útil de la pared— te confirmamos qué obra encaja. Asesoramiento gratuito.</p>
         <div style="margin-top:1.8rem">
           <div class="info-box"><h3>Email</h3><a href="mailto:hola@example.com">hola@example.com</a></div>
-          <div class="info-box"><h3>Respuesta</h3><p class="muted">24 h laborables</p></div>
           <div class="info-box"><h3>Autor</h3><p class="muted">Juan Casper · Gazeta Studio</p></div>
         </div>
         <div class="info-box"><h3>¿Prefieres comprar ya?</h3><p class="muted">La serie actual está a la venta con precios y disponibilidad actualizados.</p><p style="margin-top:1rem"><a class="btn vino" href="colecciones.html">Ir a la tienda</a></p></div>
@@ -59,7 +58,7 @@
           <label for="obra">¿Por qué obra preguntas?</label>
           <select id="obra" name="obra">
             <option value="">No lo sé todavía</option>
-            <option>Serie II — Origen (obra abierta)</option>
+            <option>Colección XXX (obra abierta)</option>
             <option>Obra de gran formato</option>
             <option>Encargo para un espacio concreto</option>
             <option>Proyecto de interiorismo o empresa</option>
@@ -74,7 +73,7 @@
           <span>He leído las <a href="../legal/privacidad.html">condiciones de privacidad</a> y acepto ser contactado por el estudio. *</span>
         </label>
         <button class="btn vino" type="submit" style="width:100%">Enviar mensaje</button>
-        <p class="ok-msg" id="formOk" style="display:none" role="status">Mensaje enviado. Gracias — te respondemos en un plazo de 24 horas laborables.</p>
+        <p class="ok-msg" id="formOk" style="display:none" role="status">Mensaje enviado. Gracias — te contestamos personalmente.</p>
         <p style="margin-top:1rem;font-size:.78rem;color:#777">Formulario de demostración: en producción se conectará al correo del estudio.</p>
       </form>
       </div>
@@ -82,10 +81,10 @@
 <div class="faq" style="margin-top:3.5rem">
           <h2 style="font-size:2rem;margin-bottom:.5rem">Preguntas frecuentes</h2>
           <details><summary>¿Puedo pedir un cuadro en otro tamaño?</summary><p>No. Cada título se produce únicamente en la medida de su ficha. Si no encaja en tu pared, te recomendamos otro título antes que forzar una medida.</p></details>
-          <details><summary>¿Qué significa el número de ejemplar?</summary><p>Tu ejemplar es, por ejemplo, el 7 de 30. El número va escrito a mano en el reverso y consta en el certificado y en el registro del estudio.</p></details>
-          <details><summary>¿Se puede comprar una obra de una serie cerrada?</summary><p>No. Al agotarse la edición, la obra se retira de la venta y no se reedita. La Serie I se conserva en la web únicamente como archivo.</p></details>
+          <details><summary>¿Qué significa el número de ejemplar?</summary><p>Tu ejemplar es, por ejemplo, el 7 de 30. El número consta en el certificado y en el registro del estudio.</p></details>
+          <details><summary>¿Se puede comprar una obra de una serie cerrada?</summary><p>No. Al agotarse la edición, la obra se retira de la venta y no se vuelve a reeditar. Las colecciones antiguas se conservan en la web únicamente como archivo.</p></details>
           <details><summary>¿Podéis recomendarme una obra para una pared grande?</summary><p>Sí. Envíanos una fotografía, el ancho y el alto aproximados, y te indicaremos qué título encaja mejor y por qué.</p></details>
-          <details><summary>¿Cómo se envía una obra de gran formato?</summary><p>Se envía reforzada y asegurada, con un transportista especializado. La preparación habitual es de 48 horas laborables.</p></details>
+          <details><summary>¿Cómo se envía una obra de gran formato?</summary><p>Se envía reforzada y asegurada, con un transportista especializado. Te confirmamos los plazos al quedar tu pedido cerrado.</p></details>
         </div>
       </div>
     </div>
@@ -109,11 +108,11 @@
 <aside class="drawer" id="cartDrawer" aria-label="Cesta de la compra">
   <div class="drawer-head"><strong style="letter-spacing:.24em;text-transform:uppercase;font-size:.72rem">Tu cesta</strong><button class="icon-btn" id="closeCart">Cerrar ✕</button></div>
   <div class="drawer-body" id="cartBody"></div>
-  <div class="drawer-foot"><div class="total"><span>Total</span><span id="cartTotal">0 €</span></div><button class="btn vino" style="width:100%" id="checkoutBtn">Terminar la compra</button><p class="muted" style="font-size:.78rem;margin-top:.8rem;text-align:center">Cada cuadro incluye su número y su certificado firmado.</p></div>
+  <div class="drawer-foot"><div class="total"><span>Total</span><span id="cartTotal">0 €</span></div><button class="btn vino" style="width:100%" id="checkoutBtn">Terminar la compra</button><p class="muted" style="font-size:.78rem;margin-top:.8rem;text-align:center">Cada cuadro incluye su número y su certificado.</p></div>
 </aside>
 <div class="toast" id="toast" role="status"></div>
 
-<script src="script.js?v=10"></script>
+<script src="script.js?v=11"></script>
 <script>
 initShop();
 document.getElementById('formContacto').addEventListener('submit', e=>{
@@ -123,7 +122,7 @@ document.getElementById('formContacto').addEventListener('submit', e=>{
   const mensaje = document.getElementById('mensaje').value.trim();
   if(!nombre || !email.includes('@') || !mensaje){ showToast('Falta algo: tu nombre, un correo válido o el mensaje. Revísalo y lo mandamos.'); return; }
   document.getElementById('formOk').style.display='block';
-  showToast('Enviado. Gracias, '+nombre.split(' ')[0]+'. Te contestamos en 24–48 h laborables.');
+  showToast('Enviado. Gracias, '+nombre.split(' ')[0]+'. Te contestamos personalmente.');
   e.target.querySelectorAll('input,textarea').forEach(el=>{ if(el.type!=='checkbox') el.value=''; });
   document.getElementById('formOk').scrollIntoView({behavior:'smooth',block:'center'});
 });

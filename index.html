@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GAZETA STUDIO — Arte exclusivo con estilo propio | Cuadros en serie limitada de Juan Casper</title>
 <meta name="description" content="Cuadros de Juan Casper en series cortas y numeradas. Cada obra, en un solo tamaño. Especialistas en gran formato. Cuando una serie se cierra, no se repone.">
-<link rel="stylesheet" href="styles.css?v=17">
+<link rel="stylesheet" href="styles.css?v=19">
 <link rel="icon" type="image/png" href="assets/logo-gazeta.png">
 </head>
 <body>
@@ -83,7 +83,7 @@
 
   <section>
     <div class="wrap compra-grid">
-      <img class="reveal" src="assets/firma-certificado.jpg" alt="Manos firmando un certificado junto al reverso de un lienzo" loading="lazy">
+      <img class="reveal" src="assets/obra-numerada-certificado.jpg" alt="Obra numerada junto a su certificado de autenticidad" loading="lazy">
       <div class="reveal">
         <p class="eyebrow">Compra en 3 pasos</p>
         <h2>Elige y recibe tu obra exclusiva</h2>
@@ -119,7 +119,7 @@
         <form class="newsletter" data-newsletter><input type="email" required placeholder="Tu correo" aria-label="Tu correo electrónico"><button type="submit">Apuntarme</button></form>
       </div>
     </div>
-    <div class="footer-bottom"><span>© 2026 Gazeta Studio · Juan Casper. Todos los derechos reservados.</span><span>Numerado a mano · Con certificado · Sin reposiciones</span></div>
+    <div class="footer-bottom"><span>© 2026 Gazeta Studio · Juan Casper. Todos los derechos reservados.</span><span>Numerada · Con certificado · Sin reposiciones</span></div>
   </div>
 </footer>
 
@@ -127,11 +127,11 @@
 <aside class="drawer" id="cartDrawer" aria-label="Cesta de la compra">
   <div class="drawer-head"><strong style="letter-spacing:.24em;text-transform:uppercase;font-size:.72rem">Tu cesta</strong><button class="icon-btn" id="closeCart">Cerrar ✕</button></div>
   <div class="drawer-body" id="cartBody"></div>
-  <div class="drawer-foot"><div class="total"><span>Total</span><span id="cartTotal">0 €</span></div><button class="btn vino" style="width:100%" id="checkoutBtn">Terminar la compra</button><p class="muted" style="font-size:.78rem;margin-top:.8rem;text-align:center">Cada cuadro incluye su número y su certificado firmado.</p></div>
+  <div class="drawer-foot"><div class="total"><span>Total</span><span id="cartTotal">0 €</span></div><button class="btn vino" style="width:100%" id="checkoutBtn">Terminar la compra</button><p class="muted" style="font-size:.78rem;margin-top:.8rem;text-align:center">Cada cuadro incluye su número y su certificado.</p></div>
 </aside>
 <div class="toast" id="toast" role="status"></div>
 
-<script src="script.js?v=10"></script>
+<script src="script.js?v=11"></script>
 <script>
 document.getElementById('destacadas').innerHTML = productos.filter(p=>!p.cerrada).map(cardHTML).join('');
 initShop();

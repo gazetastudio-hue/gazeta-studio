@@ -68,7 +68,7 @@ section{padding:6.5rem 0}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.7rem;background:var(--negro);color:#fff;border:1px solid var(--negro);padding:1.15rem 2.6rem;font-size:.68rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;text-align:center;white-space:normal;max-width:100%;cursor:pointer;transition:background .3s,border-color .3s}
 .btn:hover{background:var(--vino);border-color:var(--vino)}
 .btn.light{background:#fff;color:var(--negro);border-color:#fff}
-.btn.light:hover{background:var(--vino);color:#fff;border-color:var(--vino)}
+.btn.light:hover{background:var(--negro);color:#fff;border-color:var(--negro)}
 .btn.outline{background:transparent;color:var(--negro)}
 .btn.outline:hover{background:var(--negro);color:#fff}
 .btn.vino{background:var(--vino);border-color:var(--vino)}
@@ -199,6 +199,11 @@ section{padding:6.5rem 0}
 .banner-cierre h2{margin-bottom:2.6rem}
 .banner-cierre .btn{margin-top:.4rem}
 .page-hero{padding:7rem 0 5rem;border-bottom:1px solid var(--linea);background:linear-gradient(180deg,#fff,var(--marfil))}
+.page-hero.con-foto{position:relative;overflow:hidden;background:var(--negro)}
+.page-hero.con-foto::before{content:"";position:absolute;inset:0;background:url('assets/galeria-colecciones.jpg') center/cover no-repeat;opacity:.45}
+.page-hero.con-foto .wrap{position:relative;z-index:1}
+.page-hero.con-foto h1,.page-hero.con-foto h1 span,.page-hero.con-foto .lead{color:#fff}
+.page-hero.con-foto .lead{color:#eae3d9}
 .page-hero.center{text-align:center}
 .page-hero.center .lead{margin-left:auto;margin-right:auto}
 .page-hero.center .eyebrow{justify-content:center}
@@ -221,9 +226,19 @@ section{padding:6.5rem 0}
 .side-visual figcaption{padding:.85rem 0 0;font-size:.64rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--texto-gris)}
 
 /* ---------- Manifiesto ---------- */
-.manifiesto-texto{max-width:820px;margin:auto;font-size:clamp(1.16rem,2vw,1.5rem);line-height:1.75}
+.manifiesto-split{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:4.5rem;align-items:center}
+.manifiesto-split>img{width:100%;height:540px;object-fit:cover;object-position:center 20%}
+.manifiesto-texto{max-width:820px;margin:auto;font-size:1.18rem;line-height:1.8}
 .manifiesto-texto p{margin-bottom:2rem}
-.manifiesto-texto p:first-child::first-letter{font-family:var(--serif);font-size:4.6em;float:left;line-height:.78;padding-right:.14em;color:var(--vino)}
+.gran-formato .context-visual figcaption{color:#cfc8bd}
+.gran-formato .context-visual figcaption span:last-child{color:#e5bfc7}
+.cartel-cerrada{position:relative;overflow:hidden;background:#141414}
+.cartel-cerrada img{width:100%;height:360px;object-fit:cover;opacity:.52;filter:grayscale(25%)}
+.cartel-cerrada .badge{position:absolute;top:1.1rem;left:1.1rem;z-index:2}
+.cartel-info{position:absolute;inset:auto 0 0 0;padding:2rem 1.6rem 1.7rem;background:linear-gradient(180deg,transparent,rgba(0,0,0,.82));color:#fff;text-align:center}
+.cartel-info h3{color:#fff;font-size:1.5rem;margin-bottom:.3rem}
+.cartel-nota{font-size:.68rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#e5bfc7;margin-bottom:.45rem}
+.cartel-ref{font-family:var(--serif);font-style:italic;font-size:1.02rem;color:#efe9e1}
 .firma{margin-top:3.5rem;border-top:1px solid var(--oro);padding-top:2rem}
 .firma .nombre{font-family:var(--serif);font-style:italic;font-size:2.4rem;color:var(--vino)}
 .firma .cargo{font-size:.64rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--texto-gris);margin-top:.4rem}
@@ -342,8 +357,8 @@ footer a:hover{color:#fff}
   .campo label{text-align:center}
   .campo input,.campo textarea,.campo select{text-align:center}
   .faq p{margin-left:auto;margin-right:auto}
-  .manifiesto-texto{text-align:center}
-  .manifiesto-texto p:first-child::first-letter{float:none;display:block;padding:0;font-size:3.6em;line-height:1}
+  .manifiesto-split{grid-template-columns:1fr;gap:2.5rem}
+  .manifiesto-split>img{height:340px}
   .firma{text-align:center}
   .footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));text-align:center}
   .footer-grid .logo{margin:auto;text-align:center}

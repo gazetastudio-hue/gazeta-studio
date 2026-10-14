@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Manifiesto — El arte habla solo si sabes escuchar | GAZETA STUDIO</title>
 <meta name="description" content="Juan Casper cuenta en primera persona por qué sus cuadros se venden en series cortas, en un solo tamaño y sin reposiciones. Manifiesto de Gazeta Studio.">
-<link rel="stylesheet" href="styles.css?v=17">
+<link rel="stylesheet" href="styles.css?v=19">
 <link rel="icon" type="image/png" href="assets/logo-gazeta.png">
 </head>
 <body>
@@ -26,28 +26,28 @@
       <p class="lead" style="margin-top:1.6rem">Nuestra filosofía, sin rodeos: series cortas, una medida por obra y ninguna reedición.</p>
       <a class="btn vino" href="colecciones.html" style="margin-top:2rem">Comprar la serie actual</a>
     </div>
-    <figure class="page-hero-visual context-visual reveal">
-      <img src="assets/artista-manifiesto.jpg" alt="Juan Casper trabajando de espaldas en un lienzo abstracto de gran formato" fetchpriority="high">
-      <figcaption><span>Juan Casper</span><span>Gran formato</span></figcaption>
-    </figure>
   </section>
 
   <section>
     <div class="wrap">
-      <div class="manifiesto-texto reveal">
-        <p>Trabajo en series de seis obras, principalmente entre 120 y 200 cm. Cada composición se resuelve a su escala: por eso un título no se ofrece después en otro tamaño.</p>
-        <p>La tirada se anuncia antes de la primera venta. Cada ejemplar se firma y se numera a mano, se registra a nombre del comprador y se entrega con certificado.</p>
+      <div class="manifiesto-split reveal">
+        <img src="assets/retrato-juan-casper.jpg" alt="Retrato en blanco y negro de Juan Casper, autor y director de Gazeta Studio" fetchpriority="high">
+        <div class="manifiesto-texto">
+        <p>Trabajamos colecciones cortas, normalmente entre 6-12 obras. Cada composición se resuelve a su escala: por eso un título no se ofrece después en otro tamaño.</p>
+        <p>La tirada se anuncia antes de la primera venta. Cada ejemplar es numerado, se registra a nombre del comprador y se entrega con certificado.</p>
         <p>Cuando la edición se agota, la obra se retira. No hay segunda edición ni ejemplares posteriores: esa es la garantía de quien compró dentro de la serie.</p>
+        <p>Nos especializamos en dar vida a grandes espacios vacíos con obras de gran tamaño. Pero también trabajamos medidas mas convencionales de la misma manera exclusiva bajo nuestra misma filosofía.</p>
         <div class="firma">
           <div class="nombre">Juan Casper</div>
           <div class="cargo">Autor y director · Gazeta Studio</div>
+        </div>
         </div>
       </div>
 
       <div class="principios">
         <article class="principio reveal"><b>01 · Edición</b><h3>Tirada cerrada</h3><p>Se anuncia antes de vender y nunca se amplía.</p></article>
         <article class="principio reveal"><b>02 · Medida</b><h3>Una por título</h3><p>La medida forma parte de la obra.</p></article>
-        <article class="principio reveal"><b>03 · Formato</b><h3>Gran formato</h3><p>Especialidad del estudio: de 120 a 200 cm.</p></article>
+        <article class="principio reveal"><b>03 · Formato</b><h3>Gran formato</h3><p>Especialistas en tamaños de lienzo grandes</p></article>
         <article class="principio reveal"><b>04 · Archivo</b><h3>Sin reedición</h3><p>Serie agotada, serie cerrada para siempre.</p></article>
       </div>
 
@@ -75,10 +75,10 @@
 <aside class="drawer" id="cartDrawer" aria-label="Cesta de la compra">
   <div class="drawer-head"><strong style="letter-spacing:.24em;text-transform:uppercase;font-size:.72rem">Tu cesta</strong><button class="icon-btn" id="closeCart">Cerrar ✕</button></div>
   <div class="drawer-body" id="cartBody"></div>
-  <div class="drawer-foot"><div class="total"><span>Total</span><span id="cartTotal">0 €</span></div><button class="btn vino" style="width:100%" id="checkoutBtn">Terminar la compra</button><p class="muted" style="font-size:.78rem;margin-top:.8rem;text-align:center">Cada cuadro incluye su número y su certificado firmado.</p></div>
+  <div class="drawer-foot"><div class="total"><span>Total</span><span id="cartTotal">0 €</span></div><button class="btn vino" style="width:100%" id="checkoutBtn">Terminar la compra</button><p class="muted" style="font-size:.78rem;margin-top:.8rem;text-align:center">Cada cuadro incluye su número y su certificado.</p></div>
 </aside>
 <div class="toast" id="toast" role="status"></div>
-<script src="script.js?v=10"></script>
+<script src="script.js?v=11"></script>
 <script>initShop();</script>
 </body>
 </html>

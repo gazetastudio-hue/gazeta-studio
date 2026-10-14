@@ -1,13 +1,13 @@
 /* GAZETA STUDIO — datos y tienda */
 const productos = [
-  { id:'vino-primero', nombre:'Corriente', historia:'Nace de los cauces que cambian de dirección sin romperse. Habla de seguir avanzando cuando el camino se desvía: el trazo oscuro desciende y, aun así, sostiene toda la composición.', coleccion:'Serie II — Origen', img:'assets/obra-vino.jpg', tamano:'150 × 200 cm', tipo:'gran', tipoLabel:'Gran formato', edicion:30, restantes:11, precio:890, horizontal:false, anio:2026, tecnica:'Acrílico y pigmento sobre lienzo', nota:'Composición vertical en gran formato, con capas de pigmento y un trazo final en negro.' },
-  { id:'trazo-unico', nombre:'Pulso', historia:'Un solo gesto, hecho de una vez, como un latido sobre el lienzo. Significa lo esencial: lo que queda cuando se retira todo lo que sobraba.', coleccion:'Serie II — Origen', img:'assets/obra-trazo.jpg', tamano:'100 × 140 cm', tipo:'normal', tipoLabel:'Tamaño normal', edicion:50, restantes:23, precio:420, horizontal:false, anio:2026, tecnica:'Tinta y acrílico sobre lienzo', nota:'Un único trazo central sobre fondo claro, sin elementos secundarios.' },
-  { id:'linea-y-vino', nombre:'Perfil en reposo', historia:'Una figura que no mira a nadie. Habla del descanso sin representación, de estar presente sin necesidad de explicarse.', coleccion:'Serie II — Origen', img:'assets/obra-linea.jpg', tamano:'70 × 100 cm', tipo:'normal', tipoLabel:'Tamaño normal', edicion:75, restantes:41, precio:240, horizontal:false, anio:2025, tecnica:'Grafito y acrílico sobre lienzo', nota:'Dibujo de línea continua con una única intervención de color.' },
-  { id:'arena-calma', nombre:'Mediodía', historia:'La hora en que la luz no proyecta sombras o apenas las insinúa. La obra trata de ese instante de calma en el que nada empuja ni tira.', coleccion:'Serie II — Origen', img:'assets/obra-arena.jpg', tamano:'120 × 160 cm', tipo:'gran', tipoLabel:'Gran formato', edicion:40, restantes:6, precio:560, horizontal:false, anio:2026, tecnica:'Acrílico sobre lienzo', nota:'Campo claro y forma central en arco; se aprecia la textura del lienzo.' },
-  { id:'horizonte-vino', nombre:'Última luz', historia:'Las tres franjas marcan el final del día sobre el horizonte. Habla de lo que permanece cuando la luz se retira: la franja profunda que sigue sosteniendo la mirada.', coleccion:'Serie II — Origen', img:'assets/obra-horizonte.jpg', tamano:'200 × 120 cm', tipo:'gran', tipoLabel:'Gran formato', edicion:20, restantes:4, precio:1150, horizontal:true, anio:2026, tecnica:'Acrílico y pigmento sobre lienzo', nota:'Tres franjas horizontales en formato panorámico.' },
-  { id:'geometria-callada', nombre:'Equilibrio', historia:'Dos formas que se sostienen sin tocarse. Trata del punto exacto entre peso y ligereza, entre lo que se queda y lo que se suelta.', coleccion:'Serie II — Origen', img:'assets/obra-geometria.jpg', tamano:'50 × 70 cm', tipo:'normal', tipoLabel:'Tamaño normal', edicion:100, restantes:58, precio:145, horizontal:false, anio:2025, tecnica:'Acrílico sobre lienzo', nota:'Dos formas geométricas sobre fondo blanco. Es el formato menor de la serie.' },
-  { id:'umbral-i', nombre:'Umbral I', coleccion:'Serie I — Umbral (cerrada)', img:'assets/archivo-umbral-1.jpg', tamano:'130 × 180 cm', tipo:'gran', tipoLabel:'Gran formato', edicion:25, restantes:0, precio:740, cerrada:true, horizontal:false, anio:2025, tecnica:'Tinta y acrílico sobre lienzo', nota:'Serie I. Edición agotada.' },
-  { id:'primera-vendimia', nombre:'Primera sala', coleccion:'Serie I — Umbral (cerrada)', img:'assets/archivo-primera-sala.jpg', tamano:'90 × 120 cm', tipo:'normal', tipoLabel:'Tamaño normal', edicion:40, restantes:0, precio:380, cerrada:true, horizontal:false, anio:2025, tecnica:'Acrílico y pigmento sobre lienzo', nota:'Serie I. Edición agotada.' },
+  { id:'vino-primero', nombre:'Corriente', historia:'Nace de los cauces que cambian de dirección sin romperse. Habla de seguir avanzando cuando el camino se desvía: el trazo oscuro desciende y, aun así, sostiene toda la composición.', coleccion:'Colección XXX', img:'assets/obra-vino.jpg', tamano:'150 × 200 cm', tipo:'gran', tipoLabel:'Gran formato', edicion:30, restantes:11, precio:890, horizontal:false, anio:2026, tecnica:'Acrílico y pigmento sobre lienzo', nota:'Composición vertical en gran formato, con capas de pigmento y un trazo final en negro.' },
+  { id:'trazo-unico', nombre:'Pulso', historia:'Un solo gesto, hecho de una vez, como un latido sobre el lienzo. Significa lo esencial: lo que queda cuando se retira todo lo que sobraba.', coleccion:'Colección XXX', img:'assets/obra-trazo.jpg', tamano:'100 × 140 cm', tipo:'normal', tipoLabel:'Tamaño normal', edicion:50, restantes:23, precio:420, horizontal:false, anio:2026, tecnica:'Tinta y acrílico sobre lienzo', nota:'Un único trazo central sobre fondo claro, sin elementos secundarios.' },
+  { id:'linea-y-vino', nombre:'Perfil en reposo', historia:'Una figura que no mira a nadie. Habla del descanso sin representación, de estar presente sin necesidad de explicarse.', coleccion:'Colección XXX', img:'assets/obra-linea.jpg', tamano:'70 × 100 cm', tipo:'normal', tipoLabel:'Tamaño normal', edicion:75, restantes:41, precio:240, horizontal:false, anio:2025, tecnica:'Grafito y acrílico sobre lienzo', nota:'Dibujo de línea continua con una única intervención de color.' },
+  { id:'arena-calma', nombre:'Mediodía', historia:'La hora en que la luz no proyecta sombras o apenas las insinúa. La obra trata de ese instante de calma en el que nada empuja ni tira.', coleccion:'Colección XXX', img:'assets/obra-arena.jpg', tamano:'120 × 160 cm', tipo:'gran', tipoLabel:'Gran formato', edicion:40, restantes:6, precio:560, horizontal:false, anio:2026, tecnica:'Acrílico sobre lienzo', nota:'Campo claro y forma central en arco; se aprecia la textura del lienzo.' },
+  { id:'horizonte-vino', nombre:'Última luz', historia:'Las tres franjas marcan el final del día sobre el horizonte. Habla de lo que permanece cuando la luz se retira: la franja profunda que sigue sosteniendo la mirada.', coleccion:'Colección XXX', img:'assets/obra-horizonte.jpg', tamano:'200 × 120 cm', tipo:'gran', tipoLabel:'Gran formato', edicion:20, restantes:4, precio:1150, horizontal:true, anio:2026, tecnica:'Acrílico y pigmento sobre lienzo', nota:'Tres franjas horizontales en formato panorámico.' },
+  { id:'geometria-callada', nombre:'Equilibrio', historia:'Dos formas que se sostienen sin tocarse. Trata del punto exacto entre peso y ligereza, entre lo que se queda y lo que se suelta.', coleccion:'Colección XXX', img:'assets/obra-geometria.jpg', tamano:'50 × 70 cm', tipo:'normal', tipoLabel:'Tamaño normal', edicion:100, restantes:58, precio:145, horizontal:false, anio:2025, tecnica:'Acrílico sobre lienzo', nota:'Dos formas geométricas sobre fondo blanco. Es el formato menor de la serie.' },
+  { id:'umbral-i', nombre:'Umbral I', coleccion:'Colección cerrada', img:'assets/archivo-umbral-1.jpg', tamano:'130 × 180 cm', tipo:'gran', tipoLabel:'Gran formato', edicion:25, restantes:0, precio:740, cerrada:true, horizontal:false, anio:2025, tecnica:'Tinta y acrílico sobre lienzo', nota:'Colección cerrada. Solo referencia.' },
+  { id:'primera-vendimia', nombre:'Primera sala', coleccion:'Colección cerrada', img:'assets/archivo-primera-sala.jpg', tamano:'90 × 120 cm', tipo:'normal', tipoLabel:'Tamaño normal', edicion:40, restantes:0, precio:380, cerrada:true, horizontal:false, anio:2025, tecnica:'Acrílico y pigmento sobre lienzo', nota:'Colección cerrada. Solo referencia.' },
 ];
 
 function euros(n){ return n.toLocaleString('es-ES') + ' €'; }
@@ -16,14 +16,13 @@ function cardHTML(p){
   const vendidos = p.edicion - p.restantes;
   const pct = Math.round((vendidos / p.edicion) * 100);
   if(p.cerrada){
-    return `<article class="card cerrada reveal" data-id="${p.id}">
-      <div class="card-media ${p.horizontal?'horizontal':''}"><span class="badge cerrada">Colección cerrada</span><img src="${p.img}" alt="Obra ${p.nombre} de Gazeta Studio, colección cerrada" loading="lazy"></div>
-      <div class="card-info">
-        <div class="card-top"><h3>${p.nombre}</h3><span class="edicion" style="color:#8a8782">Agotada</span></div>
-        <p class="nota">${p.nota}</p>
-        <div class="meta-obra"><span>Solo se hizo en <b>${p.tamano}</b></span></div>
-        <div class="unico" style="background:var(--gris);border-color:#8a8782">Edición agotada. <b>No disponible para la venta.</b></div>
-        <div class="card-foot"><span class="precio" style="color:#8a8782">${euros(p.precio)}<small>El precio que tuvo</small></span><button class="add" disabled>Ya no se vende</button></div>
+    return `<article class="cartel-cerrada reveal" data-id="${p.id}">
+      <span class="badge cerrada">Colección cerrada</span>
+      <img src="${p.img}" alt="Obra de la colección ${p.nombre}, cerrada y agotada" loading="lazy">
+      <div class="cartel-info">
+        <h3>${p.nombre}</h3>
+        <p class="cartel-nota">Colección cerrada</p>
+        <p class="cartel-ref">Solo se muestra como referencia; no puede comprarse.</p>
       </div></article>`;
   }
   const ultimas = p.restantes <= 8;
@@ -128,7 +127,7 @@ function initShop(){
   // Marquee
   const track = document.getElementById('marqueeTrack');
   if(track){
-    const items = 'Series cortas <i>●</i> Número escrito a mano <i>●</i> Certificado firmado <i>●</i> Un solo tamaño por cuadro <i>●</i> Especialistas en gran formato <i>●</i> Cuando se cierra, no vuelve <i>●</i> ';
+    const items = 'Series cortas <i>●</i> Numerada y con certificado <i>●</i> Un solo tamaño por cuadro <i>●</i> Un solo tamaño por cuadro <i>●</i> Especialistas en gran formato <i>●</i> Cuando se cierra, no vuelve <i>●</i> ';
     track.innerHTML = '<span>' + items.repeat(3) + '</span><span>' + items.repeat(3) + '</span>';
   }
   // Reveal on scroll
