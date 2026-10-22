@@ -192,7 +192,10 @@ section{padding:6.5rem 0}
 .checklist li::before{content:"—";color:var(--oro);font-weight:700;flex:none}
 
 /* ---------- Banner / páginas ---------- */
-.banner-cierre{background:linear-gradient(160deg,var(--vino),var(--vino-oscuro));color:#fff;text-align:center}
+.banner-cierre{position:relative;overflow:hidden;background:#141414;color:#fff;text-align:center}
+.banner-cierre::before{content:"";position:absolute;inset:0;background:url('assets/archivo-galeria.jpg') center/cover no-repeat}
+.banner-cierre::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.48)}
+.banner-cierre .wrap{position:relative;z-index:1}
 .banner-cierre .eyebrow{justify-content:center;color:#e5bfc7}.banner-cierre .eyebrow::before{background:var(--oro)}
 .banner-cierre h2{font-style:italic;max-width:920px;margin:auto}
 .banner-cierre p{max-width:720px;margin:1.4rem auto 2.4rem;color:#ecdde0}
