@@ -205,6 +205,7 @@ section{padding:6.5rem 0}
 .page-hero.con-foto{position:relative;overflow:hidden;background:var(--negro)}
 .page-hero.con-foto::before{content:"";position:absolute;inset:0;background:url('assets/galeria-colecciones.jpg') center/cover no-repeat;opacity:.45}
 .page-hero.con-foto.galeria::before{background-image:url('assets/archivo-galeria.jpg')}
+.page-hero.con-foto.estudio::before{background-image:url('assets/portada-estudio.jpg')}
 .page-hero.con-foto .eyebrow{color:#e5bfc7}
 .page-hero.con-foto .eyebrow::before{background:#e5bfc7}
 .page-hero.con-foto .wrap{position:relative;z-index:1}
