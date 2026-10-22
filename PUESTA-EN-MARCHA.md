@@ -13,13 +13,18 @@
 
 ## Paso 1 — Verificar el dominio en Resend (10 min)
 
-1. Entra en https://resend.com/domains → **Add Domain** → escribe `gazetastudio.com`.
-2. Resend te mostrará registros DNS (SPF, DKIM). Cópialos en la zona DNS de tu registrador (donde compraste el dominio).
-3. Vuelve a Resend y pulsa **Verify** (puede tardar de minutos a horas).
-4. Cuando esté verificado, prueba el formulario de contacto de la web: debe enviar a `contacto@gazetastudio.com`.
+El dominio `gazetastudio.com` YA ESTÁ CREADO en Resend (id `17ddbae2-368e-4d2d-b018-cc263d10b5b8`).
+Entra en https://resend.com/domains/gazetastudio.com y añade estos 4 registros en el panel DNS de tu registrador:
 
-> Mientras el dominio no esté verificado, los emails del webhook (cliente/estudio) NO salen,
-> pero **el pedido en Printumo y el cobro sí funcionan igual**. Los avisos quedan en los logs.
+| Tipo | Nombre | Valor | Prioridad |
+|---|---|---|---|
+| TXT | `resend._domainkey` | `p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCvw5suC30WGdQrza7nGS49HKi5qQqoJtD4jJWuWwKyQDAY/zwZMLgB4i8Pxpmv1l4yP+AlEaeMtUlE9tD+B9gJJ9zGfu+zWMNKkawX+mVMa+/BfkCC5TEIu4nNQWtfXS2qHAZkYpm+gEuAXFBtn8nIxvH2hmOO7NjcIR4+WXit0QIDAQAB` | — |
+| MX | `send` | `feedback-smtp.eu-west-1.amazonses.com` | 10 |
+| TXT | `send` | `v=spf1 include:amazonses.com ~all` | — |
+| CNAME | `rsend` | `send.forge.rmta.net` | — |
+
+Después pulsa **Verify** en Resend (tarda de minutos a unas horas). Mientras no esté verificado, los emails no salen,
+pero el cobro y el pedido en Printumo funcionan igual.
 
 ## Paso 2 — Cómo funciona una venta (automático)
 

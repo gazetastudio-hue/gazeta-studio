@@ -1,4 +1,5 @@
 /* GAZETA STUDIO — datos y tienda */
+const RAIZ = location.hostname.includes("github.io") ? "/gazeta-studio/" : "/";
 const productos = [
   { id:'vino-primero', nombre:'Corriente', historia:'Nace de los cauces que cambian de dirección sin romperse. Habla de seguir avanzando cuando el camino se desvía: el trazo oscuro desciende y, aun así, sostiene toda la composición.', coleccion:'Colección VIDA', img:'assets/obra-vino.jpg', tamano:'100 × 150 cm', tipo:'gran', tipoLabel:'Gran formato', edicion:30, restantes:11, precio:890, pago:'https://buy.stripe.com/6oUdR3cXOgIc3G2bmf5os00', horizontal:false, anio:2026, tecnica:'Acrílico y pigmento sobre lienzo', nota:'Composición vertical en gran formato, con capas de pigmento y un trazo final en negro.' },
   { id:'trazo-unico', nombre:'Pulso', historia:'Un solo gesto, hecho de una vez, como un latido sobre el lienzo. Significa lo esencial: lo que queda cuando se retira todo lo que sobraba.', coleccion:'Colección VIDA', img:'assets/obra-trazo.jpg', tamano:'100 × 140 cm', tipo:'normal', tipoLabel:'Tamaño normal', edicion:50, restantes:23, precio:420, pago:'https://buy.stripe.com/4gM7sF9LCfE890m2PJ5os01', horizontal:false, anio:2026, tecnica:'Tinta y acrílico sobre lienzo', nota:'Un único trazo central sobre fondo claro, sin elementos secundarios.' },
@@ -18,7 +19,7 @@ function cardHTML(p){
   if(p.cerrada){
     return `<article class="cartel-cerrada reveal" data-id="${p.id}">
       <span class="badge cerrada">Colección cerrada</span>
-      <img src="${p.img}" alt="Obra de la colección ${p.nombre}, cerrada y agotada" loading="lazy">
+      <img src="${RAIZ}${p.img}" alt="Obra de la colección ${p.nombre}, cerrada y agotada" loading="lazy">
       <div class="cartel-info">
         <h3>${p.nombre}</h3>
         <p class="cartel-nota">Colección cerrada</p>
@@ -29,7 +30,7 @@ function cardHTML(p){
   return `<article class="card reveal" data-id="${p.id}">
     <div class="card-media ${p.horizontal?'horizontal':''}">
       ${ultimas ? '<span class="badge vino">Quedan pocas</span>' : '<span class="badge">Serie limitada</span>'}
-      <img src="${p.img}" alt="Cuadro «${p.nombre}», de Juan Casper. Se hace solo en ${p.tamano}" loading="lazy">
+      <img src="${RAIZ}${p.img}" alt="Cuadro «${p.nombre}», de Juan Casper. Se hace solo en ${p.tamano}" loading="lazy">
     </div>
     <div class="card-info">
       <div class="card-top"><h3>${p.nombre}</h3><span class="edicion">Serie de ${p.edicion}</span></div>
@@ -62,7 +63,7 @@ function renderCart(){
   let total = 0;
   body.innerHTML = cart.map((id, i)=>{
     const p = productos.find(x=>x.id===id); total += p.precio;
-    return `<div class="cart-item"><img src="${p.img}" alt="${p.nombre}"><div><b>${p.nombre}</b><small>Medida: ${p.tamano}</small><small>Serie de ${p.edicion} · Con número y certificado</small><button class="pay" data-pay="${p.id}">Pagar</button><button class="remove" data-remove="${i}">Quitar</button></div><b>${euros(p.precio)}</b></div>`;
+    return `<div class="cart-item"><img src="${RAIZ}${p.img}" alt="${p.nombre}"><div><b>${p.nombre}</b><small>Medida: ${p.tamano}</small><small>Serie de ${p.edicion} · Con número y certificado</small><button class="pay" data-pay="${p.id}">Pagar</button><button class="remove" data-remove="${i}">Quitar</button></div><b>${euros(p.precio)}</b></div>`;
   }).join('');
   totalEl.textContent = euros(total);
   body.querySelectorAll('[data-remove]').forEach(b=>b.addEventListener('click',()=>{ cart.splice(Number(b.dataset.remove),1); saveCart(); }));
@@ -123,6 +124,11 @@ function initShop(){
   });
   document.querySelectorAll('[data-newsletter]').forEach(f=>f.addEventListener('submit', e=>{
     e.preventDefault();
+    const correo=f.querySelector('input[type="email"]').value.trim();
+    if(!correo || !correo.includes('@')){ showToast('Escribe tu correo para apuntarte.'); return; }
+    fetch('https://docs.google.com/forms/d/e/1FAIpQLSdYpdeMBAL06OEbn3x1LTMKoV-LYZhwScxYuMDloV8ybgcWwA/formResponse',
+      {method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},
+       body:new URLSearchParams({'entry.675051248':correo})}).catch(()=>{});
     showToast('Hecho. Solo te escribiremos cuando haya una serie nueva o una a punto de cerrarse.');
     f.reset();
   }));
