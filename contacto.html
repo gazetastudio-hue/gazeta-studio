@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contacto — Escríbenos sin compromiso | GAZETA STUDIO · Juan Casper</title>
 <meta name="description" content="Dudas sobre una medida, un número concreto o una pared grande: escribe a Gazeta Studio. Si nos mandas una foto de tu pared, te asesoramos sin compromiso.">
-<link rel="stylesheet" href="styles.css?v=23">
+<link rel="stylesheet" href="styles.css?v=24">
 <link rel="icon" type="image/png" href="assets/logo-gazeta.png">
 </head>
 <body>
@@ -39,7 +39,7 @@
         <h2>Envíanos foto y medidas</h2>
         <p class="lead" style="margin-top:1.2rem">Con dos datos —ancho y alto útil de la pared— te confirmamos qué obra encaja. Asesoramiento gratuito.</p>
         <div style="margin-top:1.8rem">
-          <div class="info-box"><h3>Email</h3><a href="mailto:hola@example.com">hola@example.com</a></div>
+          <div class="info-box"><h3>Email</h3><a href="mailto:contacto@gazetastudio.com">contacto@gazetastudio.com</a></div>
           <div class="info-box"><h3>Autor</h3><p class="muted">Juan Casper · Gazeta Studio</p></div>
         </div>
         <div class="info-box"><h3>¿Prefieres comprar ya?</h3><p class="muted">La serie actual está a la venta con precios y disponibilidad actualizados.</p><p style="margin-top:1rem"><a class="btn vino" href="colecciones.html">Ir a la tienda</a></p></div>
@@ -70,7 +70,7 @@
         </div>
         <label class="check">
           <input type="checkbox" id="privacidad" required>
-          <span>He leído las <a href="../legal/privacidad.html">condiciones de privacidad</a> y acepto ser contactado por el estudio. *</span>
+          <span>He leído las <a href="legal/privacidad.html">condiciones de privacidad</a>, el <a href="legal/aviso-legal.html">aviso legal</a> y las <a href="legal/condiciones-venta.html">condiciones de venta</a>, y acepto ser contactado por el estudio. *</span>
         </label>
         <button class="btn vino" type="submit" style="width:100%">Enviar mensaje</button>
         <p class="ok-msg" id="formOk" style="display:none" role="status">Mensaje enviado. Gracias — te contestamos personalmente.</p>
@@ -100,7 +100,7 @@
       <div><h4>El estudio</h4><ul><li><a href="manifiesto.html">Por qué vendemos así</a></li><li><a href="contacto.html">Escríbenos</a></li><li><a href="index.html">Inicio</a></li></ul></div>
       <div><h4>Avisos de serie nueva</h4><p>Solo te escribimos cuando abra una serie nueva o esté a punto de cerrarse una. Nada más.</p><form class="newsletter" data-newsletter><input type="email" required placeholder="Tu correo" aria-label="Tu correo electrónico"><button type="submit">Apuntarme</button></form></div>
     </div>
-    <div class="footer-bottom"><span>© 2026 Gazeta Studio · Juan Casper.</span><span>hola@example.com</span></div>
+    <div class="footer-bottom"><span>© 2026 Gazeta Studio · Juan Casper.</span><span class="footer-legal"><a href="legal/aviso-legal.html">Aviso legal</a> · <a href="legal/privacidad.html">Privacidad</a> · <a href="legal/condiciones-venta.html">Condiciones de venta</a> · <a href="legal/cookies.html">Cookies</a></span><span>contacto@gazetastudio.com</span></div>
   </div>
 </footer>
 
@@ -115,16 +115,31 @@
 <script src="script.js?v=12"></script>
 <script>
 initShop();
-document.getElementById('formContacto').addEventListener('submit', e=>{
+document.getElementById('formContacto').addEventListener('submit', async e=>{
   e.preventDefault();
   const nombre = document.getElementById('nombre').value.trim();
   const email = document.getElementById('email').value.trim();
   const mensaje = document.getElementById('mensaje').value.trim();
-  if(!nombre || !email.includes('@') || !mensaje){ showToast('Falta algo: tu nombre, un correo válido o el mensaje. Revísalo y lo mandamos.'); return; }
-  document.getElementById('formOk').style.display='block';
-  showToast('Enviado. Gracias, '+nombre.split(' ')[0]+'. Te contestamos personalmente.');
-  e.target.querySelectorAll('input,textarea').forEach(el=>{ if(el.type!=='checkbox') el.value=''; });
-  document.getElementById('formOk').scrollIntoView({behavior:'smooth',block:'center'});
+  const obra = document.getElementById('obra').value;
+  const acepta = document.getElementById('privacidad').checked;
+  if(!nombre || !email.includes('@') || !mensaje || !acepta){ showToast('Falta algo: tu nombre, un correo válido, el mensaje y aceptar las condiciones.'); return; }
+  const btn = e.target.querySelector('button[type="submit"]'); btn.disabled = true;
+  try {
+    const r = await fetch('https://gazeta-tienda-gazetastudio.vercel.app/api/contacto', { method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ nombre, email, mensaje, obra }) });
+    const j = await r.json();
+    if(j.ok){
+      document.getElementById('formOk').style.display='block';
+      showToast('Enviado. Gracias, '+nombre.split(' ')[0]+'. Te contestamos personalmente.');
+      e.target.querySelectorAll('input,textarea').forEach(el=>{ if(el.type!=='checkbox') el.value=''; });
+      document.getElementById('formOk').scrollIntoView({behavior:'smooth',block:'center'});
+    } else {
+      showToast('No se pudo enviar. Escríbenos directamente a contacto@gazetastudio.com');
+    }
+  } catch(err) {
+    showToast('Sin conexión. Escríbenos directamente a contacto@gazetastudio.com');
+  }
+  btn.disabled = false;
 });
 </script>
 </body>
