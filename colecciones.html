@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Colecciones — Las segundas partes nunca funcionan | GAZETA STUDIO</title>
-<meta name="description" content="Serie actual Origen, de Juan Casper: seis cuadros, cada uno en un único tamaño, numerados y con certificado. Las series cerradas no se reponen ni se vuelven a vender.">
-<link rel="stylesheet" href="styles.css?v=21">
+<meta name="description" content="Colección actual VIDA, de Juan Casper: seis cuadros, cada uno en un único tamaño, numerados y con certificado. Las series cerradas no se reponen ni se vuelven a vender.">
+<link rel="stylesheet" href="styles.css?v=23">
 <link rel="icon" type="image/png" href="assets/logo-gazeta.png">
 </head>
 <body>
-<div class="topbar">COLECCIÓN LIMITADA XXX ABIERTA</div>
+<div class="topbar">COLECCIÓN LIMITADA VIDA ABIERTA</div>
 
 <header class="site">
   <div class="header-in"><button class="menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav"><span class="burger" aria-hidden="true"><i></i><i></i><i></i></span></button><a class="logo-img" href="index.html" aria-label="Gazeta Studio — Inicio"><img src="assets/logo-gazeta.png" alt="Gazeta Studio"></a><nav class="main" id="mainNav" aria-label="Navegación principal">
@@ -35,7 +35,7 @@
   <section id="comprar" style="padding-top:3.5rem">
     <div class="wrap">
       <div class="section-head">
-        <div><p class="eyebrow">Comprar ahora</p><h2>COLECCION - XXX</h2></div>
+        <div><p class="eyebrow">Comprar ahora</p><h2>COLECCION - VIDA</h2></div>
         <p class="lead">Única medida de lienzo con certificado incluido</p>
       </div>
 
@@ -104,7 +104,7 @@
 </aside>
 <div class="toast" id="toast" role="status"></div>
 
-<script src="script.js?v=11"></script>
+<script src="script.js?v=12"></script>
 <script>
 document.getElementById('gridActual').innerHTML = productos.filter(p=>!p.cerrada).map(cardHTML).join('');
 document.getElementById('gridCerradas').innerHTML = productos.filter(p=>p.cerrada).map(cardHTML).join('');

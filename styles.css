@@ -298,6 +298,8 @@ footer a:hover{color:#fff}
 .cart-item img{width:64px;height:82px;object-fit:cover}
 .cart-item small{color:var(--texto-gris);display:block}
 .remove{background:none;border:0;color:var(--vino);cursor:pointer;font-size:.78rem;font-weight:600;padding:0}
+.pay{background:var(--vino);border:0;color:#fff;cursor:pointer;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.4rem .75rem;margin-right:.5rem}
+.pay:hover{background:var(--negro)}
 .drawer-foot{padding:1.5rem;border-top:1px solid var(--linea)}
 .drawer-foot .total{display:flex;justify-content:space-between;font-family:var(--serif);font-size:1.28rem;font-weight:500;margin-bottom:1.1rem;gap:1rem;flex-wrap:wrap}
 .overlay{position:fixed;inset:0;background:rgba(10,8,6,.46);z-index:40;opacity:0;pointer-events:none;transition:.3s}

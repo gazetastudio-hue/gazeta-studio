@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GAZETA STUDIO — Arte exclusivo con estilo propio | Cuadros en serie limitada de Juan Casper</title>
 <meta name="description" content="Cuadros de Juan Casper en series cortas y numeradas. Cada obra, en un solo tamaño. Especialistas en gran formato. Cuando una serie se cierra, no se repone.">
-<link rel="stylesheet" href="styles.css?v=21">
+<link rel="stylesheet" href="styles.css?v=23">
 <link rel="icon" type="image/png" href="assets/logo-gazeta.png">
 </head>
 <body>
-<div class="topbar">COLECCIÓN LIMITADA XXX ABIERTA</div>
+<div class="topbar">COLECCIÓN LIMITADA VIDA ABIERTA</div>
 
 <header class="site">
   <div class="header-in"><button class="menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav"><span class="burger" aria-hidden="true"><i></i><i></i><i></i></span></button><a class="logo-img" href="index.html" aria-label="Gazeta Studio — Inicio"><img src="assets/logo-gazeta.png" alt="Gazeta Studio"></a><nav class="main" id="mainNav" aria-label="Navegación principal">
@@ -46,7 +46,7 @@
   <section id="comprar">
     <div class="wrap">
       <div class="section-head reveal">
-        <div><p class="eyebrow">Comprar ahora</p><h2>COLECCION - XXX</h2></div>
+        <div><p class="eyebrow">Comprar ahora</p><h2>COLECCION - VIDA</h2></div>
         <p class="lead">Única medida de lienzo con certificado incluido</p>
       </div>
       <div class="grid-productos" id="destacadas"></div>
@@ -131,7 +131,7 @@
 </aside>
 <div class="toast" id="toast" role="status"></div>
 
-<script src="script.js?v=11"></script>
+<script src="script.js?v=12"></script>
 <script>
 document.getElementById('destacadas').innerHTML = productos.filter(p=>!p.cerrada).map(cardHTML).join('');
 initShop();
