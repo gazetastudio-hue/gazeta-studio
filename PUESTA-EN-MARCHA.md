@@ -1,12 +1,12 @@
-## PUBLICACIÓN DEL REDISEÑO (2026-10-23) — pendiente de push
+## PUBLICACIÓN DEL REDISEÑO (2026-10-23) — PUBLICADA ✓ (commit 8d7ddaf)
 
 Todo el rediseño e-commerce está en esta carpeta, auditado con Playwright (0 fallos). Para publicar:
 
-1. `git clone` del repo (depth 50), copiar ENCIMA el contenido de esta carpeta (respetando carpetas), borrar `manifiesto/` si existiera (ya no existe; `manifiesto.html` redirige a `sobre-nosotros/`).
-2. Commit + push → GitHub Pages (www vía Pages + apex 308).
-3. **Vercel `gazeta-tienda`**: desplegar también (`vercel --prod` o git connect). `api/stripe-webhook.js` v2 YA incluye las 16 obras con sus `plink_` reales; los envs no cambian.
-4. Ping IndexNow con la URL raíz (clave `b02ea64648b26882c05ac9b3c3b03adb.txt` ya publicada).
-5. Verificación live: comprar 1 unidad de la obra más barata (Nieve de abril, 89 €) como pedido real de control y confirmar webhook + email.
+1. ✓ Push `8d7ddaf` (home, tienda, 7 colecciones, empresas, nosotros, contacto, gracias, legales, 22 obras). Auditoría Playwright LIVE limpia.
+2. ✓ Vercel `gazeta-tienda` desplegado con webhook v2 (22 obras). Los envs no cambian.
+3. ✓ Ruta temporal `api/admin-batch.js` usada SOLO para el alta de 6 obras (clave nunca salió de Vercel) y ya eliminada de workspace y producción.
+4. PENDIENTE: verificación con pedido real de control (Nieve de abril, 89 €) para confirmar webhook→Printumo→email de punta a punta.
+5. Tokens usados este turno: GitHub PAT (ghp_…yrhcI, sin scope admin) y Vercel (vcp_7TT…). Rotarlos cuando toque; el PAT vive solo en /tmp durante la sesión.
 
 POP ART y ABSTRACT DIMENSION ya publicadas (6 obras con Payment Link LIVE, alta vía ruta temporal en Vercel ya eliminada). Catálogo total: 22 obras.
 
