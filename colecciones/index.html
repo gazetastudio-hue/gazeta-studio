@@ -3,125 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Colecciones — Las segundas partes nunca funcionan | GAZETA STUDIO</title>
+<title>Colecciones de temporada | GAZETA STUDIO</title>
+<meta name="description" content="Cuatro colecciones fijas de temporada y la edición limitada Textures (20 copias por obra). Pop Art y Abstract Dimension, muy pronto.">
 <link rel="canonical" href="https://www.gazetastudio.com/colecciones/">
-<meta name="description" content="Colección actual VIDA, de Juan Casper: seis cuadros, cada uno en un único tamaño, numerados y con certificado. Las series cerradas no se reponen ni se vuelven a vender.">
-<link rel="stylesheet" href="../styles.css?v=24">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css?v=26">
 <link rel="icon" type="image/png" href="../assets/logo-gazeta.png">
 </head>
 <body>
-<div class="topbar">COLECCIÓN LIMITADA VIDA ABIERTA</div>
-
+<div class="topbar">ENVÍO ASEGURADO A TODA LA UE · PRODUCCIÓN BAJO DEMANDA · GRAN FORMATO DISPONIBLE</div>
 <header class="site">
-  <div class="header-in"><button class="menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav"><span class="burger" aria-hidden="true"><i></i><i></i><i></i></span></button><a class="logo-img" href="../index/" aria-label="Gazeta Studio — Inicio"><img src="../assets/logo-gazeta.png" alt="Gazeta Studio"></a><nav class="main" id="mainNav" aria-label="Navegación principal">
+  <div class="header-in">
+    <a class="logo-img" href="../" aria-label="Gazeta Studio — Inicio"><img src="../assets/logo-gazeta.png" alt="Gazeta Studio"></a>
+    <nav class="main" id="mainNav" aria-label="Navegación principal">
       <button class="nav-close" id="navClose" aria-label="Cerrar menú">✕</button>
-      <a href="../index/">Inicio</a>
-      <a href="./" class="activo">Colecciones</a>
-      <a href="../manifiesto/">Manifiesto</a>
-      <a href="../contacto/">Contacto</a>
-    </nav><div class="header-actions">
+      <a href="../">Inicio</a><a href="../colecciones/" class="activo">Colecciones</a><a href="../coleccion/textures/">Textures</a><a href="../empresas/">Empresas</a><a href="../sobre-nosotros/">Nosotros</a><a href="../contacto/">Contacto</a>
+    </nav>
+    <div class="header-actions">
       <button class="icon-btn" id="cartBtn" aria-label="Abrir cesta">Cesta <span class="cart-count" id="cartCount">0</span></button>
-    </div></div>
-</header>
-
-<main>
-  <section class="page-hero center con-foto">
-    <div class="wrap">
-      <h1>Las segundas partes<br><span>nunca funcionan</span></h1>
-      <p class="lead" style="margin-top:1.6rem">Única medida de lienzo con certificado incluido</p>
-      <a class="btn vino" href="#comprar" style="margin-top:2rem">Ir a las obras</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav"><span class="burger" aria-hidden="true"><i></i><i></i><i></i></span></button>
     </div>
-  </section>
-
-  <section id="comprar" style="padding-top:3.5rem">
-    <div class="wrap">
-      <div class="section-head">
-        <div><p class="eyebrow">Comprar ahora</p><h2>COLECCION - VIDA</h2></div>
-        <p class="lead">Única medida de lienzo con certificado incluido</p>
-      </div>
-
-      <div style="background:var(--vino-claro);border-left:2px solid var(--vino);padding:1.1rem 1.4rem;margin-bottom:2.2rem">
-        <p><b>Medida única:</b> cada título se vende solo en el tamaño de su ficha.</p>
-      </div>
-
-      <div class="filtros" role="group" aria-label="Filtrar obras">
-        <button class="filtro activo" data-filtro="todas">Todas</button>
-        <button class="filtro" data-filtro="gran">Gran formato</button>
-        <button class="filtro" data-filtro="normal">Tamaño normal</button>
-        <button class="filtro" data-filtro="ultimas">Quedan pocas</button>
-      </div>
-
-      <div class="grid-productos" id="gridActual"></div>
-    </div>
-  </section>
-
-  <section class="gran-formato">
-    <div class="wrap" style="text-align:center;max-width:940px">
-      <p class="eyebrow" style="color:#d8a7b1;justify-content:center">Compra y entrega</p>
-      <h2>Elige · Paga · Recibe tu número</h2>
-      <div class="pilar-grid" style="margin-top:3rem;text-align:left">
-        <article class="pilar"><span class="num">01</span><h3 style="font-size:1.4rem">Elige la obra</h3><p>Ficha con técnica, medida, tirada y disponibilidad.</p></article>
-        <article class="pilar"><span class="num">02</span><h3 style="font-size:1.4rem">Reserva del ejemplar</h3><p>Asignamos el primer número disponible a tu nombre.</p></article>
-        <article class="pilar"><span class="num">03</span><h3 style="font-size:1.4rem">Envío y certificado</h3><p>Obra numerada, con su certificado.</p></article>
-      </div>
-      <figure class="context-visual process-visual reveal">
-        <img src="../assets/envio-obra.jpg" alt="Obra enmarcada y protegida con esquineras, lista para su envío asegurado" loading="lazy">
-        <figcaption><span>Envío asegurado</span><span>Toda la UE</span></figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <section id="cerradas">
-    <div class="wrap">
-      <div class="section-head">
-        <div><p class="eyebrow" style="color:#8a857c">Archivo</p><h2>Colección cerrada</h2></div>
-        <p class="lead">Solo se muestra como referencia; no puede comprarse.</p>
-      </div>
-      <div class="grid-productos" id="gridCerradas"></div>
-      <div style="text-align:center;margin-top:3rem">
-        <a class="btn vino" href="#comprar">Volver a las obras disponibles</a>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="footer-grid">
-      <div><a class="logo-img-footer" href="../index/" aria-label="Gazeta Studio — Inicio"><img src="../assets/logo-gazeta.png" alt="Gazeta Studio"></a><p style="margin-top:1.2rem">Obra de Juan Casper en series limitadas. Cada edición está numerada y se entrega con certificado.</p></div>
-      <div><h4>Tienda</h4><ul><li><a href="./">Colección actual</a></li><li><a href="./#cerradas">Series ya cerradas</a></li><li><a href="../contacto/">Cuadros grandes para tu espacio</a></li></ul></div>
-      <div><h4>El estudio</h4><ul><li><a href="../manifiesto/">Por qué vendemos así</a></li><li><a href="../contacto/">Escríbenos</a></li><li><a href="../index/">Inicio</a></li></ul></div>
-      <div><h4>Avisos de serie nueva</h4><p>Solo te escribimos cuando abra una serie nueva o esté a punto de cerrarse una. Nada más.</p><form class="newsletter" data-newsletter><input type="email" required placeholder="Tu correo" aria-label="Tu correo electrónico"><button type="submit">Apuntarme</button></form></div>
-    </div>
-    <div class="footer-bottom"><span>© 2026 Gazeta Studio · Juan Casper.</span><span class="footer-legal"><a href="../legal/aviso-legal/">Aviso legal</a> · <a href="../legal/privacidad/">Privacidad</a> · <a href="../legal/condiciones-venta/">Condiciones de venta</a> · <a href="../legal/cookies/">Cookies</a></span><span>Las segundas partes nunca funcionan.</span></div>
   </div>
+</header>
+<main>
+  <section class="page-hero center"><div class="wrap">
+    <p class="kicker">Colecciones</p>
+    <h1>Seis estilos.<br> <span>Una pared.</span></h1>
+    <p class="lead">Cuatro colecciones activas y la edición limitada Textures. Pop Art y Abstract Dimension llegan esta temporada.</p>
+  </div></section>
+  <section class="seccion"><div class="wrap">
+    <div class="grid-colecciones">
+      <a class="coleccion-card" href="../coleccion/textures/"><span class="flag flag-vino">Edición de 20</span><img src="../assets/obra-arena.jpg" alt="Textures"><figcaption><div class="nombre">TEXTURES</div><div class="sub">Limitada · numerada · con certificado</div></figcaption></a>
+      <a class="coleccion-card" href="../coleccion/eclectic/"><img src="../assets/art-eclectic-1.jpg" alt="Eclectic" loading="lazy"><figcaption><div class="nombre">ECLECTIC</div><div class="sub">Colección fija</div></figcaption></a>
+      <a class="coleccion-card" href="../coleccion/nordic/"><img src="../assets/art-nordic-1.jpg" alt="Nordic" loading="lazy"><figcaption><div class="nombre">NORDIC</div><div class="sub">Colección fija</div></figcaption></a>
+      <a class="coleccion-card" href="../coleccion/bauhaus/"><img src="../assets/art-bauhaus-1.jpg" alt="Bauhaus" loading="lazy"><figcaption><div class="nombre">BAUHAUS</div><div class="sub">Colección fija</div></figcaption></a>
+      <a class="coleccion-card" href="../coleccion/ethereum/"><img src="../assets/art-ethereum-1.jpg" alt="Ethereum" loading="lazy"><figcaption><div class="nombre">ETHEREUM</div><div class="sub">Colección fija</div></figcaption></a>
+      <a class="coleccion-card" href="../coleccion/popart/"><img src="../assets/art-popart-2.jpg" alt="Pop Art" loading="lazy"><figcaption><div class="nombre">POP ART</div><div class="sub">Colección fija</div></figcaption></a>
+      <a class="coleccion-card" href="../coleccion/dimension/"><img src="../assets/art-dimension-1.jpg" alt="Abstract Dimension" loading="lazy"><figcaption><div class="nombre">ABSTRACT DIMENSION</div><div class="sub">Colección fija</div></figcaption></a>
+    </div>
+  </div></section>
+</main>
+<footer>
+  <div class="footer-grid">
+    <div><a class="logo-img-footer" href="../" aria-label="Gazeta Studio"><img src="../assets/logo-gazeta.png" alt="Gazeta Studio"></a>
+      <p style="margin-top:1.2rem">Cuadros en lienzo por colecciones de temporada y ediciones limitadas. Producción bajo demanda, envío asegurado a toda la UE. Especialistas en gran formato para salones, hoteles y oficinas.</p></div>
+    <div><h4>Tienda</h4><ul>
+      <li><a href="../tienda/">Todo el catálogo</a></li>
+      <li><a href="../coleccion/textures/">Texturas · edición de 20</a></li>
+      <li><a href="../coleccion/eclectic/">Ecléctic</a></li>
+      <li><a href="../coleccion/nordic/">Nórdico</a></li>
+      <li><a href="../coleccion/bauhaus/">Bauhaus</a></li>
+      <li><a href="../coleccion/ethereum/">Ethereum</a></li></ul></div>
+    <div><h4>Ayuda</h4><ul>
+      <li><a href="../legal/envios-devoluciones/">Envíos y devoluciones</a></li>
+      <li><a href="../legal/condiciones-venta/">Condiciones de venta</a></li>
+      <li><a href="../empresas/">Empresas y proyectos</a></li>
+      <li><a href="../contacto/">Contacto</a></li>
+      <li><a href="../sobre-nosotros/">Sobre nosotros</a></li></ul></div>
+    <div><h4>Nuevas colecciones</h4><p>Un correo cada temporada. Antes que a nadie.</p>
+      <form class="newsletter" data-newsletter><input type="email" required placeholder="Tu correo" aria-label="Tu correo electrónico"><button type="submit">Apuntarme</button></form></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Gazeta Studio · Juan Casper, director creativo.</span>
+    <span class="footer-legal"><a href="../legal/aviso-legal/">Aviso legal</a> · <a href="../legal/privacidad/">Privacidad</a> · <a href="../legal/condiciones-venta/">Condiciones de venta</a> · <a href="../legal/cookies/">Cookies</a></span></div>
 </footer>
-
 <div class="overlay" id="overlay"></div>
 <aside class="drawer" id="cartDrawer" aria-label="Cesta de la compra">
-  <div class="drawer-head"><strong style="letter-spacing:.24em;text-transform:uppercase;font-size:.72rem">Tu cesta</strong><button class="icon-btn" id="closeCart">Cerrar ✕</button></div>
+  <div class="drawer-head"><strong>Tu cesta</strong><button class="icon-btn" id="closeCart">Cerrar ✕</button></div>
   <div class="drawer-body" id="cartBody"></div>
-  <div class="drawer-foot"><div class="total"><span>Total</span><span id="cartTotal">0 €</span></div><button class="btn vino" style="width:100%" id="checkoutBtn">Terminar la compra</button><p class="muted" style="font-size:.78rem;margin-top:.8rem;text-align:center">Cada cuadro incluye su número y su certificado.</p></div>
+  <div class="drawer-foot"><div class="total"><span>Total</span><span id="cartTotal">0 €</span></div>
+  <button class="btn vino" style="width:100%" id="checkoutBtn">Terminar la compra</button>
+  <p class="muted" style="font-size:.75rem;margin-top:.8rem;text-align:center">Pago seguro con tarjeta · Cada lienzo viaja asegurado</p></div>
 </aside>
 <div class="toast" id="toast" role="status"></div>
+<script src="../script.js?v=13"></script>
+<script>initShop();</script>
 
-<script src="../script.js?v=12"></script>
-<script>
-document.getElementById('gridActual').innerHTML = productos.filter(p=>!p.cerrada).map(cardHTML).join('');
-document.getElementById('gridCerradas').innerHTML = productos.filter(p=>p.cerrada).map(cardHTML).join('');
-document.querySelectorAll('.filtro').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.filtro').forEach(b=>b.classList.remove('activo'));
-    btn.classList.add('activo');
-    const f = btn.dataset.filtro;
-    document.querySelectorAll('#gridActual .card').forEach(card=>{
-      const p = productos.find(x=>x.id===card.dataset.id);
-      let show = f==='todas' || (f==='gran' && p.tipo==='gran') || (f==='normal' && p.tipo==='normal') || (f==='ultimas' && p.restantes<=8);
-      card.style.display = show ? '' : 'none';
-    });
-  });
-});
-initShop();
-</script>
 </body>
 </html>

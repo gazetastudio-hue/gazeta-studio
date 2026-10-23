@@ -1,8 +1,98 @@
 {
-  "vino-primero":     { "nombre": "Corriente",        "image_url": "https://gazetastudio-hue.github.io/gazeta-studio/assets/print-vino.jpg",      "print_type_id": 2, "size_id": 22, "framing_id": 2, "market_id": 1 },
-  "trazo-unico":      { "nombre": "Pulso",            "image_url": "https://gazetastudio-hue.github.io/gazeta-studio/assets/print-trazo.jpg",     "print_type_id": 2, "size_id": 44, "framing_id": 2, "market_id": 1 },
-  "linea-y-vino":     { "nombre": "Perfil en reposo", "image_url": "https://gazetastudio-hue.github.io/gazeta-studio/assets/print-linea.jpg",     "print_type_id": 2, "size_id": 19, "framing_id": 2, "market_id": 1 },
-  "arena-calma":      { "nombre": "Mediodía",         "image_url": "https://gazetastudio-hue.github.io/gazeta-studio/assets/print-arena.jpg",     "print_type_id": 2, "size_id": 30, "framing_id": 2, "market_id": 1 },
-  "horizonte-vino":   { "nombre": "Última luz",       "image_url": "https://gazetastudio-hue.github.io/gazeta-studio/assets/print-horizonte.jpg", "print_type_id": 2, "size_id": 22, "framing_id": 2, "market_id": 1 },
-  "geometria-callada":{ "nombre": "Equilibrio",       "image_url": "https://gazetastudio-hue.github.io/gazeta-studio/assets/print-geometria.jpg", "print_type_id": 2, "size_id": 39, "framing_id": 2, "market_id": 1 }
+ "vino-primero": {
+  "nombre": "Corriente",
+  "image_url": "https://www.gazetastudio.com/assets/print-vino.jpg",
+  "print_type_id": 2,
+  "size_id": 22,
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "trazo-unico": {
+  "nombre": "Pulso",
+  "image_url": "https://www.gazetastudio.com/assets/print-trazo.jpg",
+  "print_type_id": 2,
+  "size_id": 44,
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "linea-y-vino": {
+  "nombre": "Perfil en reposo",
+  "image_url": "https://www.gazetastudio.com/assets/print-linea.jpg",
+  "print_type_id": 2,
+  "size_id": 19,
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "arena-calma": {
+  "nombre": "Mediodía",
+  "image_url": "https://www.gazetastudio.com/assets/print-arena.jpg",
+  "print_type_id": 2,
+  "size_id": 30,
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "horizonte-vino": {
+  "nombre": "Última luz",
+  "image_url": "https://www.gazetastudio.com/assets/print-horizonte.jpg",
+  "print_type_id": 2,
+  "size_id": 22,
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "geometria-callada": {
+  "nombre": "Equilibrio",
+  "image_url": "https://www.gazetastudio.com/assets/print-geometria.jpg",
+  "print_type_id": 2,
+  "size_id": 39,
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "popart-1": {
+  "nombre": "Rostro pop",
+  "image_url": "https://www.gazetastudio.com/assets/print-popart-1.jpg",
+  "print_type_id": 2,
+  "size_id": 22,
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "popart-2": {
+  "nombre": "Plátano explosivo",
+  "image_url": "https://www.gazetastudio.com/assets/print-popart-2.jpg",
+  "print_type_id": 2,
+  "size_id": 22,
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "popart-3": {
+  "nombre": "Big bang",
+  "image_url": "https://www.gazetastudio.com/assets/print-popart-3.jpg",
+  "print_type_id": 2,
+  "size_id": 44,
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "dimension-1": {
+  "nombre": "Estratos",
+  "image_url": "https://www.gazetastudio.com/assets/print-dimension-1.jpg",
+  "print_type_id": 2,
+  "size_id": 22,
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "dimension-2": {
+  "nombre": "Arcos flotantes",
+  "image_url": "https://www.gazetastudio.com/assets/print-dimension-2.jpg",
+  "print_type_id": 2,
+  "size_id": 44,
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "dimension-3": {
+  "nombre": "Ola tallada",
+  "image_url": "https://www.gazetastudio.com/assets/print-dimension-3.jpg",
+  "print_type_id": 2,
+  "size_id": 30,
+  "framing_id": 2,
+  "market_id": 1
+ }
 }

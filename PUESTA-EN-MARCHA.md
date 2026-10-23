@@ -1,3 +1,15 @@
+## PUBLICACIÓN DEL REDISEÑO (2026-10-23) — pendiente de push
+
+Todo el rediseño e-commerce está en esta carpeta, auditado con Playwright (0 fallos). Para publicar:
+
+1. `git clone` del repo (depth 50), copiar ENCIMA el contenido de esta carpeta (respetando carpetas), borrar `manifiesto/` si existiera (ya no existe; `manifiesto.html` redirige a `sobre-nosotros/`).
+2. Commit + push → GitHub Pages (www vía Pages + apex 308).
+3. **Vercel `gazeta-tienda`**: desplegar también (`vercel --prod` o git connect). `api/stripe-webhook.js` v2 YA incluye las 16 obras con sus `plink_` reales; los envs no cambian.
+4. Ping IndexNow con la URL raíz (clave `b02ea64648b26882c05ac9b3c3b03adb.txt` ya publicada).
+5. Verificación live: comprar 1 unidad de la obra más barata (Nieve de abril, 89 €) como pedido real de control y confirmar webhook + email.
+
+POP ART y ABSTRACT DIMENSION ya publicadas (6 obras con Payment Link LIVE, alta vía ruta temporal en Vercel ya eliminada). Catálogo total: 22 obras.
+
 # GAZETA STUDIO — Puesta en marcha del ecommerce
 
 ## Qué está montado

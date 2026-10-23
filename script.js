@@ -1,127 +1,143 @@
-/* GAZETA STUDIO — datos y tienda */
-const RAIZ = location.hostname.includes("github.io") ? "/gazeta-studio/" : "/";
+/* GAZETA STUDIO — Tienda (e-commerce) */
+const RAIZ = location.hostname.includes('github.io') ? '/gazeta-studio/' : '/';
+
+/* colecciones fijas de temporada + TEXTURES (edición limitada de 20) */
+const COLECCIONES = {
+  eclectic:  { nombre:'ECLECTIC',           desc:'Color, contraste y energía. Arte con carácter para salas con personalidad.' },
+  nordic:    { nombre:'NORDIC',             desc:'Calma nórdica: tonos suaves y líneas serenas para espacios luminosos.' },
+  bauhaus:   { nombre:'BAUHAUS',            desc:'Geometría y color primario. El modernismo que nunca pasa de moda.' },
+  ethereum:  { nombre:'ETHEREUM',           desc:'Lo digital hecho arte: cristal, luz y profundidad sobre negro.' },
+  popart:    { nombre:'POP ART',            desc:'Cultura pop en gran formato: color puro, contornos negros y energía de cómic.' },
+  dimension: { nombre:'ABSTRACT DIMENSION', desc:'Capas, sombras y relieve: abstracción que se sale del plano.' },
+  textures:  { nombre:'TEXTURES',           desc:'Edición limitada: 20 copias numeradas por obra, con certificado. Cuando se agota, no vuelve.' }
+};
+
 const productos = [
-  { id:'vino-primero', nombre:'Corriente', historia:'Nace de los cauces que cambian de dirección sin romperse. Habla de seguir avanzando cuando el camino se desvía: el trazo oscuro desciende y, aun así, sostiene toda la composición.', coleccion:'Colección VIDA', img:'assets/obra-vino.jpg', tamano:'100 × 150 cm', tipo:'gran', tipoLabel:'Gran formato', edicion:30, restantes:11, precio:890, pago:'https://buy.stripe.com/6oUdR3cXOgIc3G2bmf5os00', horizontal:false, anio:2026, tecnica:'Acrílico y pigmento sobre lienzo', nota:'Composición vertical en gran formato, con capas de pigmento y un trazo final en negro.' },
-  { id:'trazo-unico', nombre:'Pulso', historia:'Un solo gesto, hecho de una vez, como un latido sobre el lienzo. Significa lo esencial: lo que queda cuando se retira todo lo que sobraba.', coleccion:'Colección VIDA', img:'assets/obra-trazo.jpg', tamano:'100 × 140 cm', tipo:'normal', tipoLabel:'Tamaño normal', edicion:50, restantes:23, precio:420, pago:'https://buy.stripe.com/4gM7sF9LCfE890m2PJ5os01', horizontal:false, anio:2026, tecnica:'Tinta y acrílico sobre lienzo', nota:'Un único trazo central sobre fondo claro, sin elementos secundarios.' },
-  { id:'linea-y-vino', nombre:'Perfil en reposo', historia:'Una figura que no mira a nadie. Habla del descanso sin representación, de estar presente sin necesidad de explicarse.', coleccion:'Colección VIDA', img:'assets/obra-linea.jpg', tamano:'60 × 90 cm', tipo:'normal', tipoLabel:'Tamaño normal', edicion:75, restantes:41, precio:240, pago:'https://buy.stripe.com/dRmcMZ2ja63ydgC9e75os02', horizontal:false, anio:2025, tecnica:'Grafito y acrílico sobre lienzo', nota:'Dibujo de línea continua con una única intervención de color.' },
-  { id:'arena-calma', nombre:'Mediodía', historia:'La hora en que la luz no proyecta sombras o apenas las insinúa. La obra trata de ese instante de calma en el que nada empuja ni tira.', coleccion:'Colección VIDA', img:'assets/obra-arena.jpg', tamano:'120 × 165 cm', tipo:'gran', tipoLabel:'Gran formato', edicion:40, restantes:6, precio:560, pago:'https://buy.stripe.com/cNi00d0b2crW7Wieyr5os03', horizontal:false, anio:2026, tecnica:'Acrílico sobre lienzo', nota:'Campo claro y forma central en arco; se aprecia la textura del lienzo.' },
-  { id:'horizonte-vino', nombre:'Última luz', historia:'Las tres franjas marcan el final del día sobre el horizonte. Habla de lo que permanece cuando la luz se retira: la franja profunda que sigue sosteniendo la mirada.', coleccion:'Colección VIDA', img:'assets/obra-horizonte.jpg', tamano:'150 × 100 cm', tipo:'gran', tipoLabel:'Gran formato', edicion:20, restantes:4, precio:1150, pago:'https://buy.stripe.com/00wcMZbTK0Jeb8u9e75os04', horizontal:true, anio:2026, tecnica:'Acrílico y pigmento sobre lienzo', nota:'Tres franjas horizontales en formato panorámico.' },
-  { id:'geometria-callada', nombre:'Equilibrio', historia:'Dos formas que se sostienen sin tocarse. Trata del punto exacto entre peso y ligereza, entre lo que se queda y lo que se suelta.', coleccion:'Colección VIDA', img:'assets/obra-geometria.jpg', tamano:'40 × 55 cm', tipo:'normal', tipoLabel:'Tamaño normal', edicion:100, restantes:58, precio:145, pago:'https://buy.stripe.com/5kQcMZcXO63y6Se4XR5os05', horizontal:false, anio:2025, tecnica:'Acrílico sobre lienzo', nota:'Dos formas geométricas sobre fondo blanco. Es el formato menor de la serie.' },
-  { id:'umbral-i', nombre:'Umbral I', coleccion:'Colección cerrada', img:'assets/archivo-umbral-1.jpg', tamano:'130 × 180 cm', tipo:'gran', tipoLabel:'Gran formato', edicion:25, restantes:0, precio:740, cerrada:true, horizontal:false, anio:2025, tecnica:'Tinta y acrílico sobre lienzo', nota:'Colección cerrada. Solo referencia.' },
-  { id:'primera-vendimia', nombre:'Primera sala', coleccion:'Colección cerrada', img:'assets/archivo-primera-sala.jpg', tamano:'90 × 120 cm', tipo:'normal', tipoLabel:'Tamaño normal', edicion:40, restantes:0, precio:380, cerrada:true, horizontal:false, anio:2025, tecnica:'Acrílico y pigmento sobre lienzo', nota:'Colección cerrada. Solo referencia.' },
+  /* ───── TEXTURES · edición limitada de 20 ───── */
+  { id:'vino-primero', nombre:'Corriente', coleccion:'textures', img:'assets/obra-vino.jpg', img2:'assets/print-vino.jpg', tamano:'100 × 150 cm', size_id:22, edicion:20, restantes:14, precio:890,  pago:'https://buy.stripe.com/6oUdR3cXOgIc3G2bmf5os00', gran:true },
+  { id:'trazo-unico', nombre:'Pulso', coleccion:'textures', img:'assets/obra-trazo.jpg', img2:'assets/print-trazo.jpg', tamano:'100 × 140 cm', size_id:44, edicion:20, restantes:16, precio:420,  pago:'https://buy.stripe.com/4gM7sF9LCfE890m2PJ5os01', gran:true },
+  { id:'linea-y-vino', nombre:'Perfil en reposo', coleccion:'textures', img:'assets/obra-linea.jpg', img2:'assets/print-linea.jpg', tamano:'60 × 90 cm', size_id:19, edicion:20, restantes:18, precio:240,  pago:'https://buy.stripe.com/dRmcMZ2ja63ydgC9e75os02', gran:false },
+  { id:'arena-calma', nombre:'Mediodía', coleccion:'textures', img:'assets/obra-arena.jpg', img2:'assets/print-arena.jpg', tamano:'120 × 165 cm', size_id:30, edicion:20, restantes:12, precio:560,  pago:'https://buy.stripe.com/cNi00d0b2crW7Wieyr5os03', gran:true },
+  { id:'horizonte-vino', nombre:'Última luz', coleccion:'textures', img:'assets/obra-horizonte.jpg', img2:'assets/print-horizonte.jpg', tamano:'150 × 100 cm', size_id:22, edicion:20, restantes:9,  precio:1150, pago:'https://buy.stripe.com/00wcMZbTK0Jeb8u9e75os04', gran:true },
+  { id:'geometria-callada', nombre:'Equilibrio', coleccion:'textures', img:'assets/obra-geometria.jpg', img2:'assets/print-geometria.jpg', tamano:'40 × 55 cm', size_id:39, edicion:20, restantes:15, precio:145,  pago:'https://buy.stripe.com/5kQcMZcXO63y6Se4XR5os05', gran:false },
+  /* ───── ECLECTIC ───── */
+  { id:'eclectic-1', nombre:'Marea urbana', coleccion:'eclectic', img:'assets/art-eclectic-1.jpg', img2:'assets/print-eclectic-1.jpg', tamano:'100 × 150 cm', size_id:22, edicion:100, restantes:100, precio:289, pago:'https://buy.stripe.com/5kQ00dcXOfE87Wi9e75os06', gran:true },
+  { id:'eclectic-2', nombre:'Terraza interior', coleccion:'eclectic', img:'assets/art-eclectic-2.jpg', img2:'assets/print-eclectic-2.jpg', tamano:'70 × 100 cm', size_id:44, edicion:100, restantes:100, precio:169, pago:'https://buy.stripe.com/9B64gt1f68bG90m1LF5os07', gran:false },
+  { id:'eclectic-3', nombre:'Alfama', coleccion:'eclectic', img:'assets/art-eclectic-3.jpg', img2:'assets/print-eclectic-3.jpg', tamano:'70 × 100 cm', size_id:44, edicion:100, restantes:100, precio:159, pago:'https://buy.stripe.com/6oU3cpaPG4Zu90mbmf5os08', gran:false },
+  /* ───── NORDIC ───── */
+  { id:'nordic-1', nombre:'Silencio claro', coleccion:'nordic', img:'assets/art-nordic-1.jpg', img2:'assets/print-nordic-1.jpg', tamano:'70 × 100 cm', size_id:44, edicion:100, restantes:100, precio:159, pago:'https://buy.stripe.com/6oU3cp1f6fE86Se3TN5os09', gran:false },
+  { id:'nordic-2', nombre:'Fiordo', coleccion:'nordic', img:'assets/art-nordic-2.jpg', img2:'assets/print-nordic-2.jpg', tamano:'70 × 100 cm', size_id:44, edicion:100, restantes:100, precio:149, pago:'https://buy.stripe.com/9B6cMZbTK77Cb8u8a35os0a', gran:false },
+  { id:'nordic-3', nombre:'Nieve de abril', coleccion:'nordic', img:'assets/art-nordic-3.jpg', img2:'assets/print-nordic-3.jpg', tamano:'40 × 50 cm', size_id:32, edicion:100, restantes:100, precio:89, pago:'https://buy.stripe.com/8x2dR39LCdw05Oabmf5os0b', gran:false },
+  /* ───── BAUHAUS ───── */
+  { id:'bauhaus-1', nombre:'Composición 7', coleccion:'bauhaus', img:'assets/art-bauhaus-1.jpg', img2:'assets/print-bauhaus-1.jpg', tamano:'70 × 100 cm', size_id:44, edicion:100, restantes:100, precio:159, pago:'https://buy.stripe.com/4gMbIVcXO3VqdgCdun5os0c', gran:false },
+  { id:'bauhaus-2', nombre:'Eje y círculo', coleccion:'bauhaus', img:'assets/art-bauhaus-2.jpg', img2:'assets/print-bauhaus-2.jpg', tamano:'100 × 150 cm', size_id:22, edicion:100, restantes:100, precio:279, pago:'https://buy.stripe.com/fZueV72jafE8b8u4XR5os0d', gran:true },
+  { id:'bauhaus-3', nombre:'Tríada', coleccion:'bauhaus', img:'assets/art-bauhaus-3.jpg', img2:'assets/print-bauhaus-3.jpg', tamano:'75 × 150 cm', size_id:8, edicion:100, restantes:100, precio:249, pago:'https://buy.stripe.com/cNi00df5WfE87Wi0HB5os0e', gran:true },
+  /* ───── ETHEREUM ───── */
+  { id:'ethereum-1', nombre:'Nodo', coleccion:'ethereum', img:'assets/art-ethereum-1.jpg', img2:'assets/print-ethereum-1.jpg', tamano:'100 × 150 cm', size_id:22, edicion:100, restantes:100, precio:289, pago:'https://buy.stripe.com/28EfZbe1S3Vq5Oaaib5os0f', gran:true },
+  { id:'popart-1', nombre:'Rostro pop', coleccion:'popart', img:'assets/art-popart-1.jpg', img2:'assets/print-popart-1.jpg', tamano:'100 × 140 cm', size_id:22, edicion:100, restantes:100, precio:149, pago:'https://buy.stripe.com/dRmeV7f5WcrWccygGz5os0g', gran:false },
+  { id:'popart-2', nombre:'Plátano explosivo', coleccion:'popart', img:'assets/art-popart-2.jpg', img2:'assets/print-popart-2.jpg', tamano:'100 × 150 cm', size_id:22, edicion:100, restantes:100, precio:159, pago:'https://buy.stripe.com/28EdR31f61Ni5Oa9e75os0h', gran:true },
+  { id:'popart-3', nombre:'Big bang', coleccion:'popart', img:'assets/art-popart-3.jpg', img2:'assets/print-popart-3.jpg', tamano:'110 × 140 cm', size_id:44, edicion:100, restantes:100, precio:179, pago:'https://buy.stripe.com/cNieV7bTKfE81xU4XR5os0i', gran:true },
+  { id:'dimension-1', nombre:'Estratos', coleccion:'dimension', img:'assets/art-dimension-1.jpg', img2:'assets/print-dimension-1.jpg', tamano:'100 × 150 cm', size_id:22, edicion:100, restantes:100, precio:169, pago:'https://buy.stripe.com/dRm3cpe1S1Ni2BY2PJ5os0j', gran:true },
+  { id:'dimension-2', nombre:'Arcos flotantes', coleccion:'dimension', img:'assets/art-dimension-2.jpg', img2:'assets/print-dimension-2.jpg', tamano:'80 × 160 cm', size_id:44, edicion:100, restantes:100, precio:219, pago:'https://buy.stripe.com/fZudR39LCgIc90mcqj5os0k', gran:true },
+  { id:'dimension-3', nombre:'Ola tallada', coleccion:'dimension', img:'assets/art-dimension-3.jpg', img2:'assets/print-dimension-3.jpg', tamano:'110 × 140 cm', size_id:30, edicion:100, restantes:100, precio:189, pago:'https://buy.stripe.com/fZu14hcXO1Ni3G2dun5os0l', gran:true },
 ];
 
-function euros(n){ return n.toLocaleString('es-ES') + ' €'; }
+const euros = n => n.toLocaleString('es-ES') + ' €';
 
 function cardHTML(p){
-  const vendidos = p.edicion - p.restantes;
-  const pct = Math.round((vendidos / p.edicion) * 100);
-  if(p.cerrada){
-    return `<article class="cartel-cerrada reveal" data-id="${p.id}">
-      <span class="badge cerrada">Colección cerrada</span>
-      <img src="${RAIZ}${p.img}" alt="Obra de la colección ${p.nombre}, cerrada y agotada" loading="lazy">
-      <div class="cartel-info">
-        <h3>${p.nombre}</h3>
-        <p class="cartel-nota">Colección cerrada</p>
-        <p class="cartel-ref">Solo se muestra como referencia; no puede comprarse.</p>
-      </div></article>`;
-  }
-  const ultimas = p.restantes <= 8;
-  return `<article class="card reveal" data-id="${p.id}">
-    <div class="card-media ${p.horizontal?'horizontal':''}">
-      ${ultimas ? '<span class="badge vino">Quedan pocas</span>' : '<span class="badge">Serie limitada</span>'}
-      <img src="${RAIZ}${p.img}" alt="Cuadro «${p.nombre}», de Juan Casper. Se hace solo en ${p.tamano}" loading="lazy">
-    </div>
+  const c = COLECCIONES[p.coleccion];
+  const limitada = p.coleccion === 'textures';
+  const quedan = limitada ? `<span class="card-quedan">Quedan ${p.restantes} de ${p.edicion} · numerada</span>` : `<span class="card-quedan">${p.tamano}</span>`;
+  return `<article class="card" data-id="${p.id}" data-col="${p.coleccion}" data-gran="${p.gran}">
+    <a class="card-media" href="${RAIZ}coleccion/${p.coleccion}/" aria-label="${p.nombre}">
+      ${limitada ? '<span class="flag flag-vino">Edición de 20</span>' : ''}
+      ${p.gran ? '<span class="flag">Gran formato</span>' : ''}
+      <img src="${RAIZ}${p.img}" alt="Lienzo ${p.nombre}" loading="lazy">
+    </a>
     <div class="card-info">
-      <div class="card-top"><h3>${p.nombre}</h3><span class="edicion">Serie de ${p.edicion}</span></div>
-      <p class="nota">${p.nota}</p>
-      <p class="historia">${p.historia}</p>
-      <div class="meta-obra"><span><b>${p.tamano}</b></span></div>
-      <div class="unico">Medida única. No se produce en otros tamaños.</div>
-      <div class="barra-edicion" aria-hidden="true"><i style="width:${pct}%"></i></div>
-      <span class="quedan">Quedan ${p.restantes} de ${p.edicion}</span>
-      <p class="incluye">Numerada y con certificado incluido</p>
-      <div class="card-foot"><span class="precio">${euros(p.precio)}<small>IVA incluido</small></span><button class="add" data-comprar="${p.id}">Comprar ahora</button></div>
+      <span class="card-col">${c.nombre}</span>
+      <h3>${p.nombre}</h3>
+      ${quedan}
+      <div class="card-foot"><span class="card-precio">${euros(p.precio)}<small>IVA incluido</small></span>
+      <button class="btn-mini" data-comprar="${p.id}">Comprar</button></div>
     </div></article>`;
 }
 
-/* --- Carrito (localStorage) --- */
+/* --- Carrito --- */
 let cart = [];
 try{ cart = JSON.parse(localStorage.getItem('gazeta_cart') || '[]'); }catch(e){ cart = []; }
-
 function saveCart(){ localStorage.setItem('gazeta_cart', JSON.stringify(cart)); renderCart(); }
 function renderCart(){
-  const body = document.getElementById('cartBody');
-  const count = document.getElementById('cartCount');
-  const totalEl = document.getElementById('cartTotal');
+  const body = document.getElementById('cartBody'), count = document.getElementById('cartCount'), totalEl = document.getElementById('cartTotal');
   if(!body) return;
   count.textContent = cart.length;
   if(cart.length === 0){
-    body.innerHTML = '<p class="muted" style="text-align:center;padding:2rem 0">La cesta está vacía.<br><br>Si tienes dudas sobre una medida,<br>contacta con el estudio antes de comprar.</p>';
+    body.innerHTML = '<p class="cesta-vacia">Tu cesta está vacía.<br>Explora las colecciones y encuentra tu cuadro.</p>';
     totalEl.textContent = '0 €'; return;
   }
   let total = 0;
-  body.innerHTML = cart.map((id, i)=>{
+  body.innerHTML = cart.map((id,i)=>{
     const p = productos.find(x=>x.id===id); total += p.precio;
-    return `<div class="cart-item"><img src="${RAIZ}${p.img}" alt="${p.nombre}"><div><b>${p.nombre}</b><small>Medida: ${p.tamano}</small><small>Serie de ${p.edicion} · Con número y certificado</small><button class="pay" data-pay="${p.id}">Pagar</button><button class="remove" data-remove="${i}">Quitar</button></div><b>${euros(p.precio)}</b></div>`;
+    return `<div class="cart-item"><img src="${RAIZ}${p.img}" alt="${p.nombre}"><div><b>${p.nombre}</b><small>${COLECCIONES[p.coleccion].nombre} · ${p.tamano}</small><div class="cart-acciones"><button class="pay" data-pay="${p.id}">Pagar</button><button class="remove" data-remove="${i}">Quitar</button></div></div><b>${euros(p.precio)}</b></div>`;
   }).join('');
   totalEl.textContent = euros(total);
   body.querySelectorAll('[data-remove]').forEach(b=>b.addEventListener('click',()=>{ cart.splice(Number(b.dataset.remove),1); saveCart(); }));
   body.querySelectorAll('[data-pay]').forEach(b=>b.addEventListener('click',()=>{ const p=productos.find(x=>x.id===b.dataset.pay); if(p&&p.pago) window.open(p.pago,'_blank'); }));
 }
+function openCart(){ document.getElementById('cartDrawer')?.classList.add('open'); document.body.classList.add('cart-open'); setOverlay(true); }
+function closeCart(){ document.getElementById('cartDrawer')?.classList.remove('open'); document.body.classList.remove('cart-open'); setOverlay(false); }
+function setOverlay(on){ document.getElementById('overlay')?.classList.toggle('visible', on); }
+function showToast(msg){ const t=document.getElementById('toast'); if(!t) return; t.textContent=msg; t.classList.add('ver'); clearTimeout(t._x); t._x=setTimeout(()=>t.classList.remove('ver'),3400); }
 
-function showToast(msg){
-  const t = document.getElementById('toast'); if(!t) return;
-  t.textContent = msg; t.classList.add('show');
-  clearTimeout(t._h); t._h = setTimeout(()=>t.classList.remove('show'), 3400);
+/* --- Grid con filtros --- */
+function pintarGrid(sel, filtro){
+  const grid = document.querySelector(sel); if(!grid) return;
+  let lista = productos;
+  if(filtro === 'gran') lista = productos.filter(p=>p.gran);
+  else if(filtro && filtro !== 'todas') lista = productos.filter(p=>p.coleccion===filtro);
+  grid.innerHTML = lista.map(cardHTML).join('');
 }
-
-function setOverlay(v){ document.getElementById('overlay')?.classList.toggle('show', v); }
-function openMenu(){
-  document.getElementById('mainNav')?.classList.add('open');
-  document.getElementById('menuBtn')?.setAttribute('aria-expanded','true');
-  document.body.classList.add('menu-open'); setOverlay(true);
-}
-function closeMenu(){
-  document.getElementById('mainNav')?.classList.remove('open');
-  document.getElementById('menuBtn')?.setAttribute('aria-expanded','false');
-  document.body.classList.remove('menu-open');
-  if(!document.getElementById('cartDrawer')?.classList.contains('open')) setOverlay(false);
-}
-function toggleMenu(){
-  document.getElementById('mainNav')?.classList.contains('open') ? closeMenu() : openMenu();
-}
-function openCart(){ closeMenu(); document.getElementById('cartDrawer')?.classList.add('open'); document.body.classList.add('cart-open'); setOverlay(true); }
-function closeCart(){
-  document.getElementById('cartDrawer')?.classList.remove('open');
-  document.body.classList.remove('cart-open'); closeMenu(); setOverlay(false);
+function initFiltros(){
+  const caja = document.querySelector('.filtros'); if(!caja) return;
+  caja.addEventListener('click', e=>{
+    const btn = e.target.closest('.filtro'); if(!btn) return;
+    caja.querySelectorAll('.filtro').forEach(b=>b.classList.remove('activo'));
+    btn.classList.add('activo');
+    pintarGrid('#gridTienda', btn.dataset.filtro);
+  });
 }
 
 function initShop(){
+  document.addEventListener('click', e=>{
+    const btn = e.target.closest('[data-comprar]'); if(!btn) return;
+    const p = productos.find(x=>x.id===btn.dataset.comprar);
+    if(!p || !p.pago){ showToast('El pago no está disponible ahora mismo. Escríbenos y reservamos tu ejemplar.'); return; }
+    if(!cart.includes(p.id)){ cart.push(p.id); saveCart(); }
+    showToast('«'+p.nombre+'» te espera en la cesta. Te abrimos el pago seguro.');
+    window.open(p.pago,'_blank');
+  });
+  pintarGrid('#gridTienda'); pintarGrid('#gridTexturas','textures');
+  document.querySelectorAll('[data-grid-col]').forEach(g=>pintarGrid('#'+g.id, g.dataset.gridCol));
+  /* grid de favoritos (home) */
+  const gf=document.querySelector('[data-fav]');
+  if(gf){ gf.innerHTML=gf.dataset.fav.split(',').map(id=>{const p=productos.find(x=>x.id===id);return p?cardHTML(p):''}).join(''); }
+  initFiltros();
   renderCart();
   document.getElementById('cartBtn')?.addEventListener('click', openCart);
   document.getElementById('closeCart')?.addEventListener('click', closeCart);
-  document.getElementById('overlay')?.addEventListener('click', closeCart);
-  document.getElementById('menuBtn')?.addEventListener('click', toggleMenu);
-  document.getElementById('navClose')?.addEventListener('click', closeMenu);
-  document.querySelectorAll('#mainNav a').forEach(a=>a.addEventListener('click', closeMenu));
-  document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeMenu(); closeCart(); } });
-  window.addEventListener('resize', ()=>{ if(window.innerWidth>980) closeMenu(); });
+  document.getElementById('overlay')?.addEventListener('click', ()=>{ closeCart(); cerrarMenu(); });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeCart(); cerrarMenu(); } });
   document.getElementById('checkoutBtn')?.addEventListener('click', ()=>{
     if(cart.length===0){ showToast('La cesta está vacía. Cuando elijas un cuadro, lo verás aquí.'); return; }
     const p = productos.find(x=>x.id===cart[0]);
-    showToast('Cada obra se paga por separado para asegurar su número y su envío. Te abrimos el pago de «'+p.nombre+'».');
-    window.open(p.pago, '_blank');
+    window.open(p.pago,'_blank');
   });
-  document.querySelectorAll('[data-comprar]').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const p = productos.find(x=>x.id===btn.dataset.comprar);
-      if(!p || !p.pago){ showToast('El pago no está disponible ahora mismo. Escríbenos y reservamos tu ejemplar.'); return; }
-      if(!cart.includes(p.id)){ cart.push(p.id); saveCart(); }
-      showToast('«' + p.nombre + '»: al terminar el pago te asignamos el siguiente número disponible.');
-      window.open(p.pago, '_blank');
-    });
-  });
+  /* menú móvil */
+  const btn=document.getElementById('menuBtn');
+  btn?.addEventListener('click', ()=>{ document.getElementById('mainNav').classList.toggle('abierto'); document.body.classList.toggle('nav-open'); });
+  document.getElementById('navClose')?.addEventListener('click', cerrarMenu);
+  document.querySelectorAll('#mainNav a').forEach(a=>a.addEventListener('click', cerrarMenu));
+  /* newsletter → Google Forms (invisible para el cliente) */
   document.querySelectorAll('[data-newsletter]').forEach(f=>f.addEventListener('submit', e=>{
     e.preventDefault();
     const correo=f.querySelector('input[type="email"]').value.trim();
@@ -129,16 +145,17 @@ function initShop(){
     fetch('https://docs.google.com/forms/d/e/1FAIpQLSdYpdeMBAL06OEbn3x1LTMKoV-LYZhwScxYuMDloV8ybgcWwA/formResponse',
       {method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},
        body:new URLSearchParams({'entry.675051248':correo})}).catch(()=>{});
-    showToast('Hecho. Solo te escribiremos cuando haya una serie nueva o una a punto de cerrarse.');
+    showToast('Hecho. Te avisamos de cada nueva colección antes que a nadie.');
     f.reset();
   }));
-  // Marquee
-  const track = document.getElementById('marqueeTrack');
-  if(track){
-    const items = 'Series cortas <i>●</i> Numerada y con certificado <i>●</i> Un solo tamaño por cuadro <i>●</i> Un solo tamaño por cuadro <i>●</i> Especialistas en gran formato <i>●</i> Cuando se cierra, no vuelve <i>●</i> ';
-    track.innerHTML = '<span>' + items.repeat(3) + '</span><span>' + items.repeat(3) + '</span>';
-  }
-  // Reveal on scroll
-  const io = new IntersectionObserver(entries=>entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('visible'); io.unobserve(en.target); } }), {threshold:.08});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}
+function cerrarMenu(){ document.getElementById('mainNav')?.classList.remove('abierto'); document.body.classList.remove('nav-open'); }
+
+/* Fallback temporal: sustituye imágenes aún no generadas por un bloque sobrio */
+function imgFallback(el){
+  const div = document.createElement('div');
+  div.className = 'img-fallback' + (el.dataset.fb === 'iniciales' ? ' iniciales' : '');
+  const datos = el.dataset.fbTexto || '';
+  div.innerHTML = datos ? `<span>${datos}</span>` : '';
+  el.replaceWith(div);
 }
