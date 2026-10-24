@@ -12,7 +12,7 @@ CATÁLOGO: 32 obras (Eclectic 5, Nordic 5, Bauhaus 5, Ethereum 4, Pop Art 4, Abs
 
 ENVÍOS STRIPE (2026-10-24): detectados todos los links SIN tarifa de envío (0 €). Creadas 3 Shipping Rates y aplicadas a los 32 links según tamaño: pequeño (sizes 32/39, 50×40 y 55×40) 8 € · mediano (size 19 = 90×60 apaisado) 39,99 € · grande (sizes 8/22/30/44) 49,99 €. Verificado 32/32.
 
-SIZE IDS PRINTUMO VERIFICADOS vía /api/v1/shipping_profiles (copia en herramientas/printumo-profiles.json): size 19 = 90×60 cm apaisado (¡NO 60×90! etiqueta corregida en script.js) · 22=150×100 · 44=140×100 · 30=165×120 · 8=150×75 (perfil Large 3) · 32=50×40 · 39=55×40 (perfil Small 1). Los pedidos inferirán perfil Small/Medium/Large según size_id.
+SIZE IDS PRINTUMO VERIFICADOS vía /api/v1/shipping_profiles (copia en herramientas/printumo-profiles.json): size 19 = 90×60 cm — los bastidores Printumo son orientación-agnóstica: se giran según la obra (igual que 22=150×100 que vendemos como 100×150 vertical). Etiqueta cliente: 60×90 cm. · 22=150×100 · 44=140×100 · 30=165×120 · 8=150×75 (perfil Large 3) · 32=50×40 · 39=55×40 (perfil Small 1). Los pedidos inferirán perfil Small/Medium/Large según size_id.
 
 # GAZETA STUDIO — Puesta en marcha del ecommerce
 
