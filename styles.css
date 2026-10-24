@@ -184,7 +184,7 @@ footer{background:var(--negro);color:#c9c5c0;margin-top:0}
 .footer-grid ul{list-style:none;display:flex;flex-direction:column;gap:.55rem;font-size:.88rem}
 .footer-grid a:hover{color:#fff}
 .footer-grid p{font-size:.88rem}
-.logo-img-footer img{height:64px;width:auto;background:#fff;padding:.3rem}
+.logo-img-footer img{height:64px;width:auto}
 .newsletter{display:flex;margin-top:1rem}
 .newsletter input{flex:1;border:1px solid #3a3a3a;background:#1b1b1b;color:#fff;padding:.8rem 1rem;font-family:var(--sans);border-radius:var(--radio) 0 0 var(--radio)}
 .newsletter button{background:#fff;color:var(--negro);border:0;padding:0 1.3rem;font-family:var(--sans);font-weight:600;letter-spacing:.1em;text-transform:uppercase;font-size:.7rem;cursor:pointer;border-radius:0 var(--radio) var(--radio) 0}
