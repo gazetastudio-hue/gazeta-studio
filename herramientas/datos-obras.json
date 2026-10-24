@@ -94,5 +94,85 @@
   "size_id": 30,
   "framing_id": 2,
   "market_id": 1
+ },
+ "ethereum-2": {
+  "nombre": "Vórtice",
+  "image_url": "https://www.gazetastudio.com/assets/print-ethereum-2.jpg",
+  "print_type_id": 2,
+  "size_id": 22,
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "ethereum-3": {
+  "nombre": "Nébula",
+  "image_url": "https://www.gazetastudio.com/assets/print-ethereum-3.jpg",
+  "print_type_id": 2,
+  "size_id": 44,
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "ethereum-4": {
+  "nombre": "Fractura",
+  "image_url": "https://www.gazetastudio.com/assets/print-ethereum-4.jpg",
+  "print_type_id": 2,
+  "size_id": 30,
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "eclectic-4": {
+  "nombre": "Azotea",
+  "image_url": "https://www.gazetastudio.com/assets/print-eclectic-4.jpg",
+  "print_type_id": 2,
+  "size_id": 22,
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "eclectic-5": {
+  "nombre": "Bodegón eléctrico",
+  "image_url": "https://www.gazetastudio.com/assets/print-eclectic-5.jpg",
+  "print_type_id": 2,
+  "size_id": 44,
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "nordic-4": {
+  "nombre": "Lago quieto",
+  "image_url": "https://www.gazetastudio.com/assets/print-nordic-4.jpg",
+  "print_type_id": 2,
+  "size_id": 44,
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "nordic-5": {
+  "nombre": "Bosque blanco",
+  "image_url": "https://www.gazetastudio.com/assets/print-nordic-5.jpg",
+  "print_type_id": 2,
+  "size_id": 22,
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "bauhaus-4": {
+  "nombre": "Progresión",
+  "image_url": "https://www.gazetastudio.com/assets/print-bauhaus-4.jpg",
+  "print_type_id": 2,
+  "size_id": 8,
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "bauhaus-5": {
+  "nombre": "Arco primario",
+  "image_url": "https://www.gazetastudio.com/assets/print-bauhaus-5.jpg",
+  "print_type_id": 2,
+  "size_id": 44,
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "popart-4": {
+  "nombre": "Chicle",
+  "image_url": "https://www.gazetastudio.com/assets/print-popart-4.jpg",
+  "print_type_id": 2,
+  "size_id": 22,
+  "framing_id": 2,
+  "market_id": 1
  }
 }

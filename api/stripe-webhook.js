@@ -46,7 +46,19 @@ const OBRAS = {
   plink_1UTj8g85u7jC8FxLEpw7SH84: { id:'popart-3', nombre:'Big bang', product:'prod_VUiZKXWtQSYBgX', edicion:100, size:44, fija:true, img:'https://www.gazetastudio.com/assets/print-popart-3.jpg' },
   plink_1UTj8h85u7jC8FxLqQI5NMKs: { id:'dimension-1', nombre:'Estratos', product:'prod_VUiZBc8W48G8wJ', edicion:100, size:22, fija:true, img:'https://www.gazetastudio.com/assets/print-dimension-1.jpg' },
   plink_1UTj8h85u7jC8FxLCIYqOLlG: { id:'dimension-2', nombre:'Arcos flotantes', product:'prod_VUiZff1Aq3SYh8', edicion:100, size:44, fija:true, img:'https://www.gazetastudio.com/assets/print-dimension-2.jpg' },
-  plink_1UTj8h85u7jC8FxLPL8OiRCF: { id:'dimension-3', nombre:'Ola tallada', product:'prod_VUiZZMTjFPCDd1', edicion:100, size:30, fija:true, img:'https://www.gazetastudio.com/assets/print-dimension-3.jpg' },};
+  plink_1UTj8h85u7jC8FxLPL8OiRCF: { id:'dimension-3', nombre:'Ola tallada', product:'prod_VUiZZMTjFPCDd1', edicion:100, size:30, fija:true, img:'https://www.gazetastudio.com/assets/print-dimension-3.jpg' },
+
+  plink_1UTvuq85u7jC8FxLdtW3DAEM: { id:'ethereum-2', nombre:'Vórtice', product:'prod_VUvmwGnOnc6ill', edicion:100, size:22, fija:true, img:'https://www.gazetastudio.com/assets/print-ethereum-2.jpg' },
+  plink_1UTvur85u7jC8FxLtiiGHJcv: { id:'ethereum-3', nombre:'Nébula', product:'prod_VUvmlW9gjpFFdm', edicion:100, size:44, fija:true, img:'https://www.gazetastudio.com/assets/print-ethereum-3.jpg' },
+  plink_1UTvur85u7jC8FxLbrJQiwel: { id:'ethereum-4', nombre:'Fractura', product:'prod_VUvmCahGx6fQMi', edicion:100, size:30, fija:true, img:'https://www.gazetastudio.com/assets/print-ethereum-4.jpg' },
+  plink_1UTvus85u7jC8FxLZJxjhSHs: { id:'eclectic-4', nombre:'Azotea', product:'prod_VUvmSjJG8aqZ58', edicion:100, size:22, fija:true, img:'https://www.gazetastudio.com/assets/print-eclectic-4.jpg' },
+  plink_1UTvus85u7jC8FxLUoB0mzg6: { id:'eclectic-5', nombre:'Bodegón eléctrico', product:'prod_VUvm1qbpceU51L', edicion:100, size:44, fija:true, img:'https://www.gazetastudio.com/assets/print-eclectic-5.jpg' },
+  plink_1UTvus85u7jC8FxLl4AcDYm0: { id:'nordic-4', nombre:'Lago quieto', product:'prod_VUvm3qimCUm6Vy', edicion:100, size:44, fija:true, img:'https://www.gazetastudio.com/assets/print-nordic-4.jpg' },
+  plink_1UTvut85u7jC8FxLvDyCRfaB: { id:'nordic-5', nombre:'Bosque blanco', product:'prod_VUvmD7CQJ3hQUc', edicion:100, size:22, fija:true, img:'https://www.gazetastudio.com/assets/print-nordic-5.jpg' },
+  plink_1UTvut85u7jC8FxLlNakWfly: { id:'bauhaus-4', nombre:'Progresión', product:'prod_VUvmAsDJT4m9iu', edicion:100, size:8, fija:true, img:'https://www.gazetastudio.com/assets/print-bauhaus-4.jpg' },
+  plink_1UTvuu85u7jC8FxLtoFFt246: { id:'bauhaus-5', nombre:'Arco primario', product:'prod_VUvmqH6oX9t1B8', edicion:100, size:44, fija:true, img:'https://www.gazetastudio.com/assets/print-bauhaus-5.jpg' },
+  plink_1UTvuu85u7jC8FxLLw6Ah6tN: { id:'popart-4', nombre:'Chicle', product:'prod_VUvml9wJ1rbFHz', edicion:100, size:22, fija:true, img:'https://www.gazetastudio.com/assets/print-popart-4.jpg' },
+};
 const POR_IMPORTE = { 89000:'plink_1UTNij85u7jC8FxLbnArsbXA', 42000:'plink_1UTNiz85u7jC8FxLzPpIXtNu',
   24000:'plink_1UTNj085u7jC8FxLv8Aq1AfY', 56000:'plink_1UTNj185u7jC8FxLMLRqV6lM',
   115000:'plink_1UTNj285u7jC8FxLAlEUaRc0', 14500:'plink_1UTNj385u7jC8FxLbqRJAfN5' };
