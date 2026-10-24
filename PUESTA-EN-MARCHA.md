@@ -8,7 +8,11 @@ Todo el rediseño e-commerce está en esta carpeta, auditado con Playwright (0 f
 4. PENDIENTE: verificación con pedido real de control (Nieve de abril, 89 €) para confirmar webhook→Printumo→email de punta a punta.
 5. Tokens usados este turno: GitHub PAT (ghp_…yrhcI, sin scope admin) y Vercel (vcp_7TT…). Rotarlos cuando toque; el PAT vive solo en /tmp durante la sesión.
 
-POP ART y ABSTRACT DIMENSION ya publicadas (6 obras con Payment Link LIVE, alta vía ruta temporal en Vercel ya eliminada). Catálogo total: 22 obras.
+CATÁLOGO: 32 obras (Eclectic 5, Nordic 5, Bauhaus 5, Ethereum 4, Pop Art 4, Abstract Dimension 3, Textures 6). Alta de las 10 últimas vía ruta temporal en Vercel (ya eliminada; archivos de resultados en herramientas/alta-*.json).
+
+ENVÍOS STRIPE (2026-10-24): detectados todos los links SIN tarifa de envío (0 €). Creadas 3 Shipping Rates y aplicadas a los 32 links según tamaño: pequeño (sizes 32/39, 50×40 y 55×40) 8 € · mediano (size 19 = 90×60 apaisado) 39,99 € · grande (sizes 8/22/30/44) 49,99 €. Verificado 32/32.
+
+SIZE IDS PRINTUMO VERIFICADOS vía /api/v1/shipping_profiles (copia en herramientas/printumo-profiles.json): size 19 = 90×60 cm apaisado (¡NO 60×90! etiqueta corregida en script.js) · 22=150×100 · 44=140×100 · 30=165×120 · 8=150×75 (perfil Large 3) · 32=50×40 · 39=55×40 (perfil Small 1). Los pedidos inferirán perfil Small/Medium/Large según size_id.
 
 # GAZETA STUDIO — Puesta en marcha del ecommerce
 
