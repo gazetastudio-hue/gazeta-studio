@@ -29,7 +29,7 @@ const OBRAS = {
   plink_1UTNj185u7jC8FxLMLRqV6lM: { id:'arena-calma',       nombre:'Mediodía',         product:'prod_VUMR8RqqCZm1Pp', edicion:20, size:30, fija:false, img:'https://www.gazetastudio.com/assets/print-arena.jpg' },
   plink_1UTNj285u7jC8FxLAlEUaRc0: { id:'horizonte-vino',    nombre:'Última luz',       product:'prod_VUMRSpUJGD3fMY', edicion:20, size:22, fija:false, img:'https://www.gazetastudio.com/assets/print-horizonte.jpg' },
   plink_1UTNj385u7jC8FxLbqRJAfN5: { id:'geometria-callada', nombre:'Equilibrio',       product:'prod_VUMRdH5PhvuJDa', edicion:20, size:39, fija:false, img:'https://www.gazetastudio.com/assets/print-geometria.jpg' },
-  /* ── Colecciones fijas (bajo demanda; el product real se resuelve por importe) ── */
+  /* ── Colecciones fijas ── */
   plink_1UTidb85u7jC8FxLdRVXGwTQ: { id:'eclectic-1', nombre:'Marea urbana', product:'prod_VUi3028BgLOpI7', edicion:100, size:22, fija:true, img:'https://www.gazetastudio.com/assets/print-eclectic-1.jpg' },
   plink_1UTidc85u7jC8FxL6F93Vrfn: { id:'eclectic-2', nombre:'Terraza interior', product:'prod_VUi3cKVRxupXpZ', edicion:100, size:44, fija:true, img:'https://www.gazetastudio.com/assets/print-eclectic-2.jpg' },
   plink_1UTidd85u7jC8FxLSAbYXa6w: { id:'eclectic-3', nombre:'Alfama', product:'prod_VUi3DHoQPy8hsD', edicion:100, size:44, fija:true, img:'https://www.gazetastudio.com/assets/print-eclectic-3.jpg' },
@@ -155,7 +155,7 @@ export default async function handler(req, res) {
     address1: dir.line1 || '', city: dir.city || '', postcode: dir.postal_code || '', country_code: dir.country || '' };
   const direccionOk = envio.address1 && envio.city && envio.postcode && envio.country_code;
 
-  // ── Producción bajo demanda en Printumo
+  // ── Pedido en Printumo
   let printumo = null;
   if(direccionOk){
     try {
@@ -173,7 +173,7 @@ export default async function handler(req, res) {
   //    se avisa al estudio y se responde 200)
   const estado = printumo?.data ? 'En producción' : 'PENDIENTE DE REVISAR (Printumo no confirmó)';
   const num = obra.fija
-    ? `Su lienzo «${obra.nombre}» ya está <b>en producción bajo demanda</b>.`
+    ? `Su lienzo «${obra.nombre}» ya está <b>en preparación</b>.`
     : (numero ? `Su ejemplar es el <b>№ ${numero} de ${obra.edicion}</b>` : 'Su número de edición se le confirmará por email');
   try {
     await email(process.env.MAIL_TO, `¡VENTA! «${obra.nombre}» — ${((s.amount_total||0)/100).toFixed(0)} €`,
@@ -191,7 +191,7 @@ export default async function handler(req, res) {
           <p style="letter-spacing:.3em">GAZETA STUDIO</p>
           <h2>Gracias por su compra — «${obra.nombre}»</h2>
           <p>${num}, registrado a su nombre.</p>
-          <p>El lienzo se produce ahora bajo demanda y viaja con <b>envío asegurado</b> a: ${envio.address1}, ${envio.postcode} ${envio.city}, ${envio.country_code}.</p>
+          <p>El lienzo ya está en camino con <b>envío asegurado</b> a: ${envio.address1}, ${envio.postcode} ${envio.city}, ${envio.country_code}.</p>
           <p>Cada obra se entrega con su <b>certificado de autenticidad</b>. Cuando la edición se agota, la obra se retira: no hay segundas ediciones.</p>
           <p style="color:#777;font-size:.9em">Gazeta Studio · contacto@gazetastudio.com</p></div>`);
     } catch(e){ console.error('mail cliente:', e.message); }
