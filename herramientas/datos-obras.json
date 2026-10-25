@@ -174,5 +174,309 @@
   "size_id": 22,
   "framing_id": 2,
   "market_id": 1
+ },
+ "eclectic-6": {
+  "nombre": "Mercado de flores",
+  "image_url": "https://www.gazetastudio.com/assets/print-eclectic-6.jpg",
+  "print_type_id": 2,
+  "size_id": "44",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "eclectic-7": {
+  "nombre": "La cocina roja",
+  "image_url": "https://www.gazetastudio.com/assets/print-eclectic-7.jpg",
+  "print_type_id": 2,
+  "size_id": "32",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "eclectic-8": {
+  "nombre": "Danza de sombrillas",
+  "image_url": "https://www.gazetastudio.com/assets/print-eclectic-8.jpg",
+  "print_type_id": 2,
+  "size_id": "22",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "eclectic-9": {
+  "nombre": "Jardín nocturno",
+  "image_url": "https://www.gazetastudio.com/assets/print-eclectic-9.jpg",
+  "print_type_id": 2,
+  "size_id": "39",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "eclectic-10": {
+  "nombre": "El coleccionista",
+  "image_url": "https://www.gazetastudio.com/assets/print-eclectic-10.jpg",
+  "print_type_id": 2,
+  "size_id": "8",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "nordic-6": {
+  "nombre": "Marea baja",
+  "image_url": "https://www.gazetastudio.com/assets/print-nordic-6.jpg",
+  "print_type_id": 2,
+  "size_id": "44",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "nordic-7": {
+  "nombre": "Hielo",
+  "image_url": "https://www.gazetastudio.com/assets/print-nordic-7.jpg",
+  "print_type_id": 2,
+  "size_id": "32",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "nordic-8": {
+  "nombre": "Campo de centeno",
+  "image_url": "https://www.gazetastudio.com/assets/print-nordic-8.jpg",
+  "print_type_id": 2,
+  "size_id": "22",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "nordic-9": {
+  "nombre": "Primer tren",
+  "image_url": "https://www.gazetastudio.com/assets/print-nordic-9.jpg",
+  "print_type_id": 2,
+  "size_id": "39",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "nordic-10": {
+  "nombre": "Ventana al fiordo",
+  "image_url": "https://www.gazetastudio.com/assets/print-nordic-10.jpg",
+  "print_type_id": 2,
+  "size_id": "8",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "bauhaus-6": {
+  "nombre": "Contracomposición",
+  "image_url": "https://www.gazetastudio.com/assets/print-bauhaus-6.jpg",
+  "print_type_id": 2,
+  "size_id": "22",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "bauhaus-7": {
+  "nombre": "Tres mástiles",
+  "image_url": "https://www.gazetastudio.com/assets/print-bauhaus-7.jpg",
+  "print_type_id": 2,
+  "size_id": "44",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "bauhaus-8": {
+  "nombre": "Círculo roto",
+  "image_url": "https://www.gazetastudio.com/assets/print-bauhaus-8.jpg",
+  "print_type_id": 2,
+  "size_id": "32",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "bauhaus-9": {
+  "nombre": "Escalera cromática",
+  "image_url": "https://www.gazetastudio.com/assets/print-bauhaus-9.jpg",
+  "print_type_id": 2,
+  "size_id": "39",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "bauhaus-10": {
+  "nombre": "Metropolitano",
+  "image_url": "https://www.gazetastudio.com/assets/print-bauhaus-10.jpg",
+  "print_type_id": 2,
+  "size_id": "8",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "ethereum-5": {
+  "nombre": "Espejo líquido",
+  "image_url": "https://www.gazetastudio.com/assets/print-ethereum-5.jpg",
+  "print_type_id": 2,
+  "size_id": "22",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "ethereum-6": {
+  "nombre": "Señal",
+  "image_url": "https://www.gazetastudio.com/assets/print-ethereum-6.jpg",
+  "print_type_id": 2,
+  "size_id": "32",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "ethereum-7": {
+  "nombre": "Constelación",
+  "image_url": "https://www.gazetastudio.com/assets/print-ethereum-7.jpg",
+  "print_type_id": 2,
+  "size_id": "44",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "ethereum-8": {
+  "nombre": "Abismo dorado",
+  "image_url": "https://www.gazetastudio.com/assets/print-ethereum-8.jpg",
+  "print_type_id": 2,
+  "size_id": "8",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "ethereum-9": {
+  "nombre": "Latencia",
+  "image_url": "https://www.gazetastudio.com/assets/print-ethereum-9.jpg",
+  "print_type_id": 2,
+  "size_id": "39",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "ethereum-10": {
+  "nombre": "Núcleo",
+  "image_url": "https://www.gazetastudio.com/assets/print-ethereum-10.jpg",
+  "print_type_id": 2,
+  "size_id": "30",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "popart-5": {
+  "nombre": "Cóctel",
+  "image_url": "https://www.gazetastudio.com/assets/print-popart-5.jpg",
+  "print_type_id": 2,
+  "size_id": "22",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "popart-6": {
+  "nombre": "Patatas fritas",
+  "image_url": "https://www.gazetastudio.com/assets/print-popart-6.jpg",
+  "print_type_id": 2,
+  "size_id": "32",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "popart-7": {
+  "nombre": "La estrella",
+  "image_url": "https://www.gazetastudio.com/assets/print-popart-7.jpg",
+  "print_type_id": 2,
+  "size_id": "44",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "popart-8": {
+  "nombre": "Burbujas",
+  "image_url": "https://www.gazetastudio.com/assets/print-popart-8.jpg",
+  "print_type_id": 2,
+  "size_id": "39",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "popart-9": {
+  "nombre": "Casete",
+  "image_url": "https://www.gazetastudio.com/assets/print-popart-9.jpg",
+  "print_type_id": 2,
+  "size_id": "8",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "popart-10": {
+  "nombre": "Sirena",
+  "image_url": "https://www.gazetastudio.com/assets/print-popart-10.jpg",
+  "print_type_id": 2,
+  "size_id": "30",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "dimension-4": {
+  "nombre": "Estratos II",
+  "image_url": "https://www.gazetastudio.com/assets/print-dimension-4.jpg",
+  "print_type_id": 2,
+  "size_id": "22",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "dimension-5": {
+  "nombre": "Plegado",
+  "image_url": "https://www.gazetastudio.com/assets/print-dimension-5.jpg",
+  "print_type_id": 2,
+  "size_id": "32",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "dimension-6": {
+  "nombre": "Duna interior",
+  "image_url": "https://www.gazetastudio.com/assets/print-dimension-6.jpg",
+  "print_type_id": 2,
+  "size_id": "44",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "dimension-7": {
+  "nombre": "Fronda",
+  "image_url": "https://www.gazetastudio.com/assets/print-dimension-7.jpg",
+  "print_type_id": 2,
+  "size_id": "39",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "dimension-8": {
+  "nombre": "Marea de papel",
+  "image_url": "https://www.gazetastudio.com/assets/print-dimension-8.jpg",
+  "print_type_id": 2,
+  "size_id": "8",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "dimension-9": {
+  "nombre": "Umbral",
+  "image_url": "https://www.gazetastudio.com/assets/print-dimension-9.jpg",
+  "print_type_id": 2,
+  "size_id": "19",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "dimension-10": {
+  "nombre": "Vertedera",
+  "image_url": "https://www.gazetastudio.com/assets/print-dimension-10.jpg",
+  "print_type_id": 2,
+  "size_id": "30",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "textures-7": {
+  "nombre": "Vena",
+  "image_url": "https://www.gazetastudio.com/assets/print-textures-7.jpg",
+  "print_type_id": 2,
+  "size_id": "22",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "textures-8": {
+  "nombre": "Ceniza",
+  "image_url": "https://www.gazetastudio.com/assets/print-textures-8.jpg",
+  "print_type_id": 2,
+  "size_id": "44",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "textures-9": {
+  "nombre": "Atardecer en yeso",
+  "image_url": "https://www.gazetastudio.com/assets/print-textures-9.jpg",
+  "print_type_id": 2,
+  "size_id": "30",
+  "framing_id": 2,
+  "market_id": 1
+ },
+ "textures-10": {
+  "nombre": "Piel",
+  "image_url": "https://www.gazetastudio.com/assets/print-textures-10.jpg",
+  "print_type_id": 2,
+  "size_id": "19",
+  "framing_id": 2,
+  "market_id": 1
  }
 }
