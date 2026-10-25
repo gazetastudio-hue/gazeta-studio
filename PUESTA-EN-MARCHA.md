@@ -8,7 +8,7 @@ Todo el rediseño e-commerce está en esta carpeta, auditado con Playwright (0 f
 4. PENDIENTE: verificación con pedido real de control (Nieve de abril, 89 €) para confirmar webhook→Printumo→email de punta a punta.
 5. Tokens usados este turno: GitHub PAT (ghp_…yrhcI, sin scope admin) y Vercel (vcp_7TT…). Rotarlos cuando toque; el PAT vive solo en /tmp durante la sesión.
 
-CATÁLOGO: 32 obras (Eclectic 5, Nordic 5, Bauhaus 5, Ethereum 4, Pop Art 4, Abstract Dimension 3, Textures 6). Alta de las 10 últimas vía ruta temporal en Vercel (ya eliminada; archivos de resultados en herramientas/alta-*.json).
+CATÁLOGO: 70 OBRAS — 10 por colección (Eclectic, Nordic, Bauhaus, Ethereum, Pop Art, Abstract Dimension y Textures). Las 38 últimas integradas desde el repo lienzos (commit 110db2a); alta en herramientas/alta-lote-final.json. TEXTURES = 10 de máx. 12 (ediciones de 20, restantes 20 las nuevas). Alta de las 10 últimas vía ruta temporal en Vercel (ya eliminada; archivos de resultados en herramientas/alta-*.json).
 
 ENVÍOS STRIPE (2026-10-24): detectados todos los links SIN tarifa de envío (0 €). Creadas 3 Shipping Rates y aplicadas a los 32 links según tamaño: pequeño (sizes 32/39, 50×40 y 55×40) 8 € · mediano (size 19 = 90×60 apaisado) 39,99 € · grande (sizes 8/22/30/44) 49,99 €. Verificado 32/32.
 
