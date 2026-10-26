@@ -1,1 +1,0 @@
-{ "name": "gazeta-studio", "private": true, "version": "1.0.0", "type": "module", "dependencies": { "stripe": "^17.0.0" } }
