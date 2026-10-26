@@ -92,7 +92,9 @@ p a{color:var(--vino)}
 
 /* desplegable de colecciones en el nav */
 .nav-desplegable{position:relative;display:flex;align-items:center}
-.desplegable-btn{background:none;border:0;font:inherit;color:inherit;letter-spacing:.14em;text-transform:uppercase;font-size:.75rem;cursor:pointer;display:flex;align-items:center;gap:.35rem;padding:0}
+.desplegable-btn{background:none;border:0;font-family:inherit;font-size:.82rem;font-weight:500;color:inherit;letter-spacing:.14em;text-transform:uppercase;padding:.4rem 0;border-bottom:2px solid transparent;transition:border-color .2s,color .2s;cursor:pointer;display:flex;align-items:center;gap:.35rem}
+.desplegable-btn:hover{color:var(--vino)}
+.nav-desplegable.activo .desplegable-btn{border-color:var(--vino);color:var(--vino)}
 .desplegable-btn .flecha{font-size:.6rem;transition:transform .2s}
 .nav-desplegable.abierto .desplegable-btn .flecha{transform:rotate(180deg)}
 .desplegable-panel{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(6px);background:#fff;border:1px solid var(--linea);box-shadow:0 18px 38px rgba(17,17,17,.1);min-width:250px;padding:.5rem 0;display:none;z-index:80;border-radius:2px}
