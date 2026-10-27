@@ -92,7 +92,7 @@ const productos = [
 
 const euros = n => n.toLocaleString('es-ES') + ' €';
 /* envío asegurado por tamaño (céntimos) — mismo mapa que /api/checkout */
-const RATE = { 32:800, 39:800, 19:3999, 44:4999, 22:4999, 30:4999, 8:4999 };
+const RATE = { 32:0, 39:0, 19:0, 44:0, 22:0, 30:0, 8:0 };
 
 function cardHTML(p){
   const c = COLECCIONES[p.coleccion];
@@ -146,7 +146,7 @@ function renderCart(){
   count.textContent = unidades();
   if(cart.length === 0){
     body.innerHTML = '<p class="cesta-vacia">Tu cesta está vacía.<br>Explora las colecciones y encuentra tu cuadro.</p>';
-    totalEl.textContent = '0 €'; if(obrasEl) obrasEl.textContent='0 €'; if(envioEl) envioEl.textContent='— €'; return;
+    totalEl.textContent = '0 €'; if(obrasEl) obrasEl.textContent='0 €'; if(envioEl) envioEl.textContent='Gratis'; return;
   }
   let total = 0, envio = 0;
   body.innerHTML = cart.map((x,i)=>{
@@ -157,7 +157,7 @@ function renderCart(){
   }).join('');
   totalEl.textContent = euros(total + envio / 100);
   if(obrasEl) obrasEl.textContent = euros(total);
-  if(envioEl) envioEl.textContent = euros(envio / 100);
+  if(envioEl) envioEl.textContent = envio === 0 ? 'Gratis' : euros(envio / 100);
   const btn = document.getElementById('checkoutBtn');
   if(btn) btn.textContent = unidades() > 1 ? `Tramitar pago seguro · ${unidades()} lienzos` : 'Tramitar pago seguro';
   body.querySelectorAll('[data-remove]').forEach(b=>b.addEventListener('click',()=>{ cart.splice(Number(b.dataset.remove),1); saveCart(); }));
