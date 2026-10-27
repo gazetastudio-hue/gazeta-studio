@@ -205,9 +205,12 @@ function initShop(){
     const btn = e.target.closest('[data-comprar]'); if(!btn) return;
     const p = productos.find(x=>x.id===btn.dataset.comprar);
     if(!p || !p.pago){ showToast('El pago no está disponible ahora mismo. Escríbenos y reservamos tu ejemplar.'); return; }
-    if(!cart.includes(p.id)){ cart.push(p.id); saveCart(); showToast('«'+p.nombre+'» añadida a tu cesta.'); }
-    else { showToast('«'+p.nombre+'» ya está en tu cesta.'); }
-    openCart();
+    if(p.coleccion==='textures' && maxUnidades(p)<=0){ showToast('«'+p.nombre+'» está agotada: la edición de '+p.edicion+' se completó.'); return; }
+    const ya = cart.find(x=>x.id===p.id);
+    if(!ya){ cart.push({id:p.id,qty:1}); showToast('«'+p.nombre+'» añadida a tu cesta.'); }
+    else if(ya.qty < maxUnidades(p)){ ya.qty++; showToast('«'+p.nombre+'» · '+ya.qty+' unidades en tu cesta.'); }
+    else { showToast('No hay más unidades disponibles de «'+p.nombre+'».'); }
+    saveCart(); openCart();
   });
   document.querySelectorAll('.desplegable-btn').forEach(btn=>{
     btn.addEventListener('click', e=>{
