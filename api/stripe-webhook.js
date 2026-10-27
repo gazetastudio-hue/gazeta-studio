@@ -101,6 +101,7 @@ const POR_IMPORTE = { 89000:'plink_1UTNij85u7jC8FxLbnArsbXA', 42000:'plink_1UTNi
   24000:'plink_1UTNj085u7jC8FxLv8Aq1AfY', 56000:'plink_1UTNj185u7jC8FxLMLRqV6lM',
   115000:'plink_1UTNj285u7jC8FxLAlEUaRc0', 14500:'plink_1UTNj385u7jC8FxLbqRJAfN5' };
 const RESTANTES_INI = { 'vino-primero':14, 'trazo-unico':16, 'linea-y-vino':18, 'arena-calma':12, 'horizonte-vino':9, 'geometria-callada':15 };
+const OBRAS_BY_ID = {}; for(const [plink,o] of Object.entries(OBRAS)) OBRAS_BY_ID[o.id] = { ...o, plink };
 
 const stripe = async (ep, method='GET', params=null) => {
   const url = method==='GET' && params ? `https://api.stripe.com/v1/${ep}?${new URLSearchParams(params)}` : `https://api.stripe.com/v1/${ep}`;
@@ -128,6 +129,81 @@ const email = async (to, subject, html) => {
     body: JSON.stringify({ from: process.env.MAIL_FROM, to:[to], subject, html }) });
   if(!r.ok) throw new Error(`Resend: ${(await r.text()).slice(0,200)}`);
 };
+
+
+// ── Procesa un pago de carrito: stock y numeración por obra, un pedido Printumo
+//    por obra (tamaños distintos), un email al estudio y uno al cliente.
+async function procesarCarrito(s, res){
+  const sid = s.id;
+  const ids = (s.metadata?.obras || '').split(',').filter(id => OBRAS_BY_ID[id]);
+  if(ids.length === 0) return res.status(200).json({ ok:true, ign:'carrito sin obras reconocidas' });
+
+  const ventas = [];
+  for(const id of ids){
+    const obra = OBRAS_BY_ID[id];
+    let numero = null;
+    if(!obra.fija){
+      try{
+        const prod = await stripe(`products/${obra.product}`);
+        if((prod.metadata?.['ult_sesion_'+obra.id] || '') === sid){ ventas.push({ ...obra, dup:true }); continue; }
+        const restantes = parseInt(prod.metadata?.restantes ?? RESTANTES_INI[obra.id], 10);
+        numero = obra.edicion - restantes + 1;
+        if(restantes > 0) await stripe(`products/${obra.product}`, 'POST', { 'metadata[restantes]': String(restantes-1) });
+        await stripe(`products/${obra.product}`, 'POST', { [`metadata[ult_sesion_${obra.id}]`]: sid });
+      }catch(e){ console.error('stock carrito:', e.message); }
+    }
+    ventas.push({ ...obra, numero });
+  }
+  const unicas = ventas.filter(v => !v.dup);
+
+  const cd = s.customer_details || {};
+  const dir = cd.address || {};
+  const [first_name='Cliente', ...ap] = (cd.name || 'Cliente').split(' ');
+  const envio = { email: cd.email || s.customer_email, first_name, last_name: ap.join(' ') || '-',
+    address1: dir.line1 || '', city: dir.city || '', postcode: dir.postal_code || '', country_code: dir.country || '' };
+  const direccionOk = envio.address1 && envio.city && envio.postcode && envio.country_code;
+
+  const pedidos = [];
+  if(direccionOk){
+    for(const v of unicas){
+      try{
+        const r = await fetch('https://printumo.com/api/v1/api_image_orders', { method:'POST',
+          headers:{ 'Authorization':`Bearer ${process.env.PRINTUMO_API_KEY}`, 'Content-Type':'application/json' },
+          body: JSON.stringify({ line_items:[{ image_url:v.img, print_type_id:2, size_id:v.size,
+            framing_id:2, market_id:1, quantity:1, canvas_wrapping:{ wrap_type:'mirrored' } }],
+            shipping_address: envio }) });
+        const j = await r.json().catch(()=>({}));
+        pedidos.push(j?.data ? String(j.data.api_image_order_id||j.data.id) : null);
+        if(!r.ok) console.error('printumo carrito:', r.status, JSON.stringify(j).slice(0,200));
+      }catch(e){ pedidos.push(null); console.error('printumo fetch:', e.message); }
+    }
+  }
+
+  const listaEstudio = unicas.map((v,i)=>`<li>«${v.nombre}»${v.numero?` — № ${v.numero} de ${v.edicion}`:''} · pedido Printumo: <b>${pedidos[i]||'PENDIENTE'}</b></li>`).join('');
+  try{
+    await email(process.env.MAIL_TO, `¡VENTA! Carrito de ${unicas.length} obra(s) — ${((s.amount_total||0)/100).toFixed(0)} €`,
+      `<div style="font-family:Georgia,serif"><h2>Pedido multi-obra (${unicas.length} lienzos)</h2><ul>${listaEstudio}</ul>
+       <p><b>Cliente:</b> ${cd.name||'—'} (${cd.email||'—'}, ${cd.phone||'sin teléfono'})</p>
+       <p><b>Envío:</b> ${envio.address1||'—'}, ${envio.postcode||'—'} ${envio.city||'—'}, ${envio.country_code||'—'}</p>
+       <p>Envío cobrado: ${s.metadata?.envio_euros||'—'} € · Sesión Stripe: ${sid}</p></div>`);
+  }catch(e){ console.error('mail estudio carrito:', e.message); }
+
+  if(envio.email){
+    const listaCli = unicas.map(v=>`<li>«${v.nombre}»${v.numero?` — ejemplar <b>№ ${v.numero} de ${v.edicion}</b>`:''}</li>`).join('');
+    try{
+      await email(envio.email, `GAZETA STUDIO — Pedido confirmado (${unicas.length} obra${unicas.length>1?'s':''})`,
+        `<div style="font-family:Georgia,serif;max-width:560px">
+         <p style="letter-spacing:.3em">GAZETA STUDIO</p>
+         <h2>Gracias por su compra</h2>
+         <ul>${listaCli}</ul>
+         <p>Las obras ya están en preparación y viajarán con <b>envío asegurado</b> a: ${envio.address1}, ${envio.postcode} ${envio.city}, ${envio.country_code}.</p>
+         <p>Cada lienzo incluye su <b>certificado de autenticidad</b>. Las TEXTURES son edición limitada de 20: cuando se agotan, no vuelven.</p>
+         <p style="color:#777;font-size:.9em">Gazeta Studio · contacto@gazetastudio.com</p></div>`);
+    }catch(e){ console.error('mail cliente carrito:', e.message); }
+  }
+
+  return res.status(200).json({ ok:true, canal:'carrito', obras: unicas.length, printumo: pedidos.filter(Boolean).length + '/' + unicas.length });
+}
 
 export default async function handler(req, res) {
   if(req.method !== 'POST') return res.status(405).end();
@@ -157,6 +233,9 @@ export default async function handler(req, res) {
   let s; try { s = await stripe(`checkout/sessions/${sid}`); }
   catch(e){ return res.status(500).json({ error:'no se pudo verificar la sesión' }); } // Stripe reintentará
   if(s.payment_status !== 'paid') return res.status(200).json({ ok:true, ign:'sin pagar' });
+
+  // ── Carrito multi-obra: un pago → N obras (endpoint /api/checkout)
+  if(s.metadata?.canal === 'carrito') return procesarCarrito(s, res);
 
   const clave = s.payment_link || POR_IMPORTE[s.amount_total];
   const obra = OBRAS[clave];

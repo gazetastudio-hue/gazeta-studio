@@ -91,6 +91,8 @@ const productos = [
 ];
 
 const euros = n => n.toLocaleString('es-ES') + ' €';
+/* envío asegurado por tamaño (céntimos) — mismo mapa que /api/checkout */
+const RATE = { 32:800, 39:800, 19:3999, 44:4999, 22:4999, 30:4999, 8:4999 };
 
 function cardHTML(p){
   const c = COLECCIONES[p.coleccion];
@@ -117,20 +119,25 @@ try{ cart = JSON.parse(localStorage.getItem('gazeta_cart') || '[]'); }catch(e){ 
 function saveCart(){ localStorage.setItem('gazeta_cart', JSON.stringify(cart)); renderCart(); }
 function renderCart(){
   const body = document.getElementById('cartBody'), count = document.getElementById('cartCount'), totalEl = document.getElementById('cartTotal');
+  const obrasEl = document.getElementById('cartObras'), envioEl = document.getElementById('cartEnvio');
   if(!body) return;
   count.textContent = cart.length;
   if(cart.length === 0){
     body.innerHTML = '<p class="cesta-vacia">Tu cesta está vacía.<br>Explora las colecciones y encuentra tu cuadro.</p>';
-    totalEl.textContent = '0 €'; return;
+    totalEl.textContent = '0 €'; if(obrasEl) obrasEl.textContent='0 €'; if(envioEl) envioEl.textContent='— €'; return;
   }
-  let total = 0;
+  let total = 0, envio = 0;
   body.innerHTML = cart.map((id,i)=>{
-    const p = productos.find(x=>x.id===id); total += p.precio;
-    return `<div class="cart-item"><img src="${RAIZ}${p.img}" alt="${p.nombre}"><div><b>${p.nombre}</b><small>${COLECCIONES[p.coleccion].nombre} · ${p.tamano}</small><div class="cart-acciones"><button class="pay" data-pay="${p.id}">Pagar</button><button class="remove" data-remove="${i}">Quitar</button></div></div><b>${euros(p.precio)}</b></div>`;
+    const p = productos.find(x=>x.id===id); if(!p) return '';
+    total += p.precio; envio += (RATE[p.size_id] || 0);
+    return `<div class="cart-item"><img src="${RAIZ}${p.img}" alt="${p.nombre}"><div><b>${p.nombre}</b><small>${COLECCIONES[p.coleccion].nombre} · ${p.tamano}</small><div class="cart-acciones"><button class="remove" data-remove="${i}">Quitar</button></div></div><b>${euros(p.precio)}</b></div>`;
   }).join('');
-  totalEl.textContent = euros(total);
+  totalEl.textContent = euros(total + envio);
+  if(obrasEl) obrasEl.textContent = euros(total);
+  if(envioEl) envioEl.textContent = euros(envio);
+  const btn = document.getElementById('checkoutBtn');
+  if(btn) btn.textContent = cart.length > 1 ? `Tramitar pago seguro · ${cart.length} obras` : 'Tramitar pago seguro';
   body.querySelectorAll('[data-remove]').forEach(b=>b.addEventListener('click',()=>{ cart.splice(Number(b.dataset.remove),1); saveCart(); }));
-  body.querySelectorAll('[data-pay]').forEach(b=>b.addEventListener('click',()=>{ const p=productos.find(x=>x.id===b.dataset.pay); if(p&&p.pago) window.open(p.pago,'_blank'); }));
 }
 function openCart(){ document.getElementById('cartDrawer')?.classList.add('open'); document.body.classList.add('cart-open'); setOverlay(true); }
 function closeCart(){ document.getElementById('cartDrawer')?.classList.remove('open'); document.body.classList.remove('cart-open'); setOverlay(false); }
@@ -158,16 +165,18 @@ function initFiltros(){
 function initShop(){
   /* al volver de Stripe (gracias?obra=Nombre) se retira la obra comprada de la cesta */
   if(location.pathname.replace(/\/$/,'').endsWith('/gracias')){
-    const q=new URLSearchParams(location.search).get('obra');
+    const qs=new URLSearchParams(location.search);
+    if(qs.get('pedido')){ if(cart.length){ cart=[]; saveCart(); } } /* pago multi-obra completado: vaciar cesta */
+    const q=qs.get('obra');
     if(q){ const antes=cart.length; cart=cart.filter(id=>{const p=productos.find(x=>x.id===id); return !p || p.nombre!==q;}); if(cart.length<antes) saveCart(); }
   }
   document.addEventListener('click', e=>{
     const btn = e.target.closest('[data-comprar]'); if(!btn) return;
     const p = productos.find(x=>x.id===btn.dataset.comprar);
     if(!p || !p.pago){ showToast('El pago no está disponible ahora mismo. Escríbenos y reservamos tu ejemplar.'); return; }
-    if(!cart.includes(p.id)){ cart.push(p.id); saveCart(); }
-    showToast('«'+p.nombre+'» te espera en la cesta. Te abrimos el pago seguro.');
-    window.open(p.pago,'_blank');
+    if(!cart.includes(p.id)){ cart.push(p.id); saveCart(); showToast('«'+p.nombre+'» añadida a tu cesta.'); }
+    else { showToast('«'+p.nombre+'» ya está en tu cesta.'); }
+    openCart();
   });
   document.querySelectorAll('.desplegable-btn').forEach(btn=>{
     btn.addEventListener('click', e=>{
@@ -192,12 +201,20 @@ function initShop(){
   document.getElementById('closeCart')?.addEventListener('click', closeCart);
   document.getElementById('overlay')?.addEventListener('click', ()=>{ closeCart(); cerrarMenu(); });
   document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeCart(); cerrarMenu(); } });
-  document.getElementById('checkoutBtn')?.addEventListener('click', ()=>{
-    if(cart.length===0){ showToast('La cesta está vacía. Cuando elijas un cuadro, lo verás aquí.'); return; }
-    const p = productos.find(x=>x.id===cart[0]);
-    if(!p || !p.pago){ showToast('El pago no está disponible ahora mismo. Escríbenos y lo resolvemos.'); return; }
-    if(cart.length>1) showToast('Cada obra se paga por separado. Empezamos por «'+p.nombre+'»; el resto sigue en tu cesta.');
-    window.open(p.pago,'_blank');
+  document.getElementById('checkoutBtn')?.addEventListener('click', async ()=>{
+    if(cart.length === 0){ showToast('La cesta está vacía. Cuando elijas un cuadro, lo verás aquí.'); return; }
+    if(cart.length > 20){ showToast('Máximo 20 obras por pedido. Deja alguna en la cesta para el siguiente.'); return; }
+    const btn = document.getElementById('checkoutBtn');
+    btn.disabled = true; const txt = btn.textContent; btn.textContent = 'Abriendo pago seguro…';
+    try{
+      const r = await fetch(RAIZ + 'api/checkout', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ ids: cart }) });
+      const d = await r.json();
+      if(!d.url) throw new Error(d.error || 'sin url');
+      location.href = d.url; /* un solo pago, un solo envío */
+    }catch(e){
+      showToast('No hemos podido abrir el pago. Reinténtalo en un minuto o escríbenos.');
+      btn.disabled = false; btn.textContent = txt;
+    }
   });
   /* menú móvil */
   const btn=document.getElementById('menuBtn');

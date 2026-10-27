@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex,follow">
 <link rel="canonical" href="https://www.gazetastudio.com/legal/terminos/">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../styles.css?v=30">
+<link rel="stylesheet" href="../../styles.css?v=31">
 <link rel="icon" type="image/png" href="../../assets/logo-gazeta.png">
 </head>
 <body>
@@ -75,12 +75,15 @@
 <aside class="drawer" id="cartDrawer" aria-label="Cesta de la compra">
   <div class="drawer-head"><strong>Tu cesta</strong><button class="icon-btn" id="closeCart">Cerrar ✕</button></div>
   <div class="drawer-body" id="cartBody"></div>
-  <div class="drawer-foot"><div class="total"><span>Total</span><span id="cartTotal">0 €</span></div>
-  <button class="btn vino" style="width:100%" id="checkoutBtn">Terminar la compra</button>
-  <p class="muted" style="font-size:.75rem;margin-top:.8rem;text-align:center">Pago seguro con tarjeta · Cada lienzo viaja asegurado</p></div>
+  <div class="drawer-foot">
+    <div class="total linea"><span>Obras</span><span id="cartObras">0 €</span></div>
+    <div class="total linea envio-linea"><span>Envío asegurado</span><span id="cartEnvio">— €</span></div>
+    <div class="total"><span>Total</span><span id="cartTotal">0 €</span></div>
+    <button class="btn vino" style="width:100%" id="checkoutBtn">Tramitar pago seguro</button>
+    <p class="muted" style="font-size:.75rem;margin-top:.8rem;text-align:center">Un solo pago · un solo envío · <a href="../../legal/envios-devoluciones/" style="text-decoration:underline">Envíos y devoluciones</a></p></div>
 </aside>
 <div class="toast" id="toast" role="status"></div>
-<script src="../../script.js?v=15"></script>
+<script src="../../script.js?v=16"></script>
 <script>initShop();</script>
 </body>
 </html>
