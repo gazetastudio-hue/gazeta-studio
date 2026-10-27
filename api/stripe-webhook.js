@@ -24,7 +24,7 @@ export const config = { api: { bodyParser: false } };
 const OBRAS = {
   /* ── TEXTURES · edición limitada de 20 ── */
   plink_1UUtIH85u7jC8FxLsP7M3KnV: { id:'vino-primero',      nombre:'Corriente',        product:'prod_VVv8zJYc3NUEIr', edicion:20, size:22, fija:false, img:'https://www.gazetastudio.com/assets/print-vino-v2.jpg' },
-  plink_1UTNiz85u7jC8FxLzPpIXtNu: { id:'trazo-unico',       nombre:'Pulso',            product:'prod_VUMRGwjTiy5ffP', edicion:20, size:44, fija:false, img:'https://www.gazetastudio.com/assets/print-trazo-v2.jpg' },
+  plink_1UTNiz85u7jC8FxLzPpIXtNu: { id:'trazo-unico',       nombre:'Pulso',            product:'prod_VUMRGwjTiy5ffP', edicion:20, size:44, fija:false, img:'https://www.gazetastudio.com/assets/print-trazo-v3.jpg' },
   plink_1UTNj085u7jC8FxLv8Aq1AfY: { id:'linea-y-vino',      nombre:'Perfil en reposo', product:'prod_VUMRXQn31wHO1U', edicion:20, size:19, fija:false, img:'https://www.gazetastudio.com/assets/print-linea-v2.jpg' },
   plink_1UTNj185u7jC8FxLMLRqV6lM: { id:'arena-calma',       nombre:'Mediodía',         product:'prod_VUMR8RqqCZm1Pp', edicion:20, size:30, fija:false, img:'https://www.gazetastudio.com/assets/print-arena-v2.jpg' },
   plink_1UTNj285u7jC8FxLAlEUaRc0: { id:'horizonte-vino',    nombre:'Última luz',       product:'prod_VUMRSpUJGD3fMY', edicion:20, size:22, fija:false, img:'https://www.gazetastudio.com/assets/print-horizonte-v2.jpg' },
@@ -100,7 +100,32 @@ const OBRAS = {
 const POR_IMPORTE = { 89000:'plink_1UTNij85u7jC8FxLbnArsbXA', 42000:'plink_1UTNiz85u7jC8FxLzPpIXtNu',
   24000:'plink_1UTNj085u7jC8FxLv8Aq1AfY', 56000:'plink_1UTNj185u7jC8FxLMLRqV6lM',
   115000:'plink_1UTNj285u7jC8FxLAlEUaRc0', 14500:'plink_1UTNj385u7jC8FxLbqRJAfN5' };
-const RESTANTES_INI = { 'vino-primero':14, 'trazo-unico':16, 'linea-y-vino':18, 'arena-calma':12, 'horizonte-vino':9, 'geometria-callada':15 };
+const RESTANTES_INI = {"vino-primero": 20, "trazo-unico": 20, "linea-y-vino": 20, "arena-calma": 20, "horizonte-vino": 20, "geometria-callada": 20, "textures-7": 20, "textures-8": 20, "textures-9": 20, "textures-10": 20};
+const sbCred = () => process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_KEY ? { url: process.env.SUPABASE_URL, key: process.env.SUPABASE_SERVICE_KEY } : null;
+async function stockLeer(id, obra){
+  const sb = sbCred();
+  if(sb){
+    try{
+      const r = await fetch(`${sb.url}/rest/v1/ediciones?obra_id=eq.${id}&select=restantes`, { headers: { apikey: sb.key, Authorization: `Bearer ${sb.key}` } }).then(x => x.json());
+      if(Array.isArray(r) && r[0]) return parseInt(r[0].restantes, 10);
+    }catch(e){ console.error('sb leer:', e.message); }
+  }
+  const prod = await stripe(`products/${obra.product}`);
+  return parseInt(prod.metadata?.restantes ?? RESTANTES_INI[obra.id], 10);
+}
+async function stockVender(id, obra, n){
+  const sb = sbCred();
+  let rest = null;
+  if(sb){
+    try{
+      const r = await fetch(`${sb.url}/rest/v1/rpc/vender_obra`, { method:'POST', headers: { apikey: sb.key, Authorization: `Bearer ${sb.key}`, 'Content-Type':'application/json' }, body: JSON.stringify({ p_obra:id, p_n:n }) }).then(x => x.json());
+      const v = parseInt(r, 10); if(Number.isFinite(v)) rest = v;
+    }catch(e){ console.error('sb vender:', e.message); }
+  }
+  if(rest === null){ const actual = await stockLeer(id, obra); rest = Math.max(0, actual - n); }
+  await stripe(`products/${obra.product}`, 'POST', { 'metadata[restantes]': String(rest) }).catch(e => console.error('sync stripe:', e.message));
+  return rest;
+}
 const OBRAS_BY_ID = {}; for(const [plink,o] of Object.entries(OBRAS)) OBRAS_BY_ID[o.id] = { ...o, plink };
 
 const stripe = async (ep, method='GET', params=null) => {
@@ -146,13 +171,13 @@ async function procesarCarrito(s, res){
       try{
         const prod = await stripe(`products/${obra.product}`);
         if((prod.metadata?.['ult_sesion_'+obra.id] || '') === sid){ ventas.push({ ...obra, qty, dup:true }); continue; }
-        const restantes = parseInt(prod.metadata?.restantes ?? RESTANTES_INI[obra.id], 10);
+        const restantes = await stockLeer(id, obra);
         vendidas = Math.min(qty, Math.max(0, restantes));
         if(vendidas > 0){
           const primera = obra.edicion - restantes + 1;
           nums = [primera, primera + vendidas - 1];
-          await stripe(`products/${obra.product}`, 'POST', { 'metadata[restantes]': String(restantes - vendidas) });
-          if(restantes - vendidas <= 0 && obra.plink){
+          const quedan = await stockVender(id, obra, vendidas);
+          if(quedan <= 0 && obra.plink){
             await stripe(`payment_links/${obra.plink}`, 'POST', { active:'false' }).catch(e => console.error('archivo plink:', e.message));
           }
         }
