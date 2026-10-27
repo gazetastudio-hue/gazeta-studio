@@ -1,11 +1,21 @@
-// GAZETA STUDIO — Checkout multi-obra (Vercel Function)
-// Recibe {ids:[...]} del carrito y crea UNA Checkout Session de Stripe con
-// todas las obras (un solo pago, un solo envío combinado por tamaños).
-// Variables: STRIPE_SECRET_KEY (solo en Vercel; nunca en el repo).
+// GAZETA STUDIO — Checkout multi-obra con unidades (Vercel Function)
+// Recibe {items:[{id,qty}]} y crea UNA Checkout Session de Stripe:
+// un solo pago, envío combinado por tamaños, stock de limitadas validado.
 const RATE = { 32:800, 39:800, 19:3999, 44:4999, 22:4999, 30:4999, 8:4999 }; // céntimos por size_id
 const CATALOGO = {"vino-primero":{"n":"Corriente","t":"100 × 150 cm","c":89000,"i":"https://www.gazetastudio.com/assets/print-vino.jpg","s":22,"e":20,"r":14,"f":0},"trazo-unico":{"n":"Pulso","t":"100 × 140 cm","c":42000,"i":"https://www.gazetastudio.com/assets/print-trazo.jpg","s":44,"e":20,"r":16,"f":0},"linea-y-vino":{"n":"Perfil en reposo","t":"60 × 90 cm","c":24000,"i":"https://www.gazetastudio.com/assets/print-linea.jpg","s":19,"e":20,"r":18,"f":0},"arena-calma":{"n":"Mediodía","t":"120 × 165 cm","c":56000,"i":"https://www.gazetastudio.com/assets/print-arena.jpg","s":30,"e":20,"r":12,"f":0},"horizonte-vino":{"n":"Última luz","t":"150 × 100 cm","c":115000,"i":"https://www.gazetastudio.com/assets/print-horizonte.jpg","s":22,"e":20,"r":9,"f":0},"geometria-callada":{"n":"Equilibrio","t":"40 × 55 cm","c":14500,"i":"https://www.gazetastudio.com/assets/print-geometria.jpg","s":39,"e":20,"r":15,"f":0},"textures-7":{"n":"Vena","t":"100 × 150 cm","c":28900,"i":"https://www.gazetastudio.com/assets/print-textures-7.jpg","s":22,"e":20,"r":20,"f":0},"textures-8":{"n":"Ceniza","t":"140 × 100 cm","c":25900,"i":"https://www.gazetastudio.com/assets/print-textures-8.jpg","s":44,"e":20,"r":20,"f":0},"textures-9":{"n":"Atardecer en yeso","t":"165 × 120 cm","c":29900,"i":"https://www.gazetastudio.com/assets/print-textures-9.jpg","s":30,"e":20,"r":20,"f":0},"textures-10":{"n":"Piel","t":"60 × 90 cm","c":18900,"i":"https://www.gazetastudio.com/assets/print-textures-10.jpg","s":19,"e":20,"r":20,"f":0},"eclectic-1":{"n":"Marea urbana","t":"100 × 150 cm","c":28900,"i":"https://www.gazetastudio.com/assets/print-eclectic-1.jpg","s":22,"e":100,"r":100,"f":1},"eclectic-2":{"n":"Terraza interior","t":"70 × 100 cm","c":16900,"i":"https://www.gazetastudio.com/assets/print-eclectic-2.jpg","s":44,"e":100,"r":100,"f":1},"eclectic-3":{"n":"Alfama","t":"70 × 100 cm","c":15900,"i":"https://www.gazetastudio.com/assets/print-eclectic-3.jpg","s":44,"e":100,"r":100,"f":1},"eclectic-4":{"n":"Azotea","t":"100 × 150 cm","c":19900,"i":"https://www.gazetastudio.com/assets/print-eclectic-4.jpg","s":22,"e":100,"r":100,"f":1},"eclectic-5":{"n":"Bodegón eléctrico","t":"110 × 140 cm","c":17900,"i":"https://www.gazetastudio.com/assets/print-eclectic-5.jpg","s":44,"e":100,"r":100,"f":1},"eclectic-6":{"n":"Mercado de flores","t":"140 × 100 cm","c":17900,"i":"https://www.gazetastudio.com/assets/print-eclectic-6.jpg","s":44,"e":100,"r":100,"f":1},"eclectic-7":{"n":"La cocina roja","t":"50 × 40 cm","c":11900,"i":"https://www.gazetastudio.com/assets/print-eclectic-7.jpg","s":32,"e":100,"r":100,"f":1},"eclectic-8":{"n":"Danza de sombrillas","t":"100 × 150 cm","c":19900,"i":"https://www.gazetastudio.com/assets/print-eclectic-8.jpg","s":22,"e":100,"r":100,"f":1},"eclectic-9":{"n":"Jardín nocturno","t":"55 × 40 cm","c":8900,"i":"https://www.gazetastudio.com/assets/print-eclectic-9.jpg","s":39,"e":100,"r":100,"f":1},"eclectic-10":{"n":"El coleccionista","t":"150 × 75 cm","c":22900,"i":"https://www.gazetastudio.com/assets/print-eclectic-10.jpg","s":8,"e":100,"r":100,"f":1},"nordic-1":{"n":"Silencio claro","t":"70 × 100 cm","c":15900,"i":"https://www.gazetastudio.com/assets/print-nordic-1.jpg","s":44,"e":100,"r":100,"f":1},"nordic-2":{"n":"Fiordo","t":"70 × 100 cm","c":14900,"i":"https://www.gazetastudio.com/assets/print-nordic-2.jpg","s":44,"e":100,"r":100,"f":1},"nordic-3":{"n":"Nieve de abril","t":"40 × 50 cm","c":8900,"i":"https://www.gazetastudio.com/assets/print-nordic-3.jpg","s":32,"e":100,"r":100,"f":1},"nordic-4":{"n":"Lago quieto","t":"140 × 100 cm","c":13900,"i":"https://www.gazetastudio.com/assets/print-nordic-4.jpg","s":44,"e":100,"r":100,"f":1},"nordic-5":{"n":"Bosque blanco","t":"100 × 150 cm","c":14900,"i":"https://www.gazetastudio.com/assets/print-nordic-5.jpg","s":22,"e":100,"r":100,"f":1},"nordic-6":{"n":"Marea baja","t":"140 × 100 cm","c":13900,"i":"https://www.gazetastudio.com/assets/print-nordic-6.jpg","s":44,"e":100,"r":100,"f":1},"nordic-7":{"n":"Hielo","t":"50 × 40 cm","c":7900,"i":"https://www.gazetastudio.com/assets/print-nordic-7.jpg","s":32,"e":100,"r":100,"f":1},"nordic-8":{"n":"Campo de centeno","t":"100 × 150 cm","c":14900,"i":"https://www.gazetastudio.com/assets/print-nordic-8.jpg","s":22,"e":100,"r":100,"f":1},"nordic-9":{"n":"Primer tren","t":"55 × 40 cm","c":7900,"i":"https://www.gazetastudio.com/assets/print-nordic-9.jpg","s":39,"e":100,"r":100,"f":1},"nordic-10":{"n":"Ventana al fiordo","t":"150 × 75 cm","c":19900,"i":"https://www.gazetastudio.com/assets/print-nordic-10.jpg","s":8,"e":100,"r":100,"f":1},"bauhaus-1":{"n":"Composición 7","t":"70 × 100 cm","c":15900,"i":"https://www.gazetastudio.com/assets/print-bauhaus-1.jpg","s":44,"e":100,"r":100,"f":1},"bauhaus-2":{"n":"Eje y círculo","t":"100 × 150 cm","c":27900,"i":"https://www.gazetastudio.com/assets/print-bauhaus-2.jpg","s":22,"e":100,"r":100,"f":1},"bauhaus-3":{"n":"Tríada","t":"75 × 150 cm","c":24900,"i":"https://www.gazetastudio.com/assets/print-bauhaus-3.jpg","s":8,"e":100,"r":100,"f":1},"bauhaus-4":{"n":"Progresión","t":"100 × 200 cm","c":22900,"i":"https://www.gazetastudio.com/assets/print-bauhaus-4.jpg","s":8,"e":100,"r":100,"f":1},"bauhaus-5":{"n":"Arco primario","t":"110 × 140 cm","c":18900,"i":"https://www.gazetastudio.com/assets/print-bauhaus-5.jpg","s":44,"e":100,"r":100,"f":1},"bauhaus-6":{"n":"Contracomposición","t":"100 × 150 cm","c":18900,"i":"https://www.gazetastudio.com/assets/print-bauhaus-6.jpg","s":22,"e":100,"r":100,"f":1},"bauhaus-7":{"n":"Tres mástiles","t":"140 × 100 cm","c":16900,"i":"https://www.gazetastudio.com/assets/print-bauhaus-7.jpg","s":44,"e":100,"r":100,"f":1},"bauhaus-8":{"n":"Círculo roto","t":"50 × 40 cm","c":9900,"i":"https://www.gazetastudio.com/assets/print-bauhaus-8.jpg","s":32,"e":100,"r":100,"f":1},"bauhaus-9":{"n":"Escalera cromática","t":"55 × 40 cm","c":8900,"i":"https://www.gazetastudio.com/assets/print-bauhaus-9.jpg","s":39,"e":100,"r":100,"f":1},"bauhaus-10":{"n":"Metropolitano","t":"150 × 75 cm","c":19900,"i":"https://www.gazetastudio.com/assets/print-bauhaus-10.jpg","s":8,"e":100,"r":100,"f":1},"ethereum-1":{"n":"Nodo","t":"100 × 150 cm","c":28900,"i":"https://www.gazetastudio.com/assets/print-ethereum-1.jpg","s":22,"e":100,"r":100,"f":1},"ethereum-2":{"n":"Vórtice","t":"100 × 150 cm","c":28900,"i":"https://www.gazetastudio.com/assets/print-ethereum-2.jpg","s":22,"e":100,"r":100,"f":1},"ethereum-3":{"n":"Nébula","t":"140 × 100 cm","c":26900,"i":"https://www.gazetastudio.com/assets/print-ethereum-3.jpg","s":44,"e":100,"r":100,"f":1},"ethereum-4":{"n":"Fractura","t":"165 × 120 cm","c":24900,"i":"https://www.gazetastudio.com/assets/print-ethereum-4.jpg","s":30,"e":100,"r":100,"f":1},"ethereum-5":{"n":"Espejo líquido","t":"100 × 150 cm","c":28900,"i":"https://www.gazetastudio.com/assets/print-ethereum-5.jpg","s":22,"e":100,"r":100,"f":1},"ethereum-6":{"n":"Señal","t":"50 × 40 cm","c":12900,"i":"https://www.gazetastudio.com/assets/print-ethereum-6.jpg","s":32,"e":100,"r":100,"f":1},"ethereum-7":{"n":"Constelación","t":"140 × 100 cm","c":25900,"i":"https://www.gazetastudio.com/assets/print-ethereum-7.jpg","s":44,"e":100,"r":100,"f":1},"ethereum-8":{"n":"Abismo dorado","t":"150 × 75 cm","c":19900,"i":"https://www.gazetastudio.com/assets/print-ethereum-8.jpg","s":8,"e":100,"r":100,"f":1},"ethereum-9":{"n":"Latencia","t":"55 × 40 cm","c":11900,"i":"https://www.gazetastudio.com/assets/print-ethereum-9.jpg","s":39,"e":100,"r":100,"f":1},"ethereum-10":{"n":"Núcleo","t":"165 × 120 cm","c":28900,"i":"https://www.gazetastudio.com/assets/print-ethereum-10.jpg","s":30,"e":100,"r":100,"f":1},"popart-1":{"n":"Rostro pop","t":"100 × 140 cm","c":14900,"i":"https://www.gazetastudio.com/assets/print-popart-1.jpg","s":22,"e":100,"r":100,"f":1},"popart-2":{"n":"Plátano explosivo","t":"100 × 150 cm","c":15900,"i":"https://www.gazetastudio.com/assets/print-popart-2.jpg","s":22,"e":100,"r":100,"f":1},"popart-3":{"n":"Big bang","t":"110 × 140 cm","c":17900,"i":"https://www.gazetastudio.com/assets/print-popart-3.jpg","s":44,"e":100,"r":100,"f":1},"popart-4":{"n":"Chicle","t":"100 × 140 cm","c":13900,"i":"https://www.gazetastudio.com/assets/print-popart-4.jpg","s":22,"e":100,"r":100,"f":1},"popart-5":{"n":"Cóctel","t":"100 × 150 cm","c":14900,"i":"https://www.gazetastudio.com/assets/print-popart-5.jpg","s":22,"e":100,"r":100,"f":1},"popart-6":{"n":"Patatas fritas","t":"50 × 40 cm","c":9900,"i":"https://www.gazetastudio.com/assets/print-popart-6.jpg","s":32,"e":100,"r":100,"f":1},"popart-7":{"n":"La estrella","t":"140 × 100 cm","c":16900,"i":"https://www.gazetastudio.com/assets/print-popart-7.jpg","s":44,"e":100,"r":100,"f":1},"popart-8":{"n":"Burbujas","t":"55 × 40 cm","c":8900,"i":"https://www.gazetastudio.com/assets/print-popart-8.jpg","s":39,"e":100,"r":100,"f":1},"popart-9":{"n":"Casete","t":"150 × 75 cm","c":19900,"i":"https://www.gazetastudio.com/assets/print-popart-9.jpg","s":8,"e":100,"r":100,"f":1},"popart-10":{"n":"Sirena","t":"165 × 120 cm","c":18900,"i":"https://www.gazetastudio.com/assets/print-popart-10.jpg","s":30,"e":100,"r":100,"f":1},"dimension-1":{"n":"Estratos","t":"100 × 150 cm","c":16900,"i":"https://www.gazetastudio.com/assets/print-dimension-1.jpg","s":22,"e":100,"r":100,"f":1},"dimension-2":{"n":"Arcos flotantes","t":"80 × 160 cm","c":21900,"i":"https://www.gazetastudio.com/assets/print-dimension-2.jpg","s":44,"e":100,"r":100,"f":1},"dimension-3":{"n":"Ola tallada","t":"110 × 140 cm","c":18900,"i":"https://www.gazetastudio.com/assets/print-dimension-3.jpg","s":30,"e":100,"r":100,"f":1},"dimension-4":{"n":"Estratos II","t":"100 × 150 cm","c":16900,"i":"https://www.gazetastudio.com/assets/print-dimension-4.jpg","s":22,"e":100,"r":100,"f":1},"dimension-5":{"n":"Plegado","t":"50 × 40 cm","c":9900,"i":"https://www.gazetastudio.com/assets/print-dimension-5.jpg","s":32,"e":100,"r":100,"f":1},"dimension-6":{"n":"Duna interior","t":"140 × 100 cm","c":18900,"i":"https://www.gazetastudio.com/assets/print-dimension-6.jpg","s":44,"e":100,"r":100,"f":1},"dimension-7":{"n":"Fronda","t":"55 × 40 cm","c":8900,"i":"https://www.gazetastudio.com/assets/print-dimension-7.jpg","s":39,"e":100,"r":100,"f":1},"dimension-8":{"n":"Marea de papel","t":"150 × 75 cm","c":19900,"i":"https://www.gazetastudio.com/assets/print-dimension-8.jpg","s":8,"e":100,"r":100,"f":1},"dimension-9":{"n":"Umbral","t":"60 × 90 cm","c":13900,"i":"https://www.gazetastudio.com/assets/print-dimension-9.jpg","s":19,"e":100,"r":100,"f":1},"dimension-10":{"n":"Vertedera","t":"165 × 120 cm","c":19900,"i":"https://www.gazetastudio.com/assets/print-dimension-10.jpg","s":30,"e":100,"r":100,"f":1}};
+const PRODUCTO_LIMITADA = {"vino-primero":"prod_VVv8zJYc3NUEIr","trazo-unico":"prod_VUMRGwjTiy5ffP","linea-y-vino":"prod_VUMRXQn31wHO1U","arena-calma":"prod_VUMR8RqqCZm1Pp","horizonte-vino":"prod_VUMRSpUJGD3fMY","geometria-callada":"prod_VUMRdH5PhvuJDa","textures-7":"prod_VVv4u2wKPL90nP","textures-8":"prod_VVv47ALRy0k7SD","textures-9":"prod_VVv4GYmLWHvGbR","textures-10":"prod_VVv4NYU0rjWJBe"};
+const MAX_UNIDADES_OBRA = 10;
+const MAX_UNIDADES_PEDIDO = 20;
 const PAISES = ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','NO'];
-const MAX_OBRAS = 20;
+
+const stockDe = async (id) => {
+  const pid = PRODUCTO_LIMITADA[id];
+  if (!pid) return null;
+  try {
+    const r = await fetch('https://api.stripe.com/v1/products/' + pid, { headers: { Authorization: 'Bearer ' + process.env.STRIPE_SECRET_KEY } }).then(x => x.json());
+    return parseInt(r.metadata?.restantes ?? CATALOGO[id].r ?? 0, 10);
+  } catch (e) { return CATALOGO[id].r; }
+};
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', 'https://www.gazetastudio.com');
@@ -14,11 +24,32 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(204).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'solo POST' });
 
-  const ids = [...new Set(Array.isArray(req.body?.ids) ? req.body.ids : [])].filter(id => CATALOGO[id]);
-  if (ids.length === 0) return res.status(400).json({ error: 'cesta vacía o obras desconocidas' });
-  if (ids.length > MAX_OBRAS) return res.status(400).json({ error: 'máximo ' + MAX_OBRAS + ' obras por pedido' });
+  // admite {items:[{id,qty}]} y el formato antiguo {ids:[...]}
+  const bruto = Array.isArray(req.body?.items) && req.body.items.length
+    ? req.body.items
+    : (Array.isArray(req.body?.ids) ? req.body.ids.map(x => ({ id: x, qty: 1 })) : []);
+  const mezcla = {};
+  for (const it of bruto) {
+    const id = String(it?.id || '');
+    const qty = Math.max(1, Math.min(99, parseInt(it?.qty, 10) || 1));
+    if (CATALOGO[id]) mezcla[id] = (mezcla[id] || 0) + qty;
+  }
+  const items = Object.entries(mezcla).map(([id, qty]) => ({ id, qty }));
+  if (items.length === 0) return res.status(400).json({ error: 'cesta vacía u obras desconocidas' });
 
-  const envioCents = ids.reduce((s, id) => s + RATE[CATALOGO[id].s], 0);
+  const unidades = items.reduce((s, i) => s + i.qty, 0);
+  if (unidades > MAX_UNIDADES_PEDIDO) return res.status(400).json({ error: 'máximo ' + MAX_UNIDADES_PEDIDO + ' lienzos por pedido' });
+
+  // validación de ediciones limitadas contra el stock REAL de Stripe
+  for (const it of items) {
+    const o = CATALOGO[it.id];
+    const techo = o.f ? MAX_UNIDADES_OBRA : await stockDe(it.id);
+    if (it.qty > techo) {
+      return res.status(409).json({ error: techo === 0 ? '«' + o.n + '» está agotada' : '«' + o.n + '»: solo quedan ' + techo + ' de ' + o.e });
+    }
+  }
+
+  const envioCents = items.reduce((s, i) => s + RATE[CATALOGO[i.id].s] * i.qty, 0);
 
   const p = new URLSearchParams();
   p.set('mode', 'payment');
@@ -36,11 +67,11 @@ export default async function handler(req, res) {
   p.set('shipping_options[0][shipping_rate_data][fixed_amount][currency]', 'eur');
   p.set('shipping_options[0][shipping_rate_data][display_name]', 'Envío asegurado');
   p.set('metadata[canal]', 'carrito');
-  p.set('metadata[obras]', ids.join(','));
+  p.set('metadata[obras]', items.map(i => `${i.id}:${i.qty}`).join(','));
   p.set('metadata[envio_euros]', (envioCents / 100).toFixed(2));
-  ids.forEach((id, i) => {
-    const o = CATALOGO[id];
-    p.set(`line_items[${i}][quantity]`, '1');
+  items.forEach((it, i) => {
+    const o = CATALOGO[it.id];
+    p.set(`line_items[${i}][quantity]`, String(it.qty));
     p.set(`line_items[${i}][price_data][currency]`, 'eur');
     p.set(`line_items[${i}][price_data][unit_amount]`, String(o.c));
     p.set(`line_items[${i}][price_data][product_data][name]`, `GAZETA STUDIO — ${o.n} (${o.t})`);

@@ -131,28 +131,36 @@ const email = async (to, subject, html) => {
 };
 
 
-// ── Procesa un pago de carrito: stock y numeración por obra, un pedido Printumo
-//    por obra (tamaños distintos), un email al estudio y uno al cliente.
+// ── Procesa un pago de carrito: stock y numeración por obra (con unidades),
+//    un pedido Printumo por obra (quantity = unidades), emails estudio+cliente.
 async function procesarCarrito(s, res){
   const sid = s.id;
-  const ids = (s.metadata?.obras || '').split(',').filter(id => OBRAS_BY_ID[id]);
-  if(ids.length === 0) return res.status(200).json({ ok:true, ign:'carrito sin obras reconocidas' });
+  const items = (s.metadata?.obras || '').split(',').map(x => { const [id, q] = x.split(':'); return { id, qty: Math.max(1, parseInt(q, 10) || 1) }; }).filter(x => OBRAS_BY_ID[x.id]);
+  if(items.length === 0) return res.status(200).json({ ok:true, ign:'carrito sin obras reconocidas' });
 
   const ventas = [];
-  for(const id of ids){
+  for(const { id, qty } of items){
     const obra = OBRAS_BY_ID[id];
-    let numero = null;
+    let nums = null, vendidas = qty;
     if(!obra.fija){
       try{
         const prod = await stripe(`products/${obra.product}`);
-        if((prod.metadata?.['ult_sesion_'+obra.id] || '') === sid){ ventas.push({ ...obra, dup:true }); continue; }
+        if((prod.metadata?.['ult_sesion_'+obra.id] || '') === sid){ ventas.push({ ...obra, qty, dup:true }); continue; }
         const restantes = parseInt(prod.metadata?.restantes ?? RESTANTES_INI[obra.id], 10);
-        numero = obra.edicion - restantes + 1;
-        if(restantes > 0) await stripe(`products/${obra.product}`, 'POST', { 'metadata[restantes]': String(restantes-1) });
+        vendidas = Math.min(qty, Math.max(0, restantes));
+        if(vendidas > 0){
+          const primera = obra.edicion - restantes + 1;
+          nums = [primera, primera + vendidas - 1];
+          await stripe(`products/${obra.product}`, 'POST', { 'metadata[restantes]': String(restantes - vendidas) });
+          if(restantes - vendidas <= 0 && obra.plink){
+            await stripe(`payment_links/${obra.plink}`, 'POST', { active:'false' }).catch(e => console.error('archivo plink:', e.message));
+          }
+        }
+        if(vendidas < qty) console.error('SOBREVENTA', obra.id, 'pagadas', qty, 'disponibles', vendidas);
         await stripe(`products/${obra.product}`, 'POST', { [`metadata[ult_sesion_${obra.id}]`]: sid });
       }catch(e){ console.error('stock carrito:', e.message); }
     }
-    ventas.push({ ...obra, numero });
+    ventas.push({ ...obra, qty, nums, vendidas });
   }
   const unicas = ventas.filter(v => !v.dup);
 
@@ -170,7 +178,7 @@ async function procesarCarrito(s, res){
         const r = await fetch('https://printumo.com/api/v1/api_image_orders', { method:'POST',
           headers:{ 'Authorization':`Bearer ${process.env.PRINTUMO_API_KEY}`, 'Content-Type':'application/json' },
           body: JSON.stringify({ line_items:[{ image_url:v.img, print_type_id:2, size_id:v.size,
-            framing_id:2, market_id:1, quantity:1, canvas_wrapping:{ wrap_type:'mirrored' } }],
+            framing_id:2, market_id:1, quantity:v.qty, canvas_wrapping:{ wrap_type:'mirrored' } }],
             shipping_address: envio }) });
         const j = await r.json().catch(()=>({}));
         pedidos.push(j?.data ? String(j.data.api_image_order_id||j.data.id) : null);
@@ -179,19 +187,21 @@ async function procesarCarrito(s, res){
     }
   }
 
-  const listaEstudio = unicas.map((v,i)=>`<li>«${v.nombre}»${v.numero?` — № ${v.numero} de ${v.edicion}`:''} · pedido Printumo: <b>${pedidos[i]||'PENDIENTE'}</b></li>`).join('');
+  const rango = v => v.nums ? (v.nums[0] === v.nums[1] ? `№ ${v.nums[0]} de ${v.edicion}` : `№ ${v.nums[0]}–${v.nums[1]} de ${v.edicion}`) : '';
+  const sobreventa = unicas.some(v => !OBRAS_BY_ID[v.id].fija && v.vendidas < v.qty);
+  const listaEstudio = unicas.map((v,i)=>`<li>«${v.nombre}» ×${v.qty}${rango(v)?` — ${rango(v)}`:''} · pedido Printumo: <b>${pedidos[i]||'PENDIENTE'}</b>${(!OBRAS_BY_ID[v.id].fija && v.vendidas < v.qty)?` <b style="color:#b00">⚠ SOBREVENTA: pagadas ${v.qty}, quedaban ${v.vendidas} — REEMBOLSAR ${(v.qty-v.vendidas)*(v.precio||0)/100 || 'la diferencia'} €</b>`:''}</li>`).join('');
   try{
-    await email(process.env.MAIL_TO, `¡VENTA! Carrito de ${unicas.length} obra(s) — ${((s.amount_total||0)/100).toFixed(0)} €`,
-      `<div style="font-family:Georgia,serif"><h2>Pedido multi-obra (${unicas.length} lienzos)</h2><ul>${listaEstudio}</ul>
+    await email(process.env.MAIL_TO, `¡VENTA! Carrito de ${unicas.reduce((a,v)=>a+v.qty,0)} lienzo(s) — ${((s.amount_total||0)/100).toFixed(0)} €${sobreventa?' ⚠ REVISAR':''}`,
+      `<div style="font-family:Georgia,serif"><h2>Pedido multi-obra</h2><ul>${listaEstudio}</ul>
        <p><b>Cliente:</b> ${cd.name||'—'} (${cd.email||'—'}, ${cd.phone||'sin teléfono'})</p>
        <p><b>Envío:</b> ${envio.address1||'—'}, ${envio.postcode||'—'} ${envio.city||'—'}, ${envio.country_code||'—'}</p>
        <p>Envío cobrado: ${s.metadata?.envio_euros||'—'} € · Sesión Stripe: ${sid}</p></div>`);
   }catch(e){ console.error('mail estudio carrito:', e.message); }
 
   if(envio.email){
-    const listaCli = unicas.map(v=>`<li>«${v.nombre}»${v.numero?` — ejemplar <b>№ ${v.numero} de ${v.edicion}</b>`:''}</li>`).join('');
+    const listaCli = unicas.map(v=>`<li>«${v.nombre}» ×${v.qty}${rango(v)?` — ejemplar${v.nums&&v.nums[0]!==v.nums[1]?'es':''} <b>${rango(v)}</b>`:''}</li>`).join('');
     try{
-      await email(envio.email, `GAZETA STUDIO — Pedido confirmado (${unicas.length} obra${unicas.length>1?'s':''})`,
+      await email(envio.email, `GAZETA STUDIO — Pedido confirmado (${unicas.reduce((a,v)=>a+v.qty,0)} lienzo${unicas.reduce((a,v)=>a+v.qty,0)>1?'s':''})`,
         `<div style="font-family:Georgia,serif;max-width:560px">
          <p style="letter-spacing:.3em">GAZETA STUDIO</p>
          <h2>Gracias por su compra</h2>
@@ -202,7 +212,7 @@ async function procesarCarrito(s, res){
     }catch(e){ console.error('mail cliente carrito:', e.message); }
   }
 
-  return res.status(200).json({ ok:true, canal:'carrito', obras: unicas.length, printumo: pedidos.filter(Boolean).length + '/' + unicas.length });
+  return res.status(200).json({ ok:true, canal:'carrito', lienzos: unicas.reduce((a,v)=>a+v.qty,0), printumo: pedidos.filter(Boolean).length + '/' + unicas.length });
 }
 
 export default async function handler(req, res) {

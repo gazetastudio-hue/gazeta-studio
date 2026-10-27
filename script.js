@@ -97,7 +97,7 @@ const RATE = { 32:800, 39:800, 19:3999, 44:4999, 22:4999, 30:4999, 8:4999 };
 function cardHTML(p){
   const c = COLECCIONES[p.coleccion];
   const limitada = p.coleccion === 'textures';
-  const quedan = limitada ? `<span class="card-quedan">Quedan ${p.restantes} de ${p.edicion} · numerada</span>` : `<span class="card-quedan">${p.tamano}</span>`;
+  const quedan = limitada ? `<span class="card-quedan" data-quedan="${p.id}">Quedan ${p.restantes} de ${p.edicion} · numerada</span>` : `<span class="card-quedan">${p.tamano}</span>`;
   return `<article class="card" data-id="${p.id}" data-col="${p.coleccion}" data-gran="${p.gran}">
     <a class="card-media" href="${RAIZ}coleccion/${p.coleccion}/" aria-label="${p.nombre}">
       ${limitada ? '<span class="flag flag-vino">Edición de 20</span>' : ''}
@@ -113,31 +113,62 @@ function cardHTML(p){
     </div></article>`;
 }
 
-/* --- Carrito --- */
+/* --- Carrito (con unidades) --- */
+function normCart(raw){
+  return (Array.isArray(raw)?raw:[]).map(x=>typeof x==='string'?{id:x,qty:1}:{id:String(x.id),qty:Math.max(1,Math.min(99,parseInt(x.qty,10)||1))}).filter(x=>productos.find(p=>p.id===x.id));
+}
 let cart = [];
-try{ cart = JSON.parse(localStorage.getItem('gazeta_cart') || '[]'); }catch(e){ cart = []; }
+try{ cart = normCart(JSON.parse(localStorage.getItem('gazeta_cart') || '[]')); }catch(e){ cart = []; }
 function saveCart(){ localStorage.setItem('gazeta_cart', JSON.stringify(cart)); renderCart(); }
+function unidades(){ return cart.reduce((s,x)=>s+x.qty,0); }
+function maxUnidades(p){ return p.coleccion==='textures' ? Math.max(0, p.restantes|0) : 10; }
+async function refrescaStock(){
+  try{
+    const r = await fetch(RAIZ+'api/stock'); const d = await r.json();
+    if(!d.restantes) return;
+    for(const id in d.restantes){ const p=productos.find(x=>x.id===id); if(p) p.restantes=d.restantes[id]; }
+    cart = cart.filter(x=>{ const p=productos.find(q=>q.id===x.id); return p && maxUnidades(p)>0; });
+    document.querySelectorAll('[data-quedan]').forEach(el=>{
+      const p=productos.find(q=>q.id===el.dataset.quedan); if(!p || p.coleccion!=='textures') return;
+      el.textContent = p.restantes>0 ? `Quedan ${p.restantes} de ${p.edicion} · numerada` : 'Edición agotada';
+    });
+    document.querySelectorAll('[data-comprar]').forEach(b=>{
+      const p=productos.find(q=>q.id===b.dataset.comprar);
+      if(p && p.coleccion==='textures' && p.restantes<=0){ b.disabled=true; b.textContent='Agotada'; }
+    });
+    saveCart();
+  }catch(e){}
+}
 function renderCart(){
   const body = document.getElementById('cartBody'), count = document.getElementById('cartCount'), totalEl = document.getElementById('cartTotal');
   const obrasEl = document.getElementById('cartObras'), envioEl = document.getElementById('cartEnvio');
   if(!body) return;
-  count.textContent = cart.length;
+  count.textContent = unidades();
   if(cart.length === 0){
     body.innerHTML = '<p class="cesta-vacia">Tu cesta está vacía.<br>Explora las colecciones y encuentra tu cuadro.</p>';
     totalEl.textContent = '0 €'; if(obrasEl) obrasEl.textContent='0 €'; if(envioEl) envioEl.textContent='— €'; return;
   }
   let total = 0, envio = 0;
-  body.innerHTML = cart.map((id,i)=>{
-    const p = productos.find(x=>x.id===id); if(!p) return '';
-    total += p.precio; envio += (RATE[p.size_id] || 0);
-    return `<div class="cart-item"><img src="${RAIZ}${p.img}" alt="${p.nombre}"><div><b>${p.nombre}</b><small>${COLECCIONES[p.coleccion].nombre} · ${p.tamano}</small><div class="cart-acciones"><button class="remove" data-remove="${i}">Quitar</button></div></div><b>${euros(p.precio)}</b></div>`;
+  body.innerHTML = cart.map((x,i)=>{
+    const p = productos.find(q=>q.id===x.id); if(!p) return '';
+    total += p.precio*x.qty; envio += (RATE[p.size_id] || 0)*x.qty;
+    const mx = Math.min(maxUnidades(p), 10);
+    return `<div class="cart-item"><img src="${RAIZ}${p.img}" alt="${p.nombre}"><div><b>${p.nombre}</b><small>${COLECCIONES[p.coleccion].nombre} · ${p.tamano}</small><div class="cart-acciones"><span class="qty"><button class="qty-btn" data-menos="${i}" aria-label="Una unidad menos"${x.qty<=1?' disabled':''}>−</button><span>${x.qty}</span><button class="qty-btn" data-mas="${i}" aria-label="Una unidad más"${x.qty>=mx?' disabled':''}>+</button></span><button class="remove" data-remove="${i}">Quitar</button></div></div><b>${euros(p.precio*x.qty)}</b></div>`;
   }).join('');
   totalEl.textContent = euros(total + envio / 100);
   if(obrasEl) obrasEl.textContent = euros(total);
   if(envioEl) envioEl.textContent = euros(envio / 100);
   const btn = document.getElementById('checkoutBtn');
-  if(btn) btn.textContent = cart.length > 1 ? `Tramitar pago seguro · ${cart.length} obras` : 'Tramitar pago seguro';
+  if(btn) btn.textContent = unidades() > 1 ? `Tramitar pago seguro · ${unidades()} lienzos` : 'Tramitar pago seguro';
   body.querySelectorAll('[data-remove]').forEach(b=>b.addEventListener('click',()=>{ cart.splice(Number(b.dataset.remove),1); saveCart(); }));
+  body.querySelectorAll('[data-mas]').forEach(b=>b.addEventListener('click',()=>{
+    const x=cart[Number(b.dataset.mas)]; const p=productos.find(q=>q.id===x.id);
+    if(p && x.qty<maxUnidades(p)){ x.qty++; saveCart(); }
+  }));
+  body.querySelectorAll('[data-menos]').forEach(b=>b.addEventListener('click',()=>{
+    const x=cart[Number(b.dataset.menos)];
+    if(x.qty>1){ x.qty--; saveCart(); }
+  }));
 }
 function openCart(){ document.getElementById('cartDrawer')?.classList.add('open'); document.body.classList.add('cart-open'); setOverlay(true); }
 function closeCart(){ document.getElementById('cartDrawer')?.classList.remove('open'); document.body.classList.remove('cart-open'); setOverlay(false); }
@@ -168,7 +199,7 @@ function initShop(){
     const qs=new URLSearchParams(location.search);
     if(qs.get('pedido')){ if(cart.length){ cart=[]; saveCart(); } } /* pago multi-obra completado: vaciar cesta */
     const q=qs.get('obra');
-    if(q){ const antes=cart.length; cart=cart.filter(id=>{const p=productos.find(x=>x.id===id); return !p || p.nombre!==q;}); if(cart.length<antes) saveCart(); }
+    if(q){ const antes=unidades(); cart=cart.filter(x=>{const p=productos.find(y=>y.id===x.id); return !p || p.nombre!==q;}); if(unidades()<antes) saveCart(); }
   }
   document.addEventListener('click', e=>{
     const btn = e.target.closest('[data-comprar]'); if(!btn) return;
@@ -196,20 +227,20 @@ function initShop(){
   const gf=document.querySelector('[data-fav]');
   if(gf){ gf.innerHTML=gf.dataset.fav.split(',').map(id=>{const p=productos.find(x=>x.id===id);return p?cardHTML(p):''}).join(''); }
   initFiltros();
-  renderCart();
+  renderCart(); refrescaStock();
   document.getElementById('cartBtn')?.addEventListener('click', openCart);
   document.getElementById('closeCart')?.addEventListener('click', closeCart);
   document.getElementById('overlay')?.addEventListener('click', ()=>{ closeCart(); cerrarMenu(); });
   document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeCart(); cerrarMenu(); } });
   document.getElementById('checkoutBtn')?.addEventListener('click', async ()=>{
     if(cart.length === 0){ showToast('La cesta está vacía. Cuando elijas un cuadro, lo verás aquí.'); return; }
-    if(cart.length > 20){ showToast('Máximo 20 obras por pedido. Deja alguna en la cesta para el siguiente.'); return; }
+    if(unidades() > 20){ showToast('Máximo 20 lienzos por pedido.'); return; }
     const btn = document.getElementById('checkoutBtn');
     btn.disabled = true; const txt = btn.textContent; btn.textContent = 'Abriendo pago seguro…';
     try{
-      const r = await fetch(RAIZ + 'api/checkout', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ ids: cart }) });
+      const r = await fetch(RAIZ + 'api/checkout', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ items: cart }) });
       const d = await r.json();
-      if(!d.url) throw new Error(d.error || 'sin url');
+      if(!d.url){ showToast(d.error || 'No hemos podido abrir el pago. Reinténtalo en un minuto.'); btn.disabled=false; btn.textContent=txt; return; }
       location.href = d.url; /* un solo pago, un solo envío */
     }catch(e){
       showToast('No hemos podido abrir el pago. Reinténtalo en un minuto o escríbenos.');
