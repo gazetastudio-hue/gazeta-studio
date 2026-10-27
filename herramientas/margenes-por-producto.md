@@ -8,8 +8,8 @@ Comisión Stripe estimada 1,5 % + 0,25 € · IVA 21 % incluido en el PVP.
 
 ## Estado tras el saneo (rev. 2)
 - **0 obras desalineadas**: las 13 que se anunciaban con un tamaño distinto del fabricado ahora muestran el tamaño real.
-- **19 precios subidos** para garantizar un mínimo de ~33 € netos por obra.
-- Peor obra del catálogo ahora: **La estrella** (140 × 100 cm, 169 €) → 25.77 € netos.
+- **20 precios subidos** para garantizar un mínimo de ~33 € netos por obra.
+- Peor obra del catálogo ahora: **Chicle / Bodegón eléctrico / Big bang** (179 €) → 33.88 € netos.
 - Mejor obra: **Última luz** → 823.73 € netos.
 
 ## Resumen por tamaño
