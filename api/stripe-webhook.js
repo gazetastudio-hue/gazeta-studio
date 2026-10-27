@@ -23,12 +23,12 @@ export const config = { api: { bodyParser: false } };
 // obra → datos fijos (edición total, precio céntimos, specs Printumo: lienzo 2, mercado EU 1, sin marco 2)
 const OBRAS = {
   /* ── TEXTURES · edición limitada de 20 ── */
-  plink_1UUtIH85u7jC8FxLsP7M3KnV: { id:'vino-primero',      nombre:'Corriente',        product:'prod_VVv8zJYc3NUEIr', edicion:20, size:22, fija:false, img:'https://www.gazetastudio.com/assets/print-vino.jpg' },
-  plink_1UTNiz85u7jC8FxLzPpIXtNu: { id:'trazo-unico',       nombre:'Pulso',            product:'prod_VUMRGwjTiy5ffP', edicion:20, size:44, fija:false, img:'https://www.gazetastudio.com/assets/print-trazo.jpg' },
-  plink_1UTNj085u7jC8FxLv8Aq1AfY: { id:'linea-y-vino',      nombre:'Perfil en reposo', product:'prod_VUMRXQn31wHO1U', edicion:20, size:19, fija:false, img:'https://www.gazetastudio.com/assets/print-linea.jpg' },
-  plink_1UTNj185u7jC8FxLMLRqV6lM: { id:'arena-calma',       nombre:'Mediodía',         product:'prod_VUMR8RqqCZm1Pp', edicion:20, size:30, fija:false, img:'https://www.gazetastudio.com/assets/print-arena.jpg' },
-  plink_1UTNj285u7jC8FxLAlEUaRc0: { id:'horizonte-vino',    nombre:'Última luz',       product:'prod_VUMRSpUJGD3fMY', edicion:20, size:22, fija:false, img:'https://www.gazetastudio.com/assets/print-horizonte.jpg' },
-  plink_1UTNj385u7jC8FxLbqRJAfN5: { id:'geometria-callada', nombre:'Equilibrio',       product:'prod_VUMRdH5PhvuJDa', edicion:20, size:39, fija:false, img:'https://www.gazetastudio.com/assets/print-geometria.jpg' },
+  plink_1UUtIH85u7jC8FxLsP7M3KnV: { id:'vino-primero',      nombre:'Corriente',        product:'prod_VVv8zJYc3NUEIr', edicion:20, size:22, fija:false, img:'https://www.gazetastudio.com/assets/print-vino-v2.jpg' },
+  plink_1UTNiz85u7jC8FxLzPpIXtNu: { id:'trazo-unico',       nombre:'Pulso',            product:'prod_VUMRGwjTiy5ffP', edicion:20, size:44, fija:false, img:'https://www.gazetastudio.com/assets/print-trazo-v2.jpg' },
+  plink_1UTNj085u7jC8FxLv8Aq1AfY: { id:'linea-y-vino',      nombre:'Perfil en reposo', product:'prod_VUMRXQn31wHO1U', edicion:20, size:19, fija:false, img:'https://www.gazetastudio.com/assets/print-linea-v2.jpg' },
+  plink_1UTNj185u7jC8FxLMLRqV6lM: { id:'arena-calma',       nombre:'Mediodía',         product:'prod_VUMR8RqqCZm1Pp', edicion:20, size:30, fija:false, img:'https://www.gazetastudio.com/assets/print-arena-v2.jpg' },
+  plink_1UTNj285u7jC8FxLAlEUaRc0: { id:'horizonte-vino',    nombre:'Última luz',       product:'prod_VUMRSpUJGD3fMY', edicion:20, size:22, fija:false, img:'https://www.gazetastudio.com/assets/print-horizonte-v2.jpg' },
+  plink_1UTNj385u7jC8FxLbqRJAfN5: { id:'geometria-callada', nombre:'Equilibrio',       product:'prod_VUMRdH5PhvuJDa', edicion:20, size:39, fija:false, img:'https://www.gazetastudio.com/assets/print-geometria-v2.jpg' },
   /* ── Colecciones fijas ── */
   plink_1UTidb85u7jC8FxLdRVXGwTQ: { id:'eclectic-1', nombre:'Marea urbana', product:'prod_VUi3028BgLOpI7', edicion:100, size:22, fija:true, img:'https://www.gazetastudio.com/assets/print-eclectic-1.jpg' },
   plink_1UTidc85u7jC8FxL6F93Vrfn: { id:'eclectic-2', nombre:'Terraza interior', product:'prod_VUi3cKVRxupXpZ', edicion:100, size:44, fija:true, img:'https://www.gazetastudio.com/assets/print-eclectic-2.jpg' },
