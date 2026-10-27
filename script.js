@@ -109,7 +109,7 @@ function cardHTML(p){
       <h3>${p.nombre}</h3>
       ${quedan}
       <div class="card-foot"><span class="card-precio">${euros(p.precio)}<small>IVA incluido</small></span>
-      <button class="btn-mini" data-comprar="${p.id}">Comprar</button></div>
+      <button class="btn-mini" data-comprar="${p.id}">Añadir al carrito</button></div>
     </div></article>`;
 }
 
