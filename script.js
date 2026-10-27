@@ -132,9 +132,9 @@ function renderCart(){
     total += p.precio; envio += (RATE[p.size_id] || 0);
     return `<div class="cart-item"><img src="${RAIZ}${p.img}" alt="${p.nombre}"><div><b>${p.nombre}</b><small>${COLECCIONES[p.coleccion].nombre} · ${p.tamano}</small><div class="cart-acciones"><button class="remove" data-remove="${i}">Quitar</button></div></div><b>${euros(p.precio)}</b></div>`;
   }).join('');
-  totalEl.textContent = euros(total + envio);
+  totalEl.textContent = euros(total + envio / 100);
   if(obrasEl) obrasEl.textContent = euros(total);
-  if(envioEl) envioEl.textContent = euros(envio);
+  if(envioEl) envioEl.textContent = euros(envio / 100);
   const btn = document.getElementById('checkoutBtn');
   if(btn) btn.textContent = cart.length > 1 ? `Tramitar pago seguro · ${cart.length} obras` : 'Tramitar pago seguro';
   body.querySelectorAll('[data-remove]').forEach(b=>b.addEventListener('click',()=>{ cart.splice(Number(b.dataset.remove),1); saveCart(); }));
